@@ -1,0 +1,10 @@
+C:\Users\jruiz\Documents\Visual Studio 2010\Projects\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\personal-training-martial-arts.Tests.exe
+C:\Users\jruiz\Documents\Visual Studio 2010\Projects\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\personal-training-martial-arts.Tests.pdb
+C:\Users\jruiz\Documents\Visual Studio 2010\Projects\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\nunit-console-runner.dll
+C:\Users\jruiz\Documents\Visual Studio 2010\Projects\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\nunit.framework.dll
+C:\Users\jruiz\Documents\Visual Studio 2010\Projects\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\nunit.util.dll
+C:\Users\jruiz\Documents\Visual Studio 2010\Projects\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\nunit.core.interfaces.dll
+C:\Users\jruiz\Documents\Visual Studio 2010\Projects\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\nunit.core.dll
+C:\Users\jruiz\Documents\Visual Studio 2010\Projects\personal-training-martial-arts\personal-training-martial-arts.Tests\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\jruiz\Documents\Visual Studio 2010\Projects\personal-training-martial-arts\personal-training-martial-arts.Tests\obj\x86\Debug\personal-training-martial-arts.Tests.exe
+C:\Users\jruiz\Documents\Visual Studio 2010\Projects\personal-training-martial-arts\personal-training-martial-arts.Tests\obj\x86\Debug\personal-training-martial-arts.Tests.pdb
