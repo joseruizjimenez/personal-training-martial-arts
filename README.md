@@ -1,6 +1,7 @@
 ## About this project
 This is a Martial Art's Personal Training for a university project at San Pablo CEU - Spain
 
+
 ## About us
 Pablo Calleja
 Luis Lalueza
