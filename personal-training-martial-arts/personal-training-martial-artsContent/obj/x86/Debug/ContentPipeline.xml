@@ -7,10 +7,10 @@
       <TargetProfile>HiDef</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\jruiz\Documents\Visual Studio 2010\Projects\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-artsContent\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\jruiz\Documents\Visual Studio 2010\Projects\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\jruiz\Documents\Visual Studio 2010\Projects\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-artsContent\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\jruiz\Documents\Visual Studio 2010\Projects\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-artsContent\</RootDirectory>
+      <LoggerRootDirectory>C:\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-artsContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>

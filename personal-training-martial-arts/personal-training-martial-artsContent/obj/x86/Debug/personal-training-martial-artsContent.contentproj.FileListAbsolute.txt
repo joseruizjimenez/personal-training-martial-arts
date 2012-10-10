@@ -1,1 +1,1 @@
-C:\Users\jruiz\Documents\Visual Studio 2010\Projects\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-artsContent\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-artsContent\obj\x86\Debug\ResolveAssemblyReference.cache

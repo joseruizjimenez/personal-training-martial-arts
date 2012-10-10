@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="false">
-  <TopNode>[0-1000]C:\Users\jruiz\Documents\Visual Studio 2010\Projects\personal-training-martial-arts\personal-training-martial-arts.Tests\personal-training-martial-arts.Tests.csproj</TopNode>
-  <SelectedNode>[0-1000]C:\Users\jruiz\Documents\Visual Studio 2010\Projects\personal-training-martial-arts\personal-training-martial-arts.Tests\personal-training-martial-arts.Tests.csproj</SelectedNode>
+  <TopNode>[0-1000]C:\personal-training-martial-arts\personal-training-martial-arts.Tests\personal-training-martial-arts.Tests.csproj</TopNode>
+  <SelectedNode>[0-1003]personal_training_martial_arts.Tests.TestFixture1.TestFault</SelectedNode>
   <ExcludeCategories>false</ExcludeCategories>
   <Nodes>
-    <Node UniqueName="[0-1000]C:\Users\jruiz\Documents\Visual Studio 2010\Projects\personal-training-martial-arts\personal-training-martial-arts.Tests\personal-training-martial-arts.Tests.csproj" Expanded="true" />
-    <Node UniqueName="[0-1004]C:\Users\jruiz\Documents\Visual Studio 2010\Projects\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\personal-training-martial-arts.Tests.exe" Expanded="true" />
+    <Node UniqueName="[0-1000]C:\personal-training-martial-arts\personal-training-martial-arts.Tests\personal-training-martial-arts.Tests.csproj" Expanded="true" />
+    <Node UniqueName="[0-1004]C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\personal-training-martial-arts.Tests.exe" Expanded="true" />
     <Node UniqueName="[0-1005]personal_training_martial_arts" Expanded="true" />
     <Node UniqueName="[0-1006]personal_training_martial_arts.Tests" Expanded="true" />
     <Node UniqueName="[0-1001]personal_training_martial_arts.Tests.TestFixture1" Expanded="true" />

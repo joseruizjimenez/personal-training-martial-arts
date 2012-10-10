@@ -1,6 +1,6 @@
-C:\Users\jruiz\Documents\Visual Studio 2010\Projects\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\bin\x86\Debug\personal-training-martial-arts.exe
-C:\Users\jruiz\Documents\Visual Studio 2010\Projects\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\bin\x86\Debug\personal-training-martial-arts.pdb
-C:\Users\jruiz\Documents\Visual Studio 2010\Projects\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\obj\x86\Debug\ResolveAssemblyReference.cache
-C:\Users\jruiz\Documents\Visual Studio 2010\Projects\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
-C:\Users\jruiz\Documents\Visual Studio 2010\Projects\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\obj\x86\Debug\personal-training-martial-arts.exe
-C:\Users\jruiz\Documents\Visual Studio 2010\Projects\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\obj\x86\Debug\personal-training-martial-arts.pdb
+C:\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\bin\x86\Debug\personal-training-martial-arts.exe
+C:\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\bin\x86\Debug\personal-training-martial-arts.pdb
+C:\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\obj\x86\Debug\personal-training-martial-arts.exe
+C:\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\obj\x86\Debug\personal-training-martial-arts.pdb
