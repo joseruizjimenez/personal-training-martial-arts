@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using Microsoft.Kinect;
 
 namespace personal_training_martial_arts
 {
@@ -19,11 +20,151 @@ namespace personal_training_martial_arts
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        Texture2D kinectRGBVideo;
+        Texture2D overlay;
+        SpriteFont font;
+
+        KinectSensor kinectSensor;
+
+        string connectedStatus = "Not connected";
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+
+            // Ajustamos la pantalla a la resolucion del kinect para copiar mapa 1:1
+            graphics.PreferredBackBufferWidth = 640;
+            graphics.PreferredBackBufferHeight = 480;
         }
+
+        /// <summary>
+        /// Detecta cuando se conecta o desconecta un sensor kinect. Lanza una busqueda si es necesario.
+        /// Se emplea un eventHandler para lanzar la actualizacion, que se dirige con StatusChangedEventArgs
+        /// </summary>
+        void KinectSensors_StatusChanged(object sender, StatusChangedEventArgs e)
+        {
+            if (this.kinectSensor == e.Sensor)
+            {
+                if (e.Status == KinectStatus.Disconnected ||
+                    e.Status == KinectStatus.NotPowered)
+                {
+                    this.kinectSensor = null;
+                    this.DiscoverKinectSensor();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Localiza nuevos dispositivos Kinect y lo asocia con nuestro kinectSensor
+        /// </summary>
+        private void DiscoverKinectSensor()
+        {
+            foreach (KinectSensor sensor in KinectSensor.KinectSensors)
+            {
+                if (sensor.Status == KinectStatus.Connected)
+                {
+                    // Encuentra un kinect y lo asigna a nuestro kinectSensor
+                    kinectSensor = sensor;
+                    break;
+                }
+            }
+
+            // Si no ha encontrado ninguno:
+            if (this.kinectSensor == null)
+            {
+                connectedStatus = "KINECT NOT DETECTED";
+                return;
+            }
+
+            // Localizado el kinect, podemos especificar su estado concreto:
+            switch (kinectSensor.Status)
+            {
+                case KinectStatus.Connected:
+                    {
+                        connectedStatus = "KINECT DETECTED";
+                        break;
+                    }
+                case KinectStatus.Disconnected:
+                    {
+                        connectedStatus = "Status: Disconnected";
+                        break;
+                    }
+                case KinectStatus.NotPowered:
+                    {
+                        connectedStatus = "Status: Connect the power";
+                        break;
+                    }
+                default:
+                    {
+                        connectedStatus = "Status: Error";
+                        break;
+                    }
+            }
+
+            // Inicializa el kinect encontrado si esta operativo
+            if (kinectSensor.Status == KinectStatus.Connected)
+            {
+                InitializeKinect();
+            }
+        }
+
+        /// <summary>
+        /// Activamos y configuramos la camara RGB y la deteccion del esqueleto en el Kinect
+        /// </summary>
+        private bool InitializeKinect()
+        {
+            // Color stream
+            kinectSensor.ColorStream.Enable(ColorImageFormat.RgbResolution640x480Fps30);
+            kinectSensor.ColorFrameReady += new EventHandler<ColorImageFrameReadyEventArgs>(kinectSensor_ColorFrameReady);
+
+            try
+            {
+                kinectSensor.Start();
+            }
+            catch
+            {
+                connectedStatus = "Unable to start the Kinect Sensor";
+                return false;
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Actualiza los datos recibidos de la camara sobre nuestro kinectRGBVideo
+        /// </summary>
+        void kinectSensor_ColorFrameReady(object sender, ColorImageFrameReadyEventArgs e)
+        {
+            using (ColorImageFrame colorImageFrame = e.OpenColorImageFrame())
+            {
+                if (colorImageFrame != null)
+                {
+
+                    byte[] pixelsFromFrame = new byte[colorImageFrame.PixelDataLength];
+
+                    colorImageFrame.CopyPixelDataTo(pixelsFromFrame);
+
+                    Color[] color = new Color[colorImageFrame.Height * colorImageFrame.Width];
+                    kinectRGBVideo = new Texture2D(graphics.GraphicsDevice, colorImageFrame.Width, colorImageFrame.Height);
+
+                    // Recorre los pixels y asigna el byte adecuado a cada punto
+                    // El indice se incrementa de 4 en 4 porque hay 3 colores: red, green, blue
+                    // El bytemap pixelsFromFrame se compone de un array unidimensional
+                    int index = 0;
+                    for (int y = 0; y < colorImageFrame.Height; y++)
+                    {
+                        for (int x = 0; x < colorImageFrame.Width; x++, index += 4)
+                        {
+                            color[y * colorImageFrame.Width + x] = new Color(pixelsFromFrame[index + 2], pixelsFromFrame[index + 1], pixelsFromFrame[index + 0]);
+                        }
+                    }
+
+                    // Actualizamos los datos de los pixels del ColorImageFrame a nuestra Texture2D
+                    kinectRGBVideo.SetData(color);
+                }
+            }
+        }
+
 
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
@@ -33,7 +174,10 @@ namespace personal_training_martial_arts
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            // En la inicializacion del proyecto XNA lanzamos la busqueda del Kinect cuando
+            // se produce un nuevo evento en StatusChangedEventArgs
+            KinectSensor.KinectSensors.StatusChanged += new EventHandler<StatusChangedEventArgs>(KinectSensors_StatusChanged);
+            DiscoverKinectSensor();
 
             base.Initialize();
         }
@@ -48,6 +192,10 @@ namespace personal_training_martial_arts
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+            kinectRGBVideo = new Texture2D(GraphicsDevice, 1337, 1337);
+
+            overlay = Content.Load<Texture2D>("overlay");
+            font = Content.Load<SpriteFont>("SpriteFont1");
         }
 
         /// <summary>
@@ -57,6 +205,8 @@ namespace personal_training_martial_arts
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
+            kinectSensor.Stop();
+            kinectSensor.Dispose();
         }
 
         /// <summary>
@@ -71,6 +221,8 @@ namespace personal_training_martial_arts
                 this.Exit();
 
             // TODO: Add your update logic here
+            // Por ahora no tenemos logica que actualizar en el juego.
+            // La deteccion del kinect se realiza con su propio EventHandler y la pantalla se pinta con Draw.
 
             base.Update(gameTime);
         }
@@ -84,6 +236,14 @@ namespace personal_training_martial_arts
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
+            spriteBatch.Begin();
+            // Pintamos el video de Kinect
+            spriteBatch.Draw(kinectRGBVideo, new Rectangle(0, 0, 640, 480), Color.White);
+            // Capa overlay  intermedia sobre la que pintar las letras
+            spriteBatch.Draw(overlay, new Rectangle(0, 0, 640, 480), Color.White);
+            // Pintamos el estado del Kinect
+            spriteBatch.DrawString(font, connectedStatus, new Vector2(20, 80), Color.White);
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
