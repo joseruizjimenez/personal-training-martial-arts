@@ -3,23 +3,41 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
+using NUnit.Mocks;
+using Microsoft.Kinect;
 
 namespace personal_training_martial_arts.Tests
 {
     [TestFixture]
-    public class TestFixture1
+    public class TestGame1
     {
-        [Test]
-        public void TestTrue()
+        private DynamicMock kinectSensorMock;
+        Game1 game;
+
+        [SetUp]
+        public void TestInit()
         {
-            Assert.IsTrue(true);
+            // Mock de los sensores Kinect
+            kinectSensorMock = new DynamicMock(typeof(KinectSensor));
+            game = new Game1();
         }
 
-        // This test fail for example, replace result or delete this test to see all tests pass
         [Test]
-        public void TestFault()
-        {
-            Assert.IsTrue(false);
+        public void TestDiscoverKinectSensor_NotDetected()
+        {           
+            kinectSensorMock.ExpectAndReturn("Status", KinectStatus.Disconnected);
+            game.InitializeStub();
+
+            Assert.AreEqual("KINECT NOT DETECTED", game.GetConnectedStatus());
         }
+
+        //[Test]
+        //public void TestDiscoverKinectSensor_Detected()
+        //{
+        //    kinectSensorMock.ExpectAndReturn("Status", KinectStatus.Connected);
+        //    game.InitializeStub();
+
+        //    Assert.AreEqual("KINECT DETECTED", game.GetConnectedStatus());
+        //}
     }
 }

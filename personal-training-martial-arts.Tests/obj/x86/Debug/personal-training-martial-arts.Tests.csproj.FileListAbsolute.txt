@@ -8,3 +8,6 @@ C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug
 C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\nunit.core.interfaces.dll
 C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\nunit.core.dll
 C:\personal-training-martial-arts\personal-training-martial-arts.Tests\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\personal-training-martial-arts.exe
+C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\personal-training-martial-arts.pdb
+C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\nunit.mocks.dll

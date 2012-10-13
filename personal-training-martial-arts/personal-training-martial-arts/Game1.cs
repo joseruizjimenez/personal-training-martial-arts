@@ -22,11 +22,15 @@ namespace personal_training_martial_arts
 
         Texture2D kinectRGBVideo;
         Texture2D overlay;
+        Texture2D hand;
         SpriteFont font;
+
+        // Ejemplo con posicion de la mano. Se actualiza en KinectSensor_SkeletonFrameReady
+        Vector2 handPosition = new Vector2();
 
         KinectSensor kinectSensor;
 
-        string connectedStatus = "Not connected";
+        string connectedStatus = "KINECT NOT DETECTED";
 
         public Game1()
         {
@@ -118,6 +122,17 @@ namespace personal_training_martial_arts
             kinectSensor.ColorStream.Enable(ColorImageFormat.RgbResolution640x480Fps30);
             kinectSensor.ColorFrameReady += new EventHandler<ColorImageFrameReadyEventArgs>(kinectSensor_ColorFrameReady);
 
+            // Skeleton Stream
+            kinectSensor.SkeletonStream.Enable(new TransformSmoothParameters()
+            {
+                Smoothing = 0.5f,
+                Correction = 0.5f,
+                Prediction = 0.5f,
+                JitterRadius = 0.05f,
+                MaxDeviationRadius = 0.04f
+            });
+            kinectSensor.SkeletonFrameReady += new EventHandler<SkeletonFrameReadyEventArgs>(kinectSensor_SkeletonFrameReady);
+
             try
             {
                 kinectSensor.Start();
@@ -128,6 +143,32 @@ namespace personal_training_martial_arts
                 return false;
             }
             return true;
+        }
+
+        /// <summary>
+        /// Actualiza la posicion del esqueleto sobre nuestro vector
+        /// </summary>
+        void kinectSensor_SkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
+        {
+            using (SkeletonFrame skeletonFrame = e.OpenSkeletonFrame())
+            {
+                if (skeletonFrame != null)
+                {
+                    Skeleton[] skeletonData = new Skeleton[skeletonFrame.SkeletonArrayLength];
+
+                    skeletonFrame.CopySkeletonDataTo(skeletonData);
+                    // selecciona el primer esqueleto detectado
+                    Skeleton playerSkeleton = (from s in skeletonData where s.TrackingState == SkeletonTrackingState.Tracked select s).FirstOrDefault();
+                    if (playerSkeleton != null)
+                    {
+                        // Aqui se seleccionan las articulaciones con las que trabajamos
+                        // (Y podrias grabar el frame del esqueleto. Creo que playerSkeleton contiene el frame del esqueleto activo 1)
+                        // y se actualizan las posiciones del punto concreto que necesitamos, por ejemplo la mano:
+                        Joint rightHand = playerSkeleton.Joints[JointType.HandRight];
+                        handPosition = new Vector2((((0.5f * rightHand.Position.X) + 0.5f) * (640)), (((-0.5f * rightHand.Position.Y) + 0.5f) * (480)));
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -195,6 +236,7 @@ namespace personal_training_martial_arts
             kinectRGBVideo = new Texture2D(GraphicsDevice, 1337, 1337);
 
             overlay = Content.Load<Texture2D>("overlay");
+            hand = Content.Load<Texture2D>("hand");
             font = Content.Load<SpriteFont>("SpriteFont1");
         }
 
@@ -239,6 +281,8 @@ namespace personal_training_martial_arts
             spriteBatch.Begin();
             // Pintamos el video de Kinect
             spriteBatch.Draw(kinectRGBVideo, new Rectangle(0, 0, 640, 480), Color.White);
+            // En el ejemplo de la mano pintaremos un punto blanco:
+            spriteBatch.Draw(hand, handPosition, Color.White);
             // Capa overlay  intermedia sobre la que pintar las letras
             spriteBatch.Draw(overlay, new Rectangle(0, 0, 640, 480), Color.White);
             // Pintamos el estado del Kinect
@@ -246,6 +290,20 @@ namespace personal_training_martial_arts
             spriteBatch.End();
 
             base.Draw(gameTime);
+        }
+
+
+        // Metodos accesibles para los tests... probando el mocking
+        // Hace publico el estado del dispositivo Kinect para emplearlo en los test
+        public String GetConnectedStatus()
+        {
+            return connectedStatus;
+        }
+
+        // Stub para los test
+        public void InitializeStub()
+        {
+            this.Initialize();
         }
     }
 }
