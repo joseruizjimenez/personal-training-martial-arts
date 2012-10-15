@@ -1,21 +1,76 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
   <Asset Type="Pipeline:BuildItemCollection">
+    <Item>
+      <Source>hand.png</Source>
+      <Name>hand</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Pablo\Documents\GitHub\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\bin\x86\Debug\Content\hand.xnb</Output>
+      <Time>2012-03-04T12:47:38+01:00</Time>
+    </Item>
+    <Item>
+      <Source>overlay.png</Source>
+      <Name>overlay</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Pablo\Documents\GitHub\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\bin\x86\Debug\Content\overlay.xnb</Output>
+      <Time>2011-06-21T01:31:46+02:00</Time>
+    </Item>
+    <Item>
+      <Source>SpriteFont1.spritefont</Source>
+      <Name>SpriteFont1</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Pablo\Documents\GitHub\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\bin\x86\Debug\Content\SpriteFont1.xnb</Output>
+      <Time>2012-03-04T10:00:50+01:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>
       <TargetProfile>HiDef</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-artsContent\</RootDirectory>
-      <LoggerRootDirectory>C:\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-artsContent\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\Pablo\Documents\GitHub\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-artsContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Pablo\Documents\GitHub\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Pablo\Documents\GitHub\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-artsContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Pablo\Documents\GitHub\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
+        <Value>2010-08-23T12:41:18+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
+        <Value>2010-08-23T12:41:18+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
+        <Value>2010-08-23T12:41:18+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
+        <Value>2010-08-23T12:41:18+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
+        <Value>2010-08-23T12:41:18+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
+        <Value>2010-08-23T12:41:18+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Windows\Microsoft.Net\assembly\GAC_MSIL\Microsoft.Kinect\v4.0_1.5.0.0__31bf3856ad364e35\Microsoft.Kinect.dll</Key>
+        <Value>2012-09-27T16:53:44.8533442+02:00</Value>
+      </Assembly>
+      <Assembly>
         <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2012-10-03T08:29:43.2247768+02:00</Value>
+        <Value>2012-10-15T11:45:04.1326012+02:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>
