@@ -1,12 +1,15 @@
-## About this project
+Personal Training: Martial Arts
+===============================
+
+About this project
+------------------
 This is a Martial Art's Personal Training for a university project at San Pablo CEU - Spain
 
 
-## About us
-Pablo Calleja
-Luis Lalueza
-Jesús Mayor
-Sebastián de Marcos
-José Ruiz
-
-Hola esta es la prueba de pablo.
+About us
+--------
+*Pablo Calleja
+*Luis Lalueza
+*Jesús Mayor
+*Sebastián de Marcos
+*José Ruiz
