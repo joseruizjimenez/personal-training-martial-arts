@@ -1,6 +1,5 @@
 C:\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\bin\x86\Debug\personal-training-martial-arts.exe
 C:\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\bin\x86\Debug\personal-training-martial-arts.pdb
-C:\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\obj\x86\Debug\personal-training-martial-arts.exe
 C:\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\obj\x86\Debug\personal-training-martial-arts.pdb
@@ -12,3 +11,4 @@ C:\Users\Pablo\Documents\GitHub\personal-training-martial-arts\personal-training
 C:\Users\Pablo\Documents\GitHub\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\bin\x86\Debug\Content\hand.xnb
 C:\Users\Pablo\Documents\GitHub\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\bin\x86\Debug\Content\overlay.xnb
 C:\Users\Pablo\Documents\GitHub\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\bin\x86\Debug\Content\SpriteFont1.xnb
+C:\Users\Pablo\Documents\GitHub\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\obj\x86\Debug\personal-training-martial-arts.csprojResolveAssemblyReference.cache

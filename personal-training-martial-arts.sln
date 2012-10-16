@@ -7,22 +7,44 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "personal-training-martial-a
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "personal-training-martial-arts.Tests", "personal-training-martial-arts.Tests\personal-training-martial-arts.Tests.csproj", "{22BB09D7-83BC-468A-9704-AD208691F355}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "personal-training-martial-arts.Recorder", "personal-training-martial-arts.Recorder\personal-training-martial-arts.Recorder\personal-training-martial-arts.Recorder.csproj", "{821B41CD-5796-445F-A085-539BB379F9FF}"
+EndProject
+Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "personal-training-martial-arts.RecorderContent", "personal-training-martial-arts.Recorder\personal-training-martial-arts.RecorderContent\personal-training-martial-arts.RecorderContent.contentproj", "{D29D8586-52AA-4AAF-B89C-8871B6ECB68D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
 		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A2B7360D-22B3-48FC-9AC0-CF91D837123D}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{A2B7360D-22B3-48FC-9AC0-CF91D837123D}.Debug|x86.ActiveCfg = Debug|x86
 		{A2B7360D-22B3-48FC-9AC0-CF91D837123D}.Debug|x86.Build.0 = Debug|x86
+		{A2B7360D-22B3-48FC-9AC0-CF91D837123D}.Release|Any CPU.ActiveCfg = Release|x86
 		{A2B7360D-22B3-48FC-9AC0-CF91D837123D}.Release|x86.ActiveCfg = Release|x86
 		{A2B7360D-22B3-48FC-9AC0-CF91D837123D}.Release|x86.Build.0 = Release|x86
+		{6CCAAB5E-B86F-48CC-9BD2-DCA12A4E0472}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{6CCAAB5E-B86F-48CC-9BD2-DCA12A4E0472}.Debug|x86.ActiveCfg = Debug|x86
+		{6CCAAB5E-B86F-48CC-9BD2-DCA12A4E0472}.Release|Any CPU.ActiveCfg = Release|x86
 		{6CCAAB5E-B86F-48CC-9BD2-DCA12A4E0472}.Release|x86.ActiveCfg = Release|x86
+		{22BB09D7-83BC-468A-9704-AD208691F355}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{22BB09D7-83BC-468A-9704-AD208691F355}.Debug|x86.ActiveCfg = Debug|x86
 		{22BB09D7-83BC-468A-9704-AD208691F355}.Debug|x86.Build.0 = Debug|x86
+		{22BB09D7-83BC-468A-9704-AD208691F355}.Release|Any CPU.ActiveCfg = Release|x86
 		{22BB09D7-83BC-468A-9704-AD208691F355}.Release|x86.ActiveCfg = Release|x86
 		{22BB09D7-83BC-468A-9704-AD208691F355}.Release|x86.Build.0 = Release|x86
+		{821B41CD-5796-445F-A085-539BB379F9FF}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{821B41CD-5796-445F-A085-539BB379F9FF}.Debug|x86.ActiveCfg = Debug|x86
+		{821B41CD-5796-445F-A085-539BB379F9FF}.Debug|x86.Build.0 = Debug|x86
+		{821B41CD-5796-445F-A085-539BB379F9FF}.Release|Any CPU.ActiveCfg = Release|x86
+		{821B41CD-5796-445F-A085-539BB379F9FF}.Release|x86.ActiveCfg = Release|x86
+		{821B41CD-5796-445F-A085-539BB379F9FF}.Release|x86.Build.0 = Release|x86
+		{D29D8586-52AA-4AAF-B89C-8871B6ECB68D}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{D29D8586-52AA-4AAF-B89C-8871B6ECB68D}.Debug|x86.ActiveCfg = Debug|x86
+		{D29D8586-52AA-4AAF-B89C-8871B6ECB68D}.Release|Any CPU.ActiveCfg = Release|x86
+		{D29D8586-52AA-4AAF-B89C-8871B6ECB68D}.Release|x86.ActiveCfg = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

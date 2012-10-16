@@ -1,1 +1,1 @@
-C:\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-artsContent\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Pablo\Documents\GitHub\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-artsContent\obj\x86\Debug\personal-training-martial-artsContent.contentprojResolveAssemblyReference.cache
