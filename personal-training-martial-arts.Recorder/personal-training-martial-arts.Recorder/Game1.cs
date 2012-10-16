@@ -27,6 +27,7 @@ namespace personal_training_martial_arts
 
         // Ejemplo con posicion de la mano. Se actualiza en KinectSensor_SkeletonFrameReady
         Vector2 handPosition = new Vector2();
+        Vector2[] jointPositions = new Vector2[20];
 
         KinectSensor kinectSensor;
 
@@ -136,6 +137,7 @@ namespace personal_training_martial_arts
             try
             {
                 kinectSensor.Start();
+                kinectSensor.ElevationAngle = -5;
             }
             catch
             {
@@ -165,6 +167,11 @@ namespace personal_training_martial_arts
                         // (Y podrias grabar el frame del esqueleto. Creo que playerSkeleton contiene el frame del esqueleto activo 1)
                         // y se actualizan las posiciones del punto concreto que necesitamos, por ejemplo la mano:
                         Joint rightHand = playerSkeleton.Joints[JointType.HandRight];
+                        int jointIndex = 0;
+                        foreach(Joint joint in playerSkeleton.Joints) {
+                            jointPositions[jointIndex] = new Vector2((((0.5f * joint.Position.X) + 0.5f) * (640)), (((-0.5f * joint.Position.Y) + 0.5f) * (480)));
+                            jointIndex += 1;
+                        }
                         handPosition = new Vector2((((0.5f * rightHand.Position.X) + 0.5f) * (640)), (((-0.5f * rightHand.Position.Y) + 0.5f) * (480)));
                     }
                 }
@@ -282,6 +289,10 @@ namespace personal_training_martial_arts
             // Pintamos el video de Kinect
             spriteBatch.Draw(kinectRGBVideo, new Rectangle(0, 0, 640, 480), Color.White);
             // En el ejemplo de la mano pintaremos un punto blanco:
+            foreach (Vector2 v in jointPositions)
+            {
+                spriteBatch.Draw(hand, v, Color.White);
+            }
             //spriteBatch.Draw(hand, handPosition, Color.White);
             // Capa overlay  intermedia sobre la que pintar las letras
             //spriteBatch.Draw(overlay, new Rectangle(0, 0, 640, 480), Color.White);
