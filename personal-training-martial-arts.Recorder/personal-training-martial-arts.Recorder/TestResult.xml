@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="C:\personal-training-martial-arts\personal-training-martial-arts.Recorder\personal-training-martial-arts.Recorder\personal-training-martial-arts.Recorder.csproj" total="0" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2012-10-16" time="23:25:50">
+  <environment nunit-version="2.6.1.12217" clr-version="2.0.50727.4927" os-version="Microsoft Windows NT 6.1.7600.0" platform="Win32NT" cwd="C:\personal-training-martial-arts" machine-name="JRUIZ-WIN7" user="jruiz" user-domain="jruiz-win7" />
+  <culture-info current-culture="es-ES" current-uiculture="es-ES" />
+  <test-suite type="Project" name="C:\personal-training-martial-arts\personal-training-martial-arts.Recorder\personal-training-martial-arts.Recorder\personal-training-martial-arts.Recorder.csproj" executed="True" result="Inconclusive" success="False" time="0.090" asserts="0">
+    <results>
+      <test-suite type="Assembly" name="C:\personal-training-martial-arts\personal-training-martial-arts.Recorder\personal-training-martial-arts.Recorder\bin\x86\Debug\personal-training-martial-arts.Recorder.exe" executed="True" result="Inconclusive" success="False" time="0.000" asserts="0" />
+    </results>
+  </test-suite>
+</test-results>

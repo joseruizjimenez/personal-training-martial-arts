@@ -26,4 +26,4 @@ C:\Users\Pablo\Documents\GitHub\personal-training-martial-arts\personal-training
 C:\Users\Pablo\Documents\GitHub\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\hand.xnb
 C:\Users\Pablo\Documents\GitHub\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\overlay.xnb
 C:\Users\Pablo\Documents\GitHub\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\SpriteFont1.xnb
-C:\personal-training-martial-arts\personal-training-martial-arts.Tests\obj\x86\Debug\personal-training-martial-arts.Tests.csprojResolveAssemblyReference.cache
+C:\personal-training-martial-arts\personal-training-martial-arts.Tests\obj\x86\Debug\ResolveAssemblyReference.cache

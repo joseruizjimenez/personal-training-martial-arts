@@ -1,29 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!--This file represents the results of running a test suite-->
-<test-results name="C:\personal-training-martial-arts\personal-training-martial-arts.Tests\personal-training-martial-arts.Tests.csproj" total="1" errors="0" failures="1" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2012-10-13" time="13:13:12">
+<test-results name="C:\personal-training-martial-arts\personal-training-martial-arts.Tests\personal-training-martial-arts.Tests.csproj" total="1" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2012-10-16" time="23:26:08">
   <environment nunit-version="2.6.1.12217" clr-version="2.0.50727.4927" os-version="Microsoft Windows NT 6.1.7600.0" platform="Win32NT" cwd="C:\personal-training-martial-arts" machine-name="JRUIZ-WIN7" user="jruiz" user-domain="jruiz-win7" />
   <culture-info current-culture="es-ES" current-uiculture="es-ES" />
-  <test-suite type="Project" name="C:\personal-training-martial-arts\personal-training-martial-arts.Tests\personal-training-martial-arts.Tests.csproj" executed="True" result="Failure" success="False" time="0.060" asserts="0">
+  <test-suite type="Project" name="C:\personal-training-martial-arts\personal-training-martial-arts.Tests\personal-training-martial-arts.Tests.csproj" executed="True" result="Success" success="True" time="0.801" asserts="0">
     <results>
-      <test-suite type="Assembly" name="C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\personal-training-martial-arts.Tests.exe" executed="True" result="Failure" success="False" time="0.050" asserts="0">
+      <test-suite type="Assembly" name="C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\personal-training-martial-arts.Tests.exe" executed="True" result="Success" success="True" time="0.781" asserts="0">
         <results>
-          <test-suite type="Namespace" name="personal_training_martial_arts" executed="True" result="Failure" success="False" time="0.050" asserts="0">
+          <test-suite type="Namespace" name="personal_training_martial_arts" executed="True" result="Success" success="True" time="0.781" asserts="0">
             <results>
-              <test-suite type="Namespace" name="Tests" executed="True" result="Failure" success="False" time="0.050" asserts="0">
+              <test-suite type="Namespace" name="Tests" executed="True" result="Success" success="True" time="0.781" asserts="0">
                 <results>
-                  <test-suite type="TestFixture" name="TestGame1" executed="True" result="Failure" success="False" time="0.030" asserts="0">
+                  <test-suite type="TestFixture" name="TestGame1" executed="True" result="Success" success="True" time="0.771" asserts="0">
                     <results>
-                      <test-case name="personal_training_martial_arts.Tests.TestGame1.TestDiscoverKinectSensor_Detected" executed="True" result="Failure" success="False" time="0.010" asserts="1">
-                        <failure>
-                          <message><![CDATA[  Expected string length 15 but was 19. Strings differ at index 7.
-  Expected: "KINECT DETECTED"
-  But was:  "KINECT NOT DETECTED"
-  ------------------^
-]]></message>
-                          <stack-trace><![CDATA[at personal_training_martial_arts.Tests.TestGame1.TestDiscoverKinectSensor_Detected() in C:\personal-training-martial-arts\personal-training-martial-arts.Tests\TestFixture.cs:line 40
-]]></stack-trace>
-                        </failure>
-                      </test-case>
+                      <test-case name="personal_training_martial_arts.Tests.TestGame1.TestDiscoverKinectSensor_NotDetected" executed="True" result="Success" success="True" time="0.741" asserts="1" />
                     </results>
                   </test-suite>
                 </results>
