@@ -8,7 +8,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Recorder\personal-training-martial-arts.Recorder\bin\x86\Debug\Content\hand.xnb</Output>
-      <Time>2012-10-16T17:59:28.4748911+02:00</Time>
+      <Time>2012-10-16T21:52:41.6978472+02:00</Time>
     </Item>
     <Item>
       <Source>overlay.png</Source>
@@ -17,16 +17,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Recorder\personal-training-martial-arts.Recorder\bin\x86\Debug\Content\overlay.xnb</Output>
-      <Time>2011-06-21T01:31:46+02:00</Time>
-    </Item>
-    <Item>
-      <Source>SpriteFont1.spritefont</Source>
-      <Name>SpriteFont1</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Recorder\personal-training-martial-arts.Recorder\bin\x86\Debug\Content\SpriteFont1.xnb</Output>
-      <Time>2012-03-04T10:00:50+01:00</Time>
+      <Time>2012-10-16T21:52:41.7028474+02:00</Time>
     </Item>
     <Item>
       <Source>rec.png</Source>
@@ -35,7 +26,16 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Recorder\personal-training-martial-arts.Recorder\bin\x86\Debug\Content\rec.xnb</Output>
-      <Time>2012-10-16T18:28:30.0135014+02:00</Time>
+      <Time>2012-10-16T21:52:41.7048484+02:00</Time>
+    </Item>
+    <Item>
+      <Source>SpriteFont1.spritefont</Source>
+      <Name>SpriteFont1</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Recorder\personal-training-martial-arts.Recorder\bin\x86\Debug\Content\SpriteFont1.xnb</Output>
+      <Time>2012-10-16T21:52:41.6978472+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -75,7 +75,7 @@
       </Assembly>
       <Assembly>
         <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2012-10-15T11:45:04.1326012+02:00</Value>
+        <Value>2012-09-29T20:09:34.8798321+02:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>

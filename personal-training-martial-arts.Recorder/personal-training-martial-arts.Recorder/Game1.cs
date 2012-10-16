@@ -508,7 +508,19 @@ namespace personal_training_martial_arts
         }
         Boolean recordFrameForPosture()
         {
-            FileStream fs = new FileStream("test.dat", FileMode.Create);
+            // Super-fix
+            StreamWriter file = new StreamWriter("test.txt");
+
+            foreach (Joint j in skeletonToRecord.Joints)
+            {
+                // Incluyo coordenadas Z por si las moscas... (que no, pero por si acaso)
+                file.WriteLine((j.Position.X + ";" + j.Position.Y + ";" + j.Position.Z).Replace(",", ".").Replace(";", ","));
+            }
+
+            file.Close();
+
+            /* La guarrerida de antes xD
+             * FileStream fs = new FileStream("test.dat", FileMode.Create);
             BinaryWriter w = new BinaryWriter(fs, System.Text.Encoding.ASCII);
             
 
