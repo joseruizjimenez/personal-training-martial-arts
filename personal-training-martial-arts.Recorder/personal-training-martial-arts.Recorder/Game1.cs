@@ -499,17 +499,59 @@ namespace personal_training_martial_arts
                     if (recordStatus == "RECORDED")
                         recordStatus = "PUSH TO RECORD";
                     else
-                        if(recordFrameForPosture())
+                        if(recordFrameForPosture("test.dat"))
                             recordStatus = "RECORDED";
                     break;
                 default:
                     break;
             }
         }
-        Boolean recordFrameForPosture()
+
+        float[,] readFrameForPosture(string filename)
+        {
+            string readed_joint;
+
+            // Creamos el reader
+            StreamReader file = new StreamReader(filename);
+
+            // Creamos el array de Joints en formto float
+            float[,] joint_float = new float[20,3];
+
+            // Creamos los contadores
+            int joint_ctr = 0;
+            int coord_ctr = 0;
+
+            // Leemos linea por linea
+            while ((readed_joint = file.ReadLine()) != null)
+            {
+                string[] joint_point = readed_joint.Split(new string[] {","}, StringSplitOptions.None);
+
+                foreach (string joint_str in joint_point)
+                {
+                    joint_float[joint_ctr, coord_ctr] = float.Parse(joint_str);
+                    // Siguiente coordenada...
+                    coord_ctr++;
+                }
+
+                // Siguiente joint y empezamos de nuevo con las coordenadas...
+                coord_ctr = 0;
+                joint_ctr++;
+            }
+
+            file.Close();
+
+            /**
+             * Aquí debería de ir una generación de un SkeletonFrame o algo parecido con los joints que acabamos de leer
+             * pero no consigo crear uno con los parámetros que yo defina o meterselos a un objeto, asique: @PALUEGO
+             */
+
+            return joint_float;
+        }
+
+        Boolean recordFrameForPosture(string filename)
         {
             // Super-fix
-            StreamWriter file = new StreamWriter("test.txt");
+            StreamWriter file = new StreamWriter(filename);
 
             foreach (Joint j in skeletonToRecord.Joints)
             {
@@ -549,5 +591,9 @@ namespace personal_training_martial_arts
             */
             return true;
         }
+
+        /*
+         * DRAW BONES http://msdn.microsoft.com/en-us/library/jj131025.aspx
+         */
     }
 }
