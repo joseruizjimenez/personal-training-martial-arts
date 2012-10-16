@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
@@ -25,13 +26,38 @@ namespace personal_training_martial_arts
         Texture2D hand;
         SpriteFont font;
 
-        // Ejemplo con posicion de la mano. Se actualiza en KinectSensor_SkeletonFrameReady
-        Vector2 handPosition = new Vector2();
+        // Global variables para menu
+        enum BState
+        {
+            HOVER,
+            UP,
+            JUST_RELEASED,
+            DOWN
+        }
+        const int NUMBER_OF_BUTTONS = 1,
+            REC_BUTTON_INDEX = 0,
+            BUTTON_HEIGHT = 480,
+            BUTTON_WIDTH = 640;
+        Color background_color;
+        Color[] button_color = new Color[NUMBER_OF_BUTTONS];
+        Rectangle[] button_rectangle = new Rectangle[NUMBER_OF_BUTTONS];
+        BState[] button_state = new BState[NUMBER_OF_BUTTONS];
+        Texture2D[] button_texture = new Texture2D[NUMBER_OF_BUTTONS];
+        double[] button_timer = new double[NUMBER_OF_BUTTONS];
+        //mouse pressed and mouse just pressed
+        bool mpressed, prev_mpressed = false;
+        //mouse location in window
+        int mx, my;
+        double frame_time;
+        // fin menu
+
         Vector2[] jointPositions = new Vector2[20];
+        Skeleton skeletonToRecord;
 
         KinectSensor kinectSensor;
 
         string connectedStatus = "KINECT NOT DETECTED";
+        string recordStatus = "PUSH TO RECORD";
 
         public Game1()
         {
@@ -163,16 +189,19 @@ namespace personal_training_martial_arts
                     Skeleton playerSkeleton = (from s in skeletonData where s.TrackingState == SkeletonTrackingState.Tracked select s).FirstOrDefault();
                     if (playerSkeleton != null)
                     {
+                        // Posicion para grabar
+                        if (recordStatus == "PUSH TO RECORD")
+                            skeletonToRecord = playerSkeleton;
+
                         // Aqui se seleccionan las articulaciones con las que trabajamos
                         // (Y podrias grabar el frame del esqueleto. Creo que playerSkeleton contiene el frame del esqueleto activo 1)
                         // y se actualizan las posiciones del punto concreto que necesitamos, por ejemplo la mano:
-                        Joint rightHand = playerSkeleton.Joints[JointType.HandRight];
+                        //Joint rightHand = playerSkeleton.Joints[JointType.HandRight];
                         int jointIndex = 0;
                         foreach(Joint joint in playerSkeleton.Joints) {
                             jointPositions[jointIndex] = new Vector2((((0.5f * joint.Position.X) + 0.5f) * (640)), (((-0.5f * joint.Position.Y) + 0.5f) * (480)));
                             jointIndex += 1;
                         }
-                        handPosition = new Vector2((((0.5f * rightHand.Position.X) + 0.5f) * (640)), (((-0.5f * rightHand.Position.Y) + 0.5f) * (480)));
                     }
                 }
             }
@@ -226,6 +255,7 @@ namespace personal_training_martial_arts
             // se produce un nuevo evento en StatusChangedEventArgs
             KinectSensor.KinectSensors.StatusChanged += new EventHandler<StatusChangedEventArgs>(KinectSensors_StatusChanged);
             DiscoverKinectSensor();
+            initializeMenu();
 
             base.Initialize();
         }
@@ -245,6 +275,8 @@ namespace personal_training_martial_arts
             overlay = Content.Load<Texture2D>("overlay");
             hand = Content.Load<Texture2D>("hand");
             font = Content.Load<SpriteFont>("SpriteFont1");
+
+            button_texture[REC_BUTTON_INDEX] = Content.Load<Texture2D>("rec");
         }
 
         /// <summary>
@@ -273,6 +305,20 @@ namespace personal_training_martial_arts
             // Por ahora no tenemos logica que actualizar en el juego.
             // La deteccion del kinect se realiza con su propio EventHandler y la pantalla se pinta con Draw.
 
+            // MENU
+            // get elapsed frame time in seconds
+            frame_time = gameTime.ElapsedGameTime.Milliseconds / 1000.0;
+
+            // update mouse variables
+            MouseState mouse_state = Mouse.GetState();
+            mx = mouse_state.X;
+            my = mouse_state.Y;
+            prev_mpressed = mpressed;
+            mpressed = mouse_state.LeftButton == ButtonState.Pressed;
+
+            update_buttons();
+            // FIN MENU
+
             base.Update(gameTime);
         }
 
@@ -289,15 +335,33 @@ namespace personal_training_martial_arts
             // Pintamos el video de Kinect
             spriteBatch.Draw(kinectRGBVideo, new Rectangle(0, 0, 640, 480), Color.White);
             // En el ejemplo de la mano pintaremos un punto blanco:
-            foreach (Vector2 v in jointPositions)
-            {
-                spriteBatch.Draw(hand, v, Color.White);
-            }
+            
             //spriteBatch.Draw(hand, handPosition, Color.White);
             // Capa overlay  intermedia sobre la que pintar las letras
             //spriteBatch.Draw(overlay, new Rectangle(0, 0, 640, 480), Color.White);
             // Pintamos el estado del Kinect
-            spriteBatch.DrawString(font, connectedStatus, new Vector2(20, 80), Color.White);
+            if (recordStatus == "RECORDED")
+            {
+                spriteBatch.DrawString(font, recordStatus, new Vector2(20, 80), Color.Red);
+                foreach (Joint joint in skeletonToRecord.Joints)
+                {
+                    Vector2 v = new Vector2((((0.5f * joint.Position.X) + 0.5f) * (640)), (((-0.5f * joint.Position.Y) + 0.5f) * (480)));
+                    spriteBatch.Draw(hand, v, Color.White);
+                }
+            }
+            else
+            {
+                spriteBatch.DrawString(font, recordStatus, new Vector2(20, 80), Color.Blue);
+                foreach (Vector2 v in jointPositions)
+                {
+                    spriteBatch.Draw(hand, v, Color.White);
+                }
+            }
+
+            // Pinta el menu
+            //for (int i = 0; i < NUMBER_OF_BUTTONS; i++)
+            //    spriteBatch.Draw(button_texture[i], button_rectangle[i], button_color[i]);
+
             spriteBatch.End();
 
             base.Draw(gameTime);
@@ -315,6 +379,163 @@ namespace personal_training_martial_arts
         public void InitializeStub()
         {
             this.Initialize();
+        }
+
+        // Inicializa los atributos del menu
+        private void initializeMenu()
+        {
+            // starting x and y locations to stack buttons 
+            // vertically in the middle of the screen
+            int x = Window.ClientBounds.Width / 2 - BUTTON_WIDTH / 2;
+            int y = Window.ClientBounds.Height / 2 -
+                NUMBER_OF_BUTTONS / 2 * BUTTON_HEIGHT -
+                (NUMBER_OF_BUTTONS % 2) * BUTTON_HEIGHT / 2;
+            for (int i = 0; i < NUMBER_OF_BUTTONS; i++)
+            {
+                button_state[i] = BState.UP;
+                button_color[i] = Color.White;
+                button_timer[i] = 0.0;
+                button_rectangle[i] = new Rectangle(x, y, BUTTON_WIDTH, BUTTON_HEIGHT);
+                y += BUTTON_HEIGHT;
+            }
+            IsMouseVisible = true;
+            //background_color = Color.CornflowerBlue;
+        }
+
+        // wrapper for hit_image_alpha taking Rectangle and Texture
+        Boolean hit_image_alpha(Rectangle rect, Texture2D tex, int x, int y)
+        {
+            return hit_image_alpha(0, 0, tex, tex.Width * (x - rect.X) /
+                rect.Width, tex.Height * (y - rect.Y) / rect.Height);
+        }
+
+        // wraps hit_image then determines if hit a transparent part of image 
+        Boolean hit_image_alpha(float tx, float ty, Texture2D tex, int x, int y)
+        {
+            if (hit_image(tx, ty, tex, x, y))
+            {
+                uint[] data = new uint[tex.Width * tex.Height];
+                tex.GetData<uint>(data);
+                if ((x - (int)tx) + (y - (int)ty) *
+                    tex.Width < tex.Width * tex.Height)
+                {
+                    return ((data[
+                        (x - (int)tx) + (y - (int)ty) * tex.Width
+                        ] &
+                                0xFF000000) >> 24) > 20;
+                }
+            }
+            return false;
+        }
+
+        // determine if x,y is within rectangle formed by texture located at tx,ty
+        Boolean hit_image(float tx, float ty, Texture2D tex, int x, int y)
+        {
+            return (x >= tx &&
+                x <= tx + tex.Width &&
+                y >= ty &&
+                y <= ty + tex.Height);
+        }
+
+        // determine state and color of button
+        void update_buttons()
+        {
+            for (int i = 0; i < NUMBER_OF_BUTTONS; i++)
+            {
+
+                if (hit_image_alpha(
+                    button_rectangle[i], button_texture[i], mx, my))
+                {
+                    button_timer[i] = 0.0;
+                    if (mpressed)
+                    {
+                        // mouse is currently down
+                        button_state[i] = BState.DOWN;
+                        button_color[i] = Color.Blue;
+                    }
+                    else if (!mpressed && prev_mpressed)
+                    {
+                        // mouse was just released
+                        if (button_state[i] == BState.DOWN)
+                        {
+                            // button i was just down
+                            button_state[i] = BState.JUST_RELEASED;
+                        }
+                    }
+                    else
+                    {
+                        button_state[i] = BState.HOVER;
+                        button_color[i] = Color.LightBlue;
+                    }
+                }
+                else
+                {
+                    button_state[i] = BState.UP;
+                    if (button_timer[i] > 0)
+                    {
+                        button_timer[i] = button_timer[i] - frame_time;
+                    }
+                    else
+                    {
+                        button_color[i] = Color.White;
+                    }
+                }
+
+                if (button_state[i] == BState.JUST_RELEASED)
+                {
+                    take_action_on_button(i);
+                }
+            }
+        }
+
+
+        // Logic for each button click goes here
+        void take_action_on_button(int i)
+        {
+            //take action corresponding to which button was clicked
+            switch (i)
+            {
+                case REC_BUTTON_INDEX:
+                    if (recordStatus == "RECORDED")
+                        recordStatus = "PUSH TO RECORD";
+                    else
+                        if(recordFrameForPosture())
+                            recordStatus = "RECORDED";
+                    break;
+                default:
+                    break;
+            }
+        }
+        Boolean recordFrameForPosture()
+        {
+            FileStream fs = new FileStream("test.dat", FileMode.Create);
+            BinaryWriter w = new BinaryWriter(fs, System.Text.Encoding.ASCII);
+            
+
+            foreach (Joint j in skeletonToRecord.Joints)
+            {
+                w.Flush();
+
+                w.Write("equis,");
+                w.Write("y\n");
+
+                w.Flush();
+            }
+            w.Close();
+            fs.Close();
+
+            /*fs = new FileStream("test.dat", FileMode.Open);
+            StreamReader sr = new StreamReader(fs);
+            Console.WriteLine(sr.ReadToEnd());
+            fs.Position = 0;
+            BinaryReader br = new BinaryReader(fs);
+            Console.WriteLine(br.ReadDecimal());
+            Console.WriteLine(br.ReadString());
+            Console.WriteLine(br.ReadString());
+            Console.WriteLine(br.ReadChar());
+            fs.Close();
+            */
+            return true;
         }
     }
 }
