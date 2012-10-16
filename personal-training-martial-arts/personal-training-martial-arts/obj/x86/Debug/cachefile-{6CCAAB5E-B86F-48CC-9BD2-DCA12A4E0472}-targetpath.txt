@@ -1,3 +1,0 @@
-Content\hand.xnb
-Content\overlay.xnb
-Content\SpriteFont1.xnb
