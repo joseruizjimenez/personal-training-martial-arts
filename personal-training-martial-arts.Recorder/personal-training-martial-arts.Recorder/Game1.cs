@@ -559,7 +559,7 @@ namespace personal_training_martial_arts
             // Fix para que funcione sin esqueletos
             if (skeletonToRecord == null)
             {
-                recordStatus = "NO SKELETON DETECTED, TRY AGAIN";
+                recordStatus = "PUSH TO RECORD";
                 return false;
             }
 
