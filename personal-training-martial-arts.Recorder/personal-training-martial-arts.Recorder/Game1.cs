@@ -1,3 +1,6 @@
+
+/// Creación del interfaz y detección de conexión y desconexión
+
 using System;
 using System.IO;
 using System.Collections.Generic;
