@@ -553,6 +553,13 @@ namespace personal_training_martial_arts
             // Super-fix
             StreamWriter file = new StreamWriter(filename);
 
+            // Fix para que funcione sin esqueletos
+            if (skeletonToRecord == null)
+            {
+                recordStatus = "NO SKELETON DETECTED, TRY AGAIN";
+                return false;
+            }
+
             foreach (Joint j in skeletonToRecord.Joints)
             {
                 // Incluyo coordenadas Z por si las moscas... (que no, pero por si acaso)
