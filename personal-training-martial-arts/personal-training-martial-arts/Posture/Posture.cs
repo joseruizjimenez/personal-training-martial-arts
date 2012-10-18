@@ -14,25 +14,19 @@ namespace personal_training_martial_arts.Posture
 {
     class Posture
     {
-        private Vector3[] joints {get; set;}
-        private string name;
-        private string description;
-        private int difficulty;
+        protected Vector3[] joints {get; set;}
 
         public Posture()
         {
         }
 
-        public Posture(string name, string description, int difficulty, Skeleton skeleton)
-            : this(name, description, difficulty, Posture.castSkeletonToJoints(skeleton))
+        public Posture(Skeleton skeleton)
+            : this(Posture.castSkeletonToJoints(skeleton))
         {
         }
 
-        public Posture(string name, string description, int difficulty, Vector3[] joints)
+        public Posture(Vector3[] joints)
         {
-            this.name = name;
-            this.description = description;
-            this.difficulty = difficulty;
             this.joints = joints;
         }
 
