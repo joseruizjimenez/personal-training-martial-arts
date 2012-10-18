@@ -60,6 +60,11 @@ namespace personal_training_martial_arts
         Vector2 handRPosition = new Vector2();
         Vector2 headPosition = new Vector2();
         Vector2 hipCPosition = new Vector2();
+        Vector2 shoulderPosition = new Vector2();
+        Vector2 hipLPosition = new Vector2();
+        Vector2 hipRPosition = new Vector2();
+        Vector2 footLPosition = new Vector2();
+        Vector2 footRPosition = new Vector2();
 
         Posture postureInDetection = Posture.None; //POSTURA QUE QUEREMOS DETECTAR
 
@@ -226,6 +231,21 @@ namespace personal_training_martial_arts
 
                         Joint hipCenter = playerSkeleton.Joints[JointType.HipCenter];
                         hipCPosition = new Vector2((((0.5f * hipCenter.Position.X) + 0.5f) * (640)), (((-0.5f * hipCenter.Position.Y) + 0.5f) * (480)));
+                        
+                        Joint hipRight = playerSkeleton.Joints[JointType.HipRight];
+                        hipRPosition = new Vector2((((0.5f * hipRight.Position.X) + 0.5f) * (640)), (((-0.5f * hipRight.Position.Y) + 0.5f) * (480)));
+
+                        Joint hipLeft = playerSkeleton.Joints[JointType.HipLeft];
+                        hipLPosition = new Vector2((((0.5f * hipLeft.Position.X) + 0.5f) * (640)), (((-0.5f * hipLeft.Position.Y) + 0.5f) * (480)));
+
+                        Joint shoCenter = playerSkeleton.Joints[JointType.ShoulderCenter];
+                        shoulderPosition = new Vector2((((0.5f * shoCenter.Position.X) + 0.5f) * (640)), (((-0.5f * shoCenter.Position.Y) + 0.5f) * (480)));
+
+                        Joint footRight = playerSkeleton.Joints[JointType.FootRight];
+                        shoulderPosition = new Vector2((((0.5f * footRight.Position.X) + 0.5f) * (640)), (((-0.5f * footRight.Position.Y) + 0.5f) * (480)));
+
+                        Joint footLeft = playerSkeleton.Joints[JointType.FootLeft];
+                        shoulderPosition = new Vector2((((0.5f * footLeft.Position.X) + 0.5f) * (640)), (((-0.5f * footLeft.Position.Y) + 0.5f) * (480)));
 
                         //IMPORTATE
                         // Cambiar en la variable postureInDetection lo que queremos detectar...
@@ -243,6 +263,15 @@ namespace personal_training_martial_arts
                             if (PostureDetector(Posture.HandsOnHead)) { } //Imprimir "Buena cobertura" o algo asi
                             else { } //POSTURA NO ESPERADA.
                         }
+
+                        if (Joi(headPosition, hipCPosition, handLPosition, handRPosition, shoulderPosition, hipLPosition,
+                            hipRPosition, footLPosition, footRPosition))
+                        {
+                            //Marcas la detección de una INICIO y consultas si es lo esperado
+                            if (PostureDetector(Posture.Joi)) { } //Imprimir "Comenzamos..." o algo asi
+                            else { } //POSTURA NO ESPERADA.
+                        }
+
                         else
                             if (PostureDetector(Posture.None)) { } // No esperabas nada. No haces nada.
                             else { } //POSTURA NO ESPERADA. 
@@ -257,7 +286,8 @@ namespace personal_training_martial_arts
         {
             None,
             Reverence,
-            HandsOnHead
+            HandsOnHead,
+            Joi
         }
 
         bool PostureDetector(Posture posture)
@@ -289,7 +319,25 @@ namespace personal_training_martial_arts
                 return true;
         }
 
+        // Posición inicial (Joi)
+        // -  El tronco totalmente recto (cabeza.Y = cadera.Y = hombroCentro.Y)
+        // -  Manos a la altura de la cadera y adelantadas (Z) (manoDer.X = manoIzq.X = cadera.X) 
+        // -  Pies separados a la altura de la cadera (pieIzq.Y = caderaIzq.Y // pieDer.Y = caderaDer.Y)
+        private bool Joi(Vector2 headPosition, Vector2 hipCPosition, Vector2 handLPosition, Vector2 handRPosition,
+            Vector2 shoulderPosition, Vector2 hipLPosition, Vector2 hipRPosition, Vector2 footLPosition, Vector2 footRPosition)
+        {
+            float distanceA = ((2*hipCPosition.Y) - (headPosition.Y + shoulderPosition.Y));
+            float distanceB = ((2*hipCPosition.X) - (handLPosition.X + handRPosition.X));
+            float distanceC1 = (footLPosition.Y - hipLPosition.Y);
+            float distanceC2 = (footRPosition.Y - hipRPosition.Y);
 
+            // Cuerpo torcido o con manos levantadas
+            if (Math.Abs(distanceA) > 0.05f || Math.Abs(distanceB) > 0.05f) return false;
+            // Pies o cerrados o muy abiertos
+            else if (Math.Abs(distanceC1) > 0.1f || Math.Abs(distanceC2) > 0.1f) return false;
+            else return true;
+        }
+        
         /// <summary>
         /// Actualiza los datos recibidos de la camara sobre nuestro kinectRGBVideo
         /// </summary>
