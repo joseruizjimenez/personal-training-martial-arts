@@ -296,18 +296,22 @@ namespace personal_training_martial_arts
             else return true;
         }
 
-        // Reverencia (Saludo Marcial - Correcta alineacion cabeza y cadera)
+        // Reverencia (Saludo Marcial)
+        // - Inclinación del tronco hasta la altura de la cadera y correcta alineación
+        //   (cabeza.XY = cadera.XY)
         private bool Reverence(Vector2 hipCPosition, Vector2 headPosition)
         {
             float distance = (hipCPosition.X - headPosition.X) + (hipCPosition.Y - headPosition.Y);
             //Separación minima aprox.
-            if (Math.Abs(distance) > 0.05f)
+            if (Math.Abs(distance) > 0.1f)
                 return false;
             else
                 return true;
         }
         
         // Cobertura (Ambas manos en la cabeza, cubriendose la cara)
+        // - Manos sobre la cabeza con independencia del angulo de los codos
+        //   (manoIzq.XY = manoDer.XY = cabeza.XY)
         private bool HandsOnHead(Vector2 handLPosition, Vector2 handRPosition, Vector2 headPosition)
         {
             float distanceL = (handLPosition.X - headPosition.X) + (handLPosition.Y - headPosition.Y);
@@ -333,7 +337,7 @@ namespace personal_training_martial_arts
 
             // Cuerpo torcido o con manos levantadas
             if (Math.Abs(distanceA) > 0.05f || Math.Abs(distanceB) > 0.05f) return false;
-            // Pies o cerrados o muy abiertos
+            // Pies o cerrados o muy abiertos (mayor grado de libertad)
             else if (Math.Abs(distanceC1) > 0.1f || Math.Abs(distanceC2) > 0.1f) return false;
             else return true;
         }
