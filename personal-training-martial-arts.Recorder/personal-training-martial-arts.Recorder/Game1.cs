@@ -55,6 +55,14 @@ namespace personal_training_martial_arts
         // fin menu
 
         Vector2[] jointPositions = new Vector2[20];
+        //VECTORES DE POSICIÓN INDIVIDUALES
+        Vector2 handLPosition = new Vector2();
+        Vector2 handRPosition = new Vector2();
+        Vector2 headPosition = new Vector2();
+        Vector2 hipCPosition = new Vector2();
+
+        Posture postureInDetection = Posture.None; //POSTURA QUE QUEREMOS DETECTAR
+
         Skeleton skeletonToRecord;
 
         KinectSensor kinectSensor;
@@ -205,10 +213,82 @@ namespace personal_training_martial_arts
                             jointPositions[jointIndex] = new Vector2((((0.5f * joint.Position.X) + 0.5f) * (640)), (((-0.5f * joint.Position.Y) + 0.5f) * (480)));
                             jointIndex += 1;
                         }
+
+                        // ¿Deberiamos sacar esta posición con algo como algunaPosition = jointPositions[X] o una a una en varios Joints?
+                        Joint rightHand = playerSkeleton.Joints[JointType.HandRight];
+                        handRPosition = new Vector2((((0.5f * rightHand.Position.X) + 0.5f) * (640)), (((-0.5f * rightHand.Position.Y) + 0.5f) * (480)));
+
+                        Joint leftHand = playerSkeleton.Joints[JointType.HandLeft];
+                        handLPosition = new Vector2((((0.5f * leftHand.Position.X) + 0.5f) * (640)), (((-0.5f * leftHand.Position.Y) + 0.5f) * (480)));
+
+                        Joint head = playerSkeleton.Joints[JointType.Head];
+                        headPosition = new Vector2((((0.5f * head.Position.X) + 0.5f) * (640)), (((-0.5f * head.Position.Y) + 0.5f) * (480)));
+
+                        Joint hipCenter = playerSkeleton.Joints[JointType.HipCenter];
+                        hipCPosition = new Vector2((((0.5f * hipCenter.Position.X) + 0.5f) * (640)), (((-0.5f * hipCenter.Position.Y) + 0.5f) * (480)));
+
+                        //IMPORTATE
+                        // Cambiar en la variable postureInDetection lo que queremos detectar...
+
+                        if (Reverence(hipCPosition,headPosition))
+                        {
+                            //Marcas la detección de una REVERENCIA y consultas si es lo esperado 
+                            if (PostureDetector(Posture.Reverence)) { } //Imprimir "Buena reverencia" o algo asi
+                            else { } //POSTURA NO ESPERADA.
+                        }
+
+                        if (HandsOnHead(handLPosition, handRPosition, headPosition))
+                        {
+                            //Marcas la detección de una COBERTURA MARCIAL y consultas si es lo esperado
+                            if (PostureDetector(Posture.HandsOnHead)) { } //Imprimir "Buena cobertura" o algo asi
+                            else { } //POSTURA NO ESPERADA.
+                        }
+                        else
+                            if (PostureDetector(Posture.None)) { } // No esperabas nada. No haces nada.
+                            else { } //POSTURA NO ESPERADA. 
                     }
                 }
             }
         }
+
+        /// POSTURAS (algunas)
+        //Listado de posturas
+        public enum Posture
+        {
+            None,
+            Reverence,
+            HandsOnHead
+        }
+
+        bool PostureDetector(Posture posture)
+        {
+            if (postureInDetection != posture) return false;
+            else return true;
+        }
+
+        // Reverencia (Saludo Marcial - Correcta alineacion cabeza y cadera)
+        private bool Reverence(Vector2 hipCPosition, Vector2 headPosition)
+        {
+            float distance = (hipCPosition.X - headPosition.X) + (hipCPosition.Y - headPosition.Y);
+            //Separación minima aprox.
+            if (Math.Abs(distance) > 0.05f)
+                return false;
+            else
+                return true;
+        }
+        
+        // Cobertura (Ambas manos en la cabeza, cubriendose la cara)
+        private bool HandsOnHead(Vector2 handLPosition, Vector2 handRPosition, Vector2 headPosition)
+        {
+            float distanceL = (handLPosition.X - headPosition.X) + (handLPosition.Y - headPosition.Y);
+            float distanceR = (handRPosition.X - headPosition.X) + (handRPosition.Y - headPosition.Y);
+            //Separación minima aprox.
+            if (Math.Abs(distanceL) > 0.05f || Math.Abs(distanceR) > 0.05f)
+                return false;
+            else
+                return true;
+        }
+
 
         /// <summary>
         /// Actualiza los datos recibidos de la camara sobre nuestro kinectRGBVideo
