@@ -201,7 +201,7 @@ namespace personal_training_martial_arts
                     Skeleton playerSkeleton = (from s in skeletonData where s.TrackingState == SkeletonTrackingState.Tracked select s).FirstOrDefault();
                     if (playerSkeleton != null)
                     {
-                        gameCore.updateUserPosture(new Posture.Posture("", "", 0, playerSkeleton));
+                        gameCore.updateUserPosture(new Posture.Posture(playerSkeleton));
                     }
                 }
             }

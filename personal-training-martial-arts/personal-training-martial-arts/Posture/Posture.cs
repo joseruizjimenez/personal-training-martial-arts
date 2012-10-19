@@ -32,7 +32,7 @@ namespace personal_training_martial_arts.Posture
 
         public static Vector3[] castSkeletonToJoints(Skeleton s)
         {
-            Vector3[] joints = new Vector3()[];
+            Vector3[] joints = new Vector3[20];
             int index = 0;
 
             foreach (Joint j in s.Joints)
