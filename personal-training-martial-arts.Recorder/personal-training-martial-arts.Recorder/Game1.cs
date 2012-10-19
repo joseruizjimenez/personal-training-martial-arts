@@ -55,18 +55,6 @@ namespace personal_training_martial_arts
         // fin menu
 
         Vector2[] jointPositions = new Vector2[20];
-        //VECTORES DE POSICIÓN INDIVIDUALES
-        Vector2 handLPosition = new Vector2();
-        Vector2 handRPosition = new Vector2();
-        Vector2 headPosition = new Vector2();
-        Vector2 hipCPosition = new Vector2();
-        Vector2 shoulderPosition = new Vector2();
-        Vector2 hipLPosition = new Vector2();
-        Vector2 hipRPosition = new Vector2();
-        Vector2 footLPosition = new Vector2();
-        Vector2 footRPosition = new Vector2();
-
-        Posture postureInDetection = Posture.None; //POSTURA QUE QUEREMOS DETECTAR
 
         Skeleton skeletonToRecord;
 
@@ -218,67 +206,11 @@ namespace personal_training_martial_arts
                             jointPositions[jointIndex] = new Vector2((((0.5f * joint.Position.X) + 0.5f) * (640)), (((-0.5f * joint.Position.Y) + 0.5f) * (480)));
                             jointIndex += 1;
                         }
-
-                        // ¿Deberiamos sacar esta posición con algo como algunaPosition = jointPositions[X] o una a una en varios Joints?
-                        Joint rightHand = playerSkeleton.Joints[JointType.HandRight];
-                        handRPosition = new Vector2((((0.5f * rightHand.Position.X) + 0.5f) * (640)), (((-0.5f * rightHand.Position.Y) + 0.5f) * (480)));
-
-                        Joint leftHand = playerSkeleton.Joints[JointType.HandLeft];
-                        handLPosition = new Vector2((((0.5f * leftHand.Position.X) + 0.5f) * (640)), (((-0.5f * leftHand.Position.Y) + 0.5f) * (480)));
-
-                        Joint head = playerSkeleton.Joints[JointType.Head];
-                        headPosition = new Vector2((((0.5f * head.Position.X) + 0.5f) * (640)), (((-0.5f * head.Position.Y) + 0.5f) * (480)));
-
-                        Joint hipCenter = playerSkeleton.Joints[JointType.HipCenter];
-                        hipCPosition = new Vector2((((0.5f * hipCenter.Position.X) + 0.5f) * (640)), (((-0.5f * hipCenter.Position.Y) + 0.5f) * (480)));
-                        
-                        Joint hipRight = playerSkeleton.Joints[JointType.HipRight];
-                        hipRPosition = new Vector2((((0.5f * hipRight.Position.X) + 0.5f) * (640)), (((-0.5f * hipRight.Position.Y) + 0.5f) * (480)));
-
-                        Joint hipLeft = playerSkeleton.Joints[JointType.HipLeft];
-                        hipLPosition = new Vector2((((0.5f * hipLeft.Position.X) + 0.5f) * (640)), (((-0.5f * hipLeft.Position.Y) + 0.5f) * (480)));
-
-                        Joint shoCenter = playerSkeleton.Joints[JointType.ShoulderCenter];
-                        shoulderPosition = new Vector2((((0.5f * shoCenter.Position.X) + 0.5f) * (640)), (((-0.5f * shoCenter.Position.Y) + 0.5f) * (480)));
-
-                        Joint footRight = playerSkeleton.Joints[JointType.FootRight];
-                        shoulderPosition = new Vector2((((0.5f * footRight.Position.X) + 0.5f) * (640)), (((-0.5f * footRight.Position.Y) + 0.5f) * (480)));
-
-                        Joint footLeft = playerSkeleton.Joints[JointType.FootLeft];
-                        shoulderPosition = new Vector2((((0.5f * footLeft.Position.X) + 0.5f) * (640)), (((-0.5f * footLeft.Position.Y) + 0.5f) * (480)));
-
-                        //IMPORTATE
-                        // Cambiar en la variable postureInDetection lo que queremos detectar...
-
-                        if (Reverence(hipCPosition,headPosition))
-                        {
-                            //Marcas la detección de una REVERENCIA y consultas si es lo esperado 
-                            if (PostureDetector(Posture.Reverence)) { } //Imprimir "Buena reverencia" o algo asi
-                            else { } //POSTURA NO ESPERADA.
-                        }
-
-                        if (HandsOnHead(handLPosition, handRPosition, headPosition))
-                        {
-                            //Marcas la detección de una COBERTURA MARCIAL y consultas si es lo esperado
-                            if (PostureDetector(Posture.HandsOnHead)) { } //Imprimir "Buena cobertura" o algo asi
-                            else { } //POSTURA NO ESPERADA.
-                        }
-
-                        if (Joi(headPosition, hipCPosition, handLPosition, handRPosition, shoulderPosition, hipLPosition,
-                            hipRPosition, footLPosition, footRPosition))
-                        {
-                            //Marcas la detección de una INICIO y consultas si es lo esperado
-                            if (PostureDetector(Posture.Joi)) { } //Imprimir "Comenzamos..." o algo asi
-                            else { } //POSTURA NO ESPERADA.
-                        }
-
-                        else
-                            if (PostureDetector(Posture.None)) { } // No esperabas nada. No haces nada.
-                            else { } //POSTURA NO ESPERADA. 
                     }
                 }
             }
         }
+<<<<<<< HEAD
 
         /// POSTURAS (algunas)
         //Listado de posturas
@@ -341,6 +273,8 @@ namespace personal_training_martial_arts
             else if (Math.Abs(distanceC1) > 0.1f || Math.Abs(distanceC2) > 0.1f) return false;
             else return true;
         }
+=======
+>>>>>>> RefactorXpress
         
         /// <summary>
         /// Actualiza los datos recibidos de la camara sobre nuestro kinectRGBVideo

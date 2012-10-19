@@ -110,6 +110,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\GameCore.cs" />
+    <Compile Include="Core\GameScreen.cs" />
+    <Compile Include="Gesture\Gesture.cs" />
+    <Compile Include="Posture\Posture.cs" />
+    <Compile Include="Posture\PostureLibrary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
