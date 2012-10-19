@@ -44,7 +44,7 @@ namespace personal_training_martial_arts.Posture
             return joints;
         }
 
-        public Boolean compareTo(Posture p, float tolerance)
+        public Boolean compareTo(Posture p, float averageTolerance, float puntualTolerance)
         {
             /**
              * @TODO: Normalizar primero y despues comparamos

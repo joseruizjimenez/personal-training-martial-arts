@@ -14,5 +14,10 @@ namespace personal_training_martial_arts.Core
 {
     class GameScreen
     {
+        public void drawPosture2D ()
+        { 
+        }
+
+        public void drawPosture2DMinimized()
     }
 }
