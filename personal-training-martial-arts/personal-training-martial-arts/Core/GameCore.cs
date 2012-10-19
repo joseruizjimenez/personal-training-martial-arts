@@ -38,8 +38,9 @@ namespace personal_training_martial_arts.Core
         private GameScreen gameScreen;
 
         private Posture.Posture userPosture;
-        private List<Posture.Posture> gamePostures;
-        private Dictionary<Posture.Posture, Boolean> gameProgress;
+        private Posture.Posture[] gamePostures;
+        private int gamePosturesIndex;
+        private Dictionary<Posture.Posture, float> gameScores;
 
         public GameCore()
         {
@@ -48,7 +49,7 @@ namespace personal_training_martial_arts.Core
             nextPlayState = playState.INIT;
             userPosture = null;
             gamePostures = null;
-            gamePosturesProgress = null;
+            gameScores = new Dictionary<Posture.Posture, float>();
         }
 
         public void updateUserPosture(Posture.Posture userPosture)
@@ -83,25 +84,27 @@ namespace personal_training_martial_arts.Core
                             break;
 
                         case playState.SELECT_POSTURE:
-                            // Si selected_posture_index es -1:
                             // Se piden las posturas a PostureLibrary, se randomiza y se ejecuta la primera
                             // sino, se avanza a la siguiente...
-                            if(gamePostures == null) 
+                            if (gamePostures == null)
                             {
-                                gamePosturesProgress = new Dictionary<Posture.Posture, bool>();
-                                gamePostures = new SortedSet<Posture.Posture>(PostureLibrary.getPostureList());
-                                gamePostures.
-                                foreach (Posture.Posture p in gamePostures)
-                                {
-                                    gamePostures
-                                }
+                                gamePostures = PostureLibrary.getPostureList();
+                                shufflePostures(gamePostures);
+                                gameScores.Clear();
+                                gamePosturesIndex = 0;
                             }
+                            else
+                                gamePosturesIndex++;
+                            
+                            nextPlayState = playState.DRAW_POSTURE;
                             break;
 
                         case playState.DRAW_POSTURE:
+
                             break;
 
                         case playState.DETECT_POSTURE:
+
                             break;
 
                         case playState.SCORE:
@@ -111,7 +114,6 @@ namespace personal_training_martial_arts.Core
 
                         default:
                         case playState.END:
-                            gamePostures.Clear();
                             nextScreenState = screenState.MENU;
                             break;
                     }
@@ -129,6 +131,18 @@ namespace personal_training_martial_arts.Core
         {
             // movida
             
+        }
+
+        private void shufflePostures(Posture.Posture[] postures)
+        {
+            for (int t = 0; t < postures.Length; t++ )
+            {
+                Posture.Posture tmp = postures[t];
+                Random rr = new Random();
+                int r = rr.Next(t, postures.Length);
+                postures[t] = postures[r];
+                postures[r] = tmp;
+            }
         }
     }
 }
