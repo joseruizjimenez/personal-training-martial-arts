@@ -42,6 +42,8 @@ namespace personal_training_martial_arts.Core
         private int gamePosturesIndex;
         private Dictionary<Posture.Posture, float> gameScores;
 
+        private DateTime drawPostureTimeOut;
+
         public GameCore()
         {
             gameScreen = new GameScreen();
@@ -50,6 +52,7 @@ namespace personal_training_martial_arts.Core
             userPosture = null;
             gamePostures = null;
             gameScores = new Dictionary<Posture.Posture, float>();
+            drawPostureTimeOut = new DateTime(0);
         }
 
         public void updateUserPosture(Posture.Posture userPosture)
@@ -84,23 +87,17 @@ namespace personal_training_martial_arts.Core
                             break;
 
                         case playState.SELECT_POSTURE:
-                            // Se piden las posturas a PostureLibrary, se randomiza y se ejecuta la primera
-                            // sino, se avanza a la siguiente...
-                            if (gamePostures == null)
-                            {
-                                gamePostures = PostureLibrary.getPostureList();
-                                shufflePostures(gamePostures);
-                                gameScores.Clear();
-                                gamePosturesIndex = 0;
-                            }
-                            else
-                                gamePosturesIndex++;
-                            
+                            updateGamePosture();
                             nextPlayState = playState.DRAW_POSTURE;
                             break;
 
                         case playState.DRAW_POSTURE:
-
+                            // Esta fase es para presentarle al usuario la postura objetivo
+                            // la pantalla se pintará en la llamada a Draw como siempre,
+                            // en el update se mira que pase un tiempo determinado o se pulse un botón
+                            // antes de pasar a la siguiente fase
+                            if(isTimedOut(drawPostureTimeOut, 30))
+                                nextPlayState = playState.DETECT_POSTURE;
                             break;
 
                         case playState.DETECT_POSTURE:
@@ -133,6 +130,21 @@ namespace personal_training_martial_arts.Core
             
         }
 
+        private void updateGamePosture()
+        {
+            // Se piden las posturas a PostureLibrary, se randomiza y se selecciona la primera
+            // sino, se avanza a la siguiente...
+            if (gamePostures == null)
+            {
+                gamePostures = PostureLibrary.getPostureList();
+                shufflePostures(gamePostures);
+                gameScores.Clear();
+                gamePosturesIndex = 0;
+            }
+            else
+                gamePosturesIndex++;
+        }
+
         private void shufflePostures(Posture.Posture[] postures)
         {
             for (int t = 0; t < postures.Length; t++ )
@@ -143,6 +155,13 @@ namespace personal_training_martial_arts.Core
                 postures[t] = postures[r];
                 postures[r] = tmp;
             }
+        }
+
+        private Boolean isTimedOut(DateTime startTime, int secondsToTimeOut)
+        {
+            // TODO: si han pasado los segundos desde el startTime respecto de System.DateTime.Now
+            // devuelve TRUE, sino FALSE
+            return false;
         }
     }
 }
