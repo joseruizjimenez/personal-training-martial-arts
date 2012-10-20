@@ -46,30 +46,38 @@ namespace personal_training_martial_arts.Core
 
         public GameCore()
         {
-            gameScreen = new GameScreen();
-            nextScreenState = screenState.INIT;
-            nextPlayState = playState.INIT;
-            userPosture = null;
-            gamePostures = null;
-            gameScores = new Dictionary<Posture.Posture, float>();
-            drawPostureTimeOut = new DateTime(0);
+            this.gameScreen = new GameScreen();
+            this.nextScreenState = screenState.INIT;
+            this.nextPlayState = playState.INIT;
+            this.userPosture = null;
+            this.gamePostures = null;
+            this.gameScores = new Dictionary<Posture.Posture, float>();
+            this.drawPostureTimeOut = new DateTime(0);
         }
 
+        /// <summary>
+        /// Actualiza la postura actual del jugador.
+        /// </summary>
+        /// <param name="userPosture">Postura con la que actualizar</param>
         public void updateUserPosture(Posture.Posture userPosture)
         {
             this.userPosture = userPosture;
         }
 
+        /// <summary>
+        /// Lógica del programa.
+        /// </summary>
+        /// <returns>Si se sale del programa o no</returns>
         public Boolean update()
         {
-            currentScreenState = nextScreenState;
-            currentPlayState = nextPlayState;
+            this.currentScreenState = this.nextScreenState;
+            this.currentPlayState   = this.nextPlayState;
 
-            switch (currentScreenState)
+            switch (this.currentScreenState)
             {
                 case screenState.INIT:
                     // algo en inicio?
-                    nextScreenState = screenState.MENU;
+                    this.nextScreenState = screenState.MENU;
                     break;
 
                 case screenState.MENU:
@@ -79,16 +87,19 @@ namespace personal_training_martial_arts.Core
                     break;
 
                 case screenState.PLAY:
-                    switch (currentPlayState)
+                    switch (this.currentPlayState)
                     {
                         case playState.INIT:
                             // algo en inicio?
-                            nextPlayState = playState.SELECT_POSTURE;
+                            this.gamePostures = null;
+                            this.nextPlayState = playState.SELECT_POSTURE;
                             break;
 
                         case playState.SELECT_POSTURE:
-                            updateGamePosture();
-                            nextPlayState = playState.DRAW_POSTURE;
+                            this.updateCurrentGamePosture();
+                            /// @FIX001:
+                            this.drawPostureTimeOut = DateTime.Now;
+                            this.nextPlayState = playState.DRAW_POSTURE;
                             break;
 
                         case playState.DRAW_POSTURE:
@@ -96,22 +107,23 @@ namespace personal_training_martial_arts.Core
                             // la pantalla se pintará en la llamada a Draw como siempre,
                             // en el update se mira que pase un tiempo determinado o se pulse un botón
                             // antes de pasar a la siguiente fase
-                            if(isTimedOut(drawPostureTimeOut, 30))
-                                nextPlayState = playState.DETECT_POSTURE;
+                            
+                            /// @FIX001: Estaba a null el this.drawPostureTimeOut, asique le he puesto valor en SELECT_POSTURE (Margen de error: 1frame).
+                            if(this.isTimedOut(this.drawPostureTimeOut, 30))
+                                this.nextPlayState = playState.DETECT_POSTURE;
                             break;
 
                         case playState.DETECT_POSTURE:
-
                             break;
 
                         case playState.SCORE:
-                            // se comprueba si se ha pulsado repetir (nextPlayState = INIT)
+                            // se comprueba si se ha pulsado SIGUIENTE (nextPlayState = INIT)
                             // o menu (nextPlayState = END)
                             break;
 
                         default:
                         case playState.END:
-                            nextScreenState = screenState.MENU;
+                            this.nextScreenState = screenState.MENU;
                             break;
                     }
                     break;
@@ -124,27 +136,38 @@ namespace personal_training_martial_arts.Core
             return true; // Si no esta en estado de END se continua con la ejecucion
         }
 
+        /// <summary>
+        /// Pinta el resultado de la lógica por pantalla.
+        /// </summary>
         public void draw()
         {
             // movida
             
         }
 
-        private void updateGamePosture()
+        /// <summary>
+        /// Actualiza la postura actual. Si no hay posturas, las carga.
+        /// </summary>
+        private void updateCurrentGamePosture()
         {
             // Se piden las posturas a PostureLibrary, se randomiza y se selecciona la primera
             // sino, se avanza a la siguiente...
-            if (gamePostures == null)
+            if (this.gamePostures == null)
             {
-                gamePostures = PostureLibrary.getPostureList();
-                shufflePostures(gamePostures);
-                gameScores.Clear();
-                gamePosturesIndex = 0;
+                this.gamePostures = PostureLibrary.getPostureList();
+                this.shufflePostures(gamePostures);
+                this.gameScores.Clear();
+                this.gamePosturesIndex = 0;
             }
             else
-                gamePosturesIndex++;
+                this.gamePosturesIndex++;
         }
 
+        /// ?? Esto iría mejor en Posture.Posture (static) ??
+        /// <summary>
+        /// Mezcla un array de <code>Posture</code>.
+        /// </summary>
+        /// <param name="postures">Posturas a mezclar</param>
         private void shufflePostures(Posture.Posture[] postures)
         {
             for (int t = 0; t < postures.Length; t++ )
@@ -157,10 +180,20 @@ namespace personal_training_martial_arts.Core
             }
         }
 
+        /// <summary>
+        /// Comprueba si se ha cumplido un timeout.
+        /// </summary>
+        /// <param name="startTime">DateTime de inicio</param>
+        /// <param name="secondsToTimeOut">Segundos para timeout</param>
+        /// <returns>Si los segundos se han pasado o no</returns>
         private Boolean isTimedOut(DateTime startTime, int secondsToTimeOut)
         {
-            // TODO: si han pasado los segundos desde el startTime respecto de System.DateTime.Now
-            // devuelve TRUE, sino FALSE
+            DateTime endTime = startTime.AddSeconds((double) secondsToTimeOut);
+            DateTime now = DateTime.Now;
+
+            if (DateTime.Compare(endTime, now) >= 0)
+                return true;
+
             return false;
         }
     }

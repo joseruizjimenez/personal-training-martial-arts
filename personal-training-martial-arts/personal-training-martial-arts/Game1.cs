@@ -26,10 +26,8 @@ namespace personal_training_martial_arts
 
 
 
+        // @TODO: Limpiar caca.
         SpriteBatch spriteBatch;
-
-
-
         Texture2D kinectRGBVideo;
         Texture2D overlay;
         Texture2D hand;
