@@ -9,7 +9,9 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Kinect;
+
 using personal_training_martial_arts.Posture;
+using personal_training_martial_arts.Graphics;
 
 namespace personal_training_martial_arts.Core
 {
@@ -44,9 +46,9 @@ namespace personal_training_martial_arts.Core
 
         private DateTime drawPostureTimeOut;
 
-        public GameCore()
+        public GameCore(KinectSensor sensor)
         {
-            this.gameScreen = new GameScreen();
+            this.gameScreen = new GameScreen(sensor);
             this.nextScreenState = screenState.INIT;
             this.nextPlayState = playState.INIT;
             this.userPosture = null;

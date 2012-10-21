@@ -26,7 +26,7 @@ namespace personal_training_martial_arts
 
 
 
-        // @TODO: Limpiar caca.
+        // TODO: Limpiar caca.
         SpriteBatch spriteBatch;
         Texture2D kinectRGBVideo;
         Texture2D overlay;
@@ -76,7 +76,7 @@ namespace personal_training_martial_arts
             graphics.PreferredBackBufferWidth = 640;
             graphics.PreferredBackBufferHeight = 480;
 
-            gameCore = new GameCore();
+            gameCore = new GameCore(this.kinectSensor);
         }
 
         /// <summary>
