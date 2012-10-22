@@ -14,11 +14,11 @@ namespace personal_training_martial_arts.Posture
 {
     static class PostureLibrary
     {
-        public static Posture[] getPostureList()
+        public static PostureInformation[] getPostureList()
         {
         }
 
-        public static Posture loadPosture(string name)
+        public static PostureInformation loadPosture(string name)
         {
         }
 
