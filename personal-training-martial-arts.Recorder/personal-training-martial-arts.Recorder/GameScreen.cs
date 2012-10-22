@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Kinect;
 
-namespace personal_training_martial_arts.Graphics
+namespace personal_training_martial_arts
 {
     class GameScreen
     {
