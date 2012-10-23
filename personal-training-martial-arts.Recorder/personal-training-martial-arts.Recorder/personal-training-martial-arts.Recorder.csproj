@@ -110,6 +110,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ColorRender.cs" />
+    <Compile Include="GameScreen.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
@@ -117,6 +119,7 @@
   <ItemGroup>
     <Content Include="Game.ico" />
     <Content Include="GameThumbnail.png" />
+    <Content Include="KinectColorVisualizer.fx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\personal-training-martial-arts.RecorderContent\personal-training-martial-arts.RecorderContent.contentproj">

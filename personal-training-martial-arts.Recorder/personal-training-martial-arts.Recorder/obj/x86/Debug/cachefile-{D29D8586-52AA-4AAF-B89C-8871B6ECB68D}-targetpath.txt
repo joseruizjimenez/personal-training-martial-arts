@@ -2,3 +2,4 @@ Content\hand.xnb
 Content\overlay.xnb
 Content\rec.xnb
 Content\SpriteFont1.xnb
+Content\KinectColorVisualizer.xnb
