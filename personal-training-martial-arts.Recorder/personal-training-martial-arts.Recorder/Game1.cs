@@ -24,11 +24,21 @@ namespace personal_training_martial_arts
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        Texture2D kinectRGBVideo;
+        //Texture2D kinectRGBVideo;
         Texture2D overlay;
         Texture2D hand;
         SpriteFont font;
 
+        //LALALA
+        GameScreen sc;
+        ColorRender colorRender;
+        /// <summary>
+        /// This Xna effect is used to swap the Red and Blue bytes of the color stream data.
+        /// </summary>
+        Effect kinectColorVisualizer;
+        Boolean needToRedraw = false;
+
+        //LALALA
         // Global variables para menu
         enum BState
         {
@@ -163,7 +173,7 @@ namespace personal_training_martial_arts
                 MaxDeviationRadius = 0.04f
             });
             kinectSensor.SkeletonFrameReady += new EventHandler<SkeletonFrameReadyEventArgs>(kinectSensor_SkeletonFrameReady);
-
+            
             try
             {
                 kinectSensor.Start();
@@ -221,7 +231,10 @@ namespace personal_training_martial_arts
                 if (colorImageFrame != null)
                 {
 
-                    byte[] pixelsFromFrame = new byte[colorImageFrame.PixelDataLength];
+                    this.colorRender.renderFrame(colorImageFrame);
+
+                    this.needToRedraw = true;
+                    /*byte[] pixelsFromFrame = new byte[colorImageFrame.PixelDataLength];
 
                     colorImageFrame.CopyPixelDataTo(pixelsFromFrame);
 
@@ -241,7 +254,7 @@ namespace personal_training_martial_arts
                     }
 
                     // Actualizamos los datos de los pixels del ColorImageFrame a nuestra Texture2D
-                    kinectRGBVideo.SetData(color);
+                    kinectRGBVideo.SetData(color);*/
                 }
             }
         }
@@ -272,10 +285,13 @@ namespace personal_training_martial_arts
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            sc = new GameScreen(spriteBatch, kinectSensor);
+            colorRender = new ColorRender(spriteBatch, kinectSensor, graphics.GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
-            kinectRGBVideo = new Texture2D(GraphicsDevice, 1337, 1337);
 
+            // This effect is necessary to remap the BGRX byte data we get
+            // to the XNA color RGBA format.
+            this.kinectColorVisualizer = Content.Load<Effect>("KinectColorVisualizer");
             overlay = Content.Load<Texture2D>("overlay");
             hand = Content.Load<Texture2D>("hand");
             font = Content.Load<SpriteFont>("SpriteFont1");
@@ -332,14 +348,24 @@ namespace personal_training_martial_arts
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            // Clear the screen
+            GraphicsDevice.Clear(Color.White);
 
-            // TODO: Add your drawing code here
+            // If we don't have the effect load, load it
+            if (null == this.kinectColorVisualizer)
+            {
+                this.LoadContent();
+            }
+
+
+            if (needToRedraw)
+            {
+                colorRender.drawUntilRendered(this.kinectColorVisualizer);
+                this.needToRedraw = false;
+            }
+
+            /*
             spriteBatch.Begin();
-            // Pintamos el video de Kinect
-            spriteBatch.Draw(kinectRGBVideo, new Rectangle(0, 0, 640, 480), Color.White);
-            // En el ejemplo de la mano pintaremos un punto blanco:
-            
             //spriteBatch.Draw(hand, handPosition, Color.White);
             // Capa overlay  intermedia sobre la que pintar las letras
             //spriteBatch.Draw(overlay, new Rectangle(0, 0, 640, 480), Color.White);
@@ -347,11 +373,7 @@ namespace personal_training_martial_arts
             if (recordStatus == "RECORDED")
             {
                 spriteBatch.DrawString(font, recordStatus, new Vector2(20, 80), Color.Red);
-                foreach (Joint joint in skeletonToRecord.Joints)
-                {
-                    Vector2 v = new Vector2((((0.5f * joint.Position.X) + 0.5f) * (640)), (((-0.5f * joint.Position.Y) + 0.5f) * (480)));
-                    spriteBatch.Draw(hand, v, Color.White);
-                }
+                sc.drawPosture2D(skeletonToRecord,hand);
             }
             else
             {
@@ -367,7 +389,9 @@ namespace personal_training_martial_arts
             //    spriteBatch.Draw(button_texture[i], button_rectangle[i], button_color[i]);
 
             spriteBatch.End();
-
+            */
+            // Reset the render target and prepare to draw scaled image
+            graphics.GraphicsDevice.SetRenderTargets(null);
             base.Draw(gameTime);
         }
 

@@ -8,7 +8,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Recorder\personal-training-martial-arts.Recorder\bin\x86\Debug\Content\hand.xnb</Output>
-      <Time>2012-10-17T10:36:25.9878913+02:00</Time>
+      <Time>2012-10-19T15:49:50.0593188+02:00</Time>
     </Item>
     <Item>
       <Source>overlay.png</Source>
@@ -17,7 +17,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Recorder\personal-training-martial-arts.Recorder\bin\x86\Debug\Content\overlay.xnb</Output>
-      <Time>2012-10-17T10:37:19.475778+02:00</Time>
+      <Time>2012-10-19T15:49:50.0788722+02:00</Time>
     </Item>
     <Item>
       <Source>rec.png</Source>
@@ -26,7 +26,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Recorder\personal-training-martial-arts.Recorder\bin\x86\Debug\Content\rec.xnb</Output>
-      <Time>2012-10-17T10:37:19.4767775+02:00</Time>
+      <Time>2012-10-19T15:49:50.0873105+02:00</Time>
     </Item>
     <Item>
       <Source>SpriteFont1.spritefont</Source>
@@ -35,7 +35,16 @@
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
       <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Recorder\personal-training-martial-arts.Recorder\bin\x86\Debug\Content\SpriteFont1.xnb</Output>
-      <Time>2012-10-17T10:37:19.465776+02:00</Time>
+      <Time>2012-10-19T15:49:50.0573174+02:00</Time>
+    </Item>
+    <Item>
+      <Source>KinectColorVisualizer.fx</Source>
+      <Name>KinectColorVisualizer</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Recorder\personal-training-martial-arts.Recorder\bin\x86\Debug\Content\KinectColorVisualizer.xnb</Output>
+      <Time>2012-10-22T11:59:23.1316686+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -75,7 +84,7 @@
       </Assembly>
       <Assembly>
         <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2012-09-29T20:09:34.8798321+02:00</Value>
+        <Value>2012-09-21T12:06:09.4712221+02:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>

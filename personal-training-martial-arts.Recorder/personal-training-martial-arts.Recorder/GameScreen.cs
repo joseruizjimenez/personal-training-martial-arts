@@ -42,27 +42,12 @@ namespace personal_training_martial_arts.Graphics
         private List<Tuple<Texture2D, Rectangle, Color>> layerComponents = new List<Tuple<Texture2D, Rectangle, Color>>();
         private List<Tuple<SpriteFont, string, Vector2, Color>> textComponents = new List<Tuple<SpriteFont, string, Vector2, Color>>();
         private List<Tuple<Skeleton, Texture2D>> skComponents = new List<Tuple<Skeleton, Texture2D>>();
-
-
-
-        //******************************************************************************************
-        //PROPOSITO GENERAL_________________________________________________________________________
-
-        //Sin implementar (Serialización de objetos)
-        public void saveView()
-        {
-        }
-
-        //Sin implementar (Serialización de objetos)
-        public void loadView()
-        {
-        }
         
         /// <summary>
         /// Para inicializar el escenario hay que pasar un sensor y un graphicsDevice.
         /// </summary>
-        /// <param name="sensor">Sensor de kinect</param>
-        /// <param name="graphicsDevice">Graficos XNA</param>
+        /// <param name="sensor"></param>
+        /// <param name="graphicsDevice"></param>
         public GameScreen(KinectSensor sensor,GraphicsDevice graphicsDevice)
         {
             this.sensor = sensor;
