@@ -17,12 +17,27 @@ namespace personal_training_martial_arts.Posture
     {
         public static PostureInformation[] getPostureList()
         {
+            String [] nombresficheros = System.IO.Directory.GetFiles(".");
+            int a=0;
+            foreach (String n in nombresficheros){
+            if (n.Contains(".xml")) a++;
+            
+            }
 
+            PostureInformation[] allPostures = new PostureInformation[a];
+            a = 0;
+            foreach (String n in nombresficheros){
 
+                if (n.Contains(".xml")) {
+                    allPostures[a] = loadPosture(n.Replace(".xml",""));
+                    a++;
+                } 
+            
+            }
 
-
-
+            return allPostures;
         }
+
 
         public Boolean storePosture(PostureInformation p) {
 
