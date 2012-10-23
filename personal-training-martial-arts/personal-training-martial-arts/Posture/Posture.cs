@@ -9,12 +9,13 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Kinect;
+using System.Xml;
 
 namespace personal_training_martial_arts.Posture
 {
     class Posture
     {
-        protected Vector3[] joints {get; set;}
+        public Vector3[] joints {get; set;}
 
         public Posture()
         {
@@ -24,6 +25,8 @@ namespace personal_training_martial_arts.Posture
             : this(Posture.castSkeletonToJoints(skeleton))
         {
         }
+
+        
 
         public Posture(Vector3[] joints)
         {
@@ -43,6 +46,10 @@ namespace personal_training_martial_arts.Posture
 
             return joints;
         }
+
+        
+
+
 
         public Boolean compareTo(Posture p, float averageTolerance, float puntualTolerance)
         {
