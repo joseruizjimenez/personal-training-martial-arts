@@ -348,17 +348,24 @@ namespace personal_training_martial_arts
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+            // Clear the screen
+            GraphicsDevice.Clear(Color.White);
+
             // If we don't have the effect load, load it
             if (null == this.kinectColorVisualizer)
             {
                 this.LoadContent();
             }
 
+
             if (needToRedraw)
             {
                 colorRender.drawUntilRendered(this.kinectColorVisualizer);
                 this.needToRedraw = false;
             }
+
+            /*
+            spriteBatch.Begin();
             //spriteBatch.Draw(hand, handPosition, Color.White);
             // Capa overlay  intermedia sobre la que pintar las letras
             //spriteBatch.Draw(overlay, new Rectangle(0, 0, 640, 480), Color.White);
@@ -382,7 +389,9 @@ namespace personal_training_martial_arts
             //    spriteBatch.Draw(button_texture[i], button_rectangle[i], button_color[i]);
 
             spriteBatch.End();
-
+            */
+            // Reset the render target and prepare to draw scaled image
+            graphics.GraphicsDevice.SetRenderTargets(null);
             base.Draw(gameTime);
         }
 

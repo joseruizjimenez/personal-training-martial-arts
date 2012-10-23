@@ -82,6 +82,13 @@ namespace personal_training_martial_arts
 
         public void drawUntilRendered(Effect kinectColorVisualizer)
         {
+
+            // If we don't have a target, don't try to render
+            if (null == this.colorTexture)
+            {
+                return;
+            }
+
             // Set the backbuffer and clear
             gameGraphics.SetRenderTarget(this.backBuffer);
             gameGraphics.Clear(ClearOptions.Target, Color.Black, 1.0f, 0);
