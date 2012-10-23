@@ -14,9 +14,9 @@ namespace personal_training_martial_arts.Posture
 {
     class PostureInformation : Posture
     {
-        private string name;
-        private string description;
-        private int difficulty;
+        public string name { get; set; }
+        public string description { get; set; }
+        public int difficulty { get; set; }
 
         public PostureInformation(string name, string description, int difficulty, Skeleton skeleton)
             : this(name, description, difficulty, Posture.castSkeletonToJoints(skeleton))
@@ -30,6 +30,8 @@ namespace personal_training_martial_arts.Posture
             this.difficulty = difficulty;
             this.joints = joints;
         }
+
+
 
     }
 }
