@@ -17,16 +17,9 @@ namespace personal_training_martial_arts.Posture
     {
         public Vector3[] joints {get; set;}
 
-        public Posture()
-        {
-        }
+        public Posture(){}
 
-        public Posture(Skeleton skeleton)
-            : this(Posture.castSkeletonToJoints(skeleton))
-        {
-        }
-
-        
+        public Posture(Skeleton skeleton): this(Posture.castSkeletonToJoints(skeleton)){}
 
         public Posture(Vector3[] joints)
         {
@@ -48,16 +41,29 @@ namespace personal_training_martial_arts.Posture
         }
 
         
-
-
-
         public Boolean compareTo(Posture p, float averageTolerance, float puntualTolerance)
         {
             /**
-             * @TODO: Normalizar primero y despues comparamos
+             * @TODO: Visualizamos el cumplimiento punto a punto y despues como media para asumir
+             * la postura como valida.
              */
 
-            return false;
+            int i = 0; 
+            float avDistance=0; //Separacion promedio (20 puntos)
+
+            foreach (Vector3 v in joints)
+            {
+                Vector3 pVector = p.joints[i]; i++;
+
+                float distance = Math.Abs((Math.Abs(v.X - pVector.X)) + (Math.Abs(v.Y - pVector.Y)) 
+                                 + (Math.Abs(v.Z - pVector.Z)));
+
+                if (distance > puntualTolerance) return false;
+                else avDistance += distance;
+            }
+
+            if (avDistance > averageTolerance) return false;
+            else return true; //Postura correcta
         }
     }
 }
