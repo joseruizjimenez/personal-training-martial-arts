@@ -114,6 +114,7 @@
     <Compile Include="Graphics\GameScreen.cs" />
     <Compile Include="Gesture\Gesture.cs" />
     <Compile Include="Posture\Posture.cs" />
+    <Compile Include="Posture\PostureInformation.cs" />
     <Compile Include="Posture\PostureLibrary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
