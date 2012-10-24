@@ -19,9 +19,7 @@ namespace personal_training_martial_arts.Posture
         public int difficulty { get; set; }
 
         public PostureInformation(string name, string description, int difficulty, Skeleton skeleton)
-            : this(name, description, difficulty, Posture.castSkeletonToJoints(skeleton))
-        {
-        }
+            : this(name, description, difficulty, Posture.castSkeletonToJoints(skeleton)){}
 
         public PostureInformation(string name, string description, int difficulty, Vector3[] joints)
         {
@@ -30,8 +28,5 @@ namespace personal_training_martial_arts.Posture
             this.difficulty = difficulty;
             this.joints = joints;
         }
-
-
-
     }
 }

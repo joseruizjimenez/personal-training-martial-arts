@@ -19,28 +19,28 @@ namespace personal_training_martial_arts.Posture
         {
             String [] nombresficheros = System.IO.Directory.GetFiles(".");
             int a=0;
-            foreach (String n in nombresficheros){
-            if (n.Contains(".xml")) a++;
-            
+            foreach (String n in nombresficheros)
+            {
+                if (n.Contains(".xml")) a++;
             }
 
             PostureInformation[] allPostures = new PostureInformation[a];
             a = 0;
-            foreach (String n in nombresficheros){
-
-                if (n.Contains(".xml")) {
+            foreach (String n in nombresficheros)
+            {
+                if (n.Contains(".xml")) 
+                {
                     allPostures[a] = loadPosture(n.Replace(".xml",""));
                     a++;
                 } 
-            
             }
 
             return allPostures;
         }
 
 
-        public Boolean storePosture(PostureInformation p) {
-
+        public Boolean storePosture(PostureInformation p) 
+        {
             // PROBLEMA DEL NOMBRE DEL FICHERO. ME LO PASAN O DEBERIA LA CLASE TENER UN NOMBRE??
             
             try
@@ -84,63 +84,45 @@ namespace personal_training_martial_arts.Posture
                 
                 //grabamos 
                 originalXml.Save(p.name+".xml");
-                return true;
-                
+                return true;       
             }
             catch(Exception e)
             {
                 Console.WriteLine("{0} Exception caught.", e);
                 return false;
             } 
-        
         }
 
 
-        public static PostureInformation loadPosture(String name) { 
-        
-                Vector3[] joints = new Vector3[20];
-                int index = 0;
-                XmlDocument xDoc = new XmlDocument();
+        public static PostureInformation loadPosture(String name) 
+        { 
+            Vector3[] joints = new Vector3[20];
+            int index = 0;
+            XmlDocument xDoc = new XmlDocument();
 
-               
+            //xDoc.Load("../../../../personas1.xml"); 
+            xDoc.Load(name+".xml");
+            XmlNodeList postura = xDoc.GetElementsByTagName("Posture");
 
-                //xDoc.Load("../../../../personas1.xml"); 
-                xDoc.Load(name+".xml");
-                XmlNodeList postura = xDoc.GetElementsByTagName("Posture");
+            XmlAttribute nam= ((XmlElement)postura[0]).GetAttributeNode("name");
+            XmlAttribute des= ((XmlElement)postura[0]).GetAttributeNode("description");
+            XmlAttribute dif= ((XmlElement)postura[0]).GetAttributeNode("difficulty");
 
-                    XmlAttribute nam= ((XmlElement)postura[0]).GetAttributeNode("name");
-                    XmlAttribute des= ((XmlElement)postura[0]).GetAttributeNode("description");
-                    XmlAttribute dif= ((XmlElement)postura[0]).GetAttributeNode("difficulty");
+            XmlNodeList listaJoints =  ((XmlElement)postura[0]).GetElementsByTagName("joint"); 
 
-                XmlNodeList listaJoints =  ((XmlElement)postura[0]).GetElementsByTagName("joint"); 
-
-                foreach (XmlElement nodo in listaJoints)
-                {
-
-            
-                    XmlAttribute a= nodo.GetAttributeNode("x");
-                    XmlAttribute b= nodo.GetAttributeNode("y");
-                    XmlAttribute c= nodo.GetAttributeNode("z");
+            foreach (XmlElement nodo in listaJoints)
+            {
+                XmlAttribute a= nodo.GetAttributeNode("x");
+                XmlAttribute b= nodo.GetAttributeNode("y");
+                XmlAttribute c= nodo.GetAttributeNode("z");
                 
-                    joints[index] = new Vector3(System.Convert.ToInt64(a.Value),System.Convert.ToInt64(b.Value), 
-                                    System.Convert.ToInt64(c.Value));
-                    index++;
-                
+                joints[index] = new Vector3(System.Convert.ToInt64(a.Value),System.Convert.ToInt64(b.Value), 
+                System.Convert.ToInt64(c.Value));    index++;
+            } 
 
-                } 
+            PostureInformation postureI= new PostureInformation(nam.Value,des.Value,System.Convert.ToInt16(dif.Value),joints);
+            return postureI;
 
-             
-                PostureInformation postureI= new PostureInformation(nam.Value,des.Value,System.Convert.ToInt16(dif.Value) ,joints);
-                return postureI;
-
-                
-
-                }
-        
         }
-
-        
-
-       
-    
+    }       
 }
