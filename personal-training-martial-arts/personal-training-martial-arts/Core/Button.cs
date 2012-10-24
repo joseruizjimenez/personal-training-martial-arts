@@ -23,7 +23,7 @@ namespace personal_training_martial_arts.Core
         private Boolean mpressed;
         private Boolean prev_mpressed;
 
-        public void Button(String name, int x, int y, int width, int height)
+        public Button(String name, int x, int y, int width, int height)
         {
             this.name = name;
             this.rectangle = new Rectangle(x, y, width, height);
@@ -78,8 +78,14 @@ namespace personal_training_martial_arts.Core
                 my >= button.Y &&
                 my <= button.Y + button.Height);
         }
-    
-    
+
+        public Boolean justPushed()
+        {
+            if (this.state == BState.JUST_RELEASED)
+                return true;
+            else
+                return false;
+        }
     
     }
 }

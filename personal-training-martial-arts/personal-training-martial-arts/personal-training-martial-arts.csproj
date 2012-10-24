@@ -111,6 +111,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Button.cs" />
+    <Compile Include="Core\GameButtonList.cs" />
     <Compile Include="Core\ContentHandler.cs" />
     <Compile Include="Core\GameCore.cs" />
     <Compile Include="Graphics\ColorRender.cs" />
