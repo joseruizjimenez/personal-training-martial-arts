@@ -1,6 +1,3 @@
-
-/// Creación del interfaz y detección de conexión y desconexión
-
 using System;
 using System.IO;
 using System.Collections.Generic;
@@ -13,6 +10,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Kinect;
+using personal_training_martial_arts.Posture;
 
 namespace personal_training_martial_arts
 {
@@ -24,21 +22,11 @@ namespace personal_training_martial_arts
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        //Texture2D kinectRGBVideo;
+        Texture2D kinectRGBVideo;
         Texture2D overlay;
         Texture2D hand;
         SpriteFont font;
 
-        //LALALA
-        GameScreen sc;
-        ColorRender colorRender;
-        /// <summary>
-        /// This Xna effect is used to swap the Red and Blue bytes of the color stream data.
-        /// </summary>
-        Effect kinectColorVisualizer;
-        Boolean needToRedraw = false;
-
-        //LALALA
         // Global variables para menu
         enum BState
         {
@@ -65,7 +53,6 @@ namespace personal_training_martial_arts
         // fin menu
 
         Vector2[] jointPositions = new Vector2[20];
-
         Skeleton skeletonToRecord;
 
         KinectSensor kinectSensor;
@@ -173,7 +160,7 @@ namespace personal_training_martial_arts
                 MaxDeviationRadius = 0.04f
             });
             kinectSensor.SkeletonFrameReady += new EventHandler<SkeletonFrameReadyEventArgs>(kinectSensor_SkeletonFrameReady);
-            
+
             try
             {
                 kinectSensor.Start();
@@ -212,7 +199,8 @@ namespace personal_training_martial_arts
                         // y se actualizan las posiciones del punto concreto que necesitamos, por ejemplo la mano:
                         //Joint rightHand = playerSkeleton.Joints[JointType.HandRight];
                         int jointIndex = 0;
-                        foreach(Joint joint in playerSkeleton.Joints) {
+                        foreach (Joint joint in playerSkeleton.Joints)
+                        {
                             jointPositions[jointIndex] = new Vector2((((0.5f * joint.Position.X) + 0.5f) * (640)), (((-0.5f * joint.Position.Y) + 0.5f) * (480)));
                             jointIndex += 1;
                         }
@@ -220,7 +208,7 @@ namespace personal_training_martial_arts
                 }
             }
         }
-        
+
         /// <summary>
         /// Actualiza los datos recibidos de la camara sobre nuestro kinectRGBVideo
         /// </summary>
@@ -231,10 +219,7 @@ namespace personal_training_martial_arts
                 if (colorImageFrame != null)
                 {
 
-                    this.colorRender.renderFrame(colorImageFrame);
-
-                    this.needToRedraw = true;
-                    /*byte[] pixelsFromFrame = new byte[colorImageFrame.PixelDataLength];
+                    byte[] pixelsFromFrame = new byte[colorImageFrame.PixelDataLength];
 
                     colorImageFrame.CopyPixelDataTo(pixelsFromFrame);
 
@@ -254,7 +239,7 @@ namespace personal_training_martial_arts
                     }
 
                     // Actualizamos los datos de los pixels del ColorImageFrame a nuestra Texture2D
-                    kinectRGBVideo.SetData(color);*/
+                    kinectRGBVideo.SetData(color);
                 }
             }
         }
@@ -285,13 +270,10 @@ namespace personal_training_martial_arts
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            sc = new GameScreen(spriteBatch, kinectSensor);
-            colorRender = new ColorRender(spriteBatch, kinectSensor, graphics.GraphicsDevice);
 
+            // TODO: use this.Content to load your game content here
+            kinectRGBVideo = new Texture2D(GraphicsDevice, 1337, 1337);
 
-            // This effect is necessary to remap the BGRX byte data we get
-            // to the XNA color RGBA format.
-            this.kinectColorVisualizer = Content.Load<Effect>("KinectColorVisualizer");
             overlay = Content.Load<Texture2D>("overlay");
             hand = Content.Load<Texture2D>("hand");
             font = Content.Load<SpriteFont>("SpriteFont1");
@@ -301,13 +283,16 @@ namespace personal_training_martial_arts
 
         /// <summary>
         /// UnloadContent will be called once per game and is the place to unload
-        /// all content. Para commit
+        /// all content.
         /// </summary>
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
-            kinectSensor.Stop();
-            kinectSensor.Dispose();
+            if (kinectSensor != null)
+            {
+                kinectSensor.Stop();
+                kinectSensor.Dispose();
+            }
         }
 
         /// <summary>
@@ -348,24 +333,14 @@ namespace personal_training_martial_arts
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            // Clear the screen
-            GraphicsDevice.Clear(Color.White);
+            GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // If we don't have the effect load, load it
-            if (null == this.kinectColorVisualizer)
-            {
-                this.LoadContent();
-            }
-
-
-            if (needToRedraw)
-            {
-                colorRender.drawUntilRendered(this.kinectColorVisualizer);
-                this.needToRedraw = false;
-            }
-
-            /*
+            // TODO: Add your drawing code here
             spriteBatch.Begin();
+            // Pintamos el video de Kinect
+            spriteBatch.Draw(kinectRGBVideo, new Rectangle(0, 0, 640, 480), Color.White);
+            // En el ejemplo de la mano pintaremos un punto blanco:
+
             //spriteBatch.Draw(hand, handPosition, Color.White);
             // Capa overlay  intermedia sobre la que pintar las letras
             //spriteBatch.Draw(overlay, new Rectangle(0, 0, 640, 480), Color.White);
@@ -373,7 +348,11 @@ namespace personal_training_martial_arts
             if (recordStatus == "RECORDED")
             {
                 spriteBatch.DrawString(font, recordStatus, new Vector2(20, 80), Color.Red);
-                sc.drawPosture2D(skeletonToRecord,hand);
+                foreach (Joint joint in skeletonToRecord.Joints)
+                {
+                    Vector2 v = new Vector2((((0.5f * joint.Position.X) + 0.5f) * (640)), (((-0.5f * joint.Position.Y) + 0.5f) * (480)));
+                    spriteBatch.Draw(hand, v, Color.White);
+                }
             }
             else
             {
@@ -389,9 +368,7 @@ namespace personal_training_martial_arts
             //    spriteBatch.Draw(button_texture[i], button_rectangle[i], button_color[i]);
 
             spriteBatch.End();
-            */
-            // Reset the render target and prepare to draw scaled image
-            graphics.GraphicsDevice.SetRenderTargets(null);
+
             base.Draw(gameTime);
         }
 
@@ -527,7 +504,7 @@ namespace personal_training_martial_arts
                     if (recordStatus == "RECORDED")
                         recordStatus = "PUSH TO RECORD";
                     else
-                        if(recordFrameForPosture("test.dat"))
+                        if (recordFrameForPosture("test.dat"))
                             recordStatus = "RECORDED";
                     break;
                 default:
@@ -535,95 +512,30 @@ namespace personal_training_martial_arts
             }
         }
 
-        float[,] readFrameForPosture(string filename)
-        {
-            string readed_joint;
-
-            // Creamos el reader
-            StreamReader file = new StreamReader(filename);
-
-            // Creamos el array de Joints en formto float
-            float[,] joint_float = new float[20,3];
-
-            // Creamos los contadores
-            int joint_ctr = 0;
-            int coord_ctr = 0;
-
-            // Leemos linea por linea
-            while ((readed_joint = file.ReadLine()) != null)
-            {
-                string[] joint_point = readed_joint.Split(new string[] {","}, StringSplitOptions.None);
-
-                foreach (string joint_str in joint_point)
-                {
-                    joint_float[joint_ctr, coord_ctr] = float.Parse(joint_str);
-                    // Siguiente coordenada...
-                    coord_ctr++;
-                }
-
-                // Siguiente joint y empezamos de nuevo con las coordenadas...
-                coord_ctr = 0;
-                joint_ctr++;
-            }
-
-            file.Close();
-
-            /**
-             * Aquí debería de ir una generación de un SkeletonFrame o algo parecido con los joints que acabamos de leer
-             * pero no consigo crear uno con los parámetros que yo defina o meterselos a un objeto, asique: @PALUEGO
-             */
-
-            return joint_float;
-        }
-
         Boolean recordFrameForPosture(string filename)
         {
-            // Super-fix
-            StreamWriter file = new StreamWriter(filename);
-
-            // Fix para que funcione sin esqueletos
             if (skeletonToRecord == null)
             {
                 recordStatus = "PUSH TO RECORD";
                 return false;
             }
 
-            foreach (Joint j in skeletonToRecord.Joints)
-            {
-                // Incluyo coordenadas Z por si las moscas... (que no, pero por si acaso)
-                file.WriteLine((j.Position.X + ";" + j.Position.Y + ";" + j.Position.Z).Replace(",", ".").Replace(";", ","));
-            }
+            /**
+             * Insertamos el nombre y demás por consola.
+             */
+            Console.WriteLine("=====================================");
+            Console.WriteLine("==        POSTURE RECORDER         ==");
+            Console.WriteLine("=====================================");
+            Console.Write("Nombre: ");
+            string posture_name = Console.ReadLine();
+            Console.Write("Descripcion: ");
+            string posture_desc = Console.ReadLine();
+            Console.Write("Dificultad: ");
+            string posture_diff = Console.ReadLine();
+            int diff = Int16.Parse(posture_diff);
 
-            file.Close();
+            PostureLibrary.storePosture(new PostureInformation(posture_name, posture_desc, diff, skeletonToRecord));
 
-            /* La guarrerida de antes xD
-             * FileStream fs = new FileStream("test.dat", FileMode.Create);
-            BinaryWriter w = new BinaryWriter(fs, System.Text.Encoding.ASCII);
-            
-
-            foreach (Joint j in skeletonToRecord.Joints)
-            {
-                w.Flush();
-
-                w.Write("equis,");
-                w.Write("y\n");
-
-                w.Flush();
-            }
-            w.Close();
-            fs.Close();
-
-            /*fs = new FileStream("test.dat", FileMode.Open);
-            StreamReader sr = new StreamReader(fs);
-            Console.WriteLine(sr.ReadToEnd());
-            fs.Position = 0;
-            BinaryReader br = new BinaryReader(fs);
-            Console.WriteLine(br.ReadDecimal());
-            Console.WriteLine(br.ReadString());
-            Console.WriteLine(br.ReadString());
-            Console.WriteLine(br.ReadChar());
-            fs.Close();
-            */
             return true;
         }
 
