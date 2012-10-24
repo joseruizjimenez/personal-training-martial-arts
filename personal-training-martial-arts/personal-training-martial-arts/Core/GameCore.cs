@@ -39,19 +39,19 @@ namespace personal_training_martial_arts.Core
         private playState currentPlayState, nextPlayState;
         private GameScreen gameScreen;
 
-        private Posture.Posture userPosture;
+        private Skeleton playerSkeleton;
         private Posture.Posture[] gamePostures;
         private int gamePosturesIndex;
         private Dictionary<Posture.Posture, float> gameScores;
 
         private DateTime drawPostureTimeOut;
 
-        public GameCore(KinectSensor sensor)
+        public GameCore(KinectSensor sensor, GraphicsDevice graphicsDevice)
         {
-            this.gameScreen = new GameScreen(sensor);
+            this.gameScreen = new GameScreen(sensor, graphicsDevice);
             this.nextScreenState = screenState.INIT;
             this.nextPlayState = playState.INIT;
-            this.userPosture = null;
+            this.playerSkeleton = null;
             this.gamePostures = null;
             this.gameScores = new Dictionary<Posture.Posture, float>();
             this.drawPostureTimeOut = new DateTime(0);
@@ -60,10 +60,10 @@ namespace personal_training_martial_arts.Core
         /// <summary>
         /// Actualiza la postura actual del jugador.
         /// </summary>
-        /// <param name="userPosture">Postura con la que actualizar</param>
-        public void updateUserPosture(Posture.Posture userPosture)
+        /// <param name="playerSkeleton">Postura con la que actualizar</param>
+        public void updatePlayerSkeleton(Skeleton playerSkeleton)
         {
-            this.userPosture = userPosture;
+            this.playerSkeleton = playerSkeleton;
         }
 
         /// <summary>
@@ -143,10 +143,9 @@ namespace personal_training_martial_arts.Core
         /// </summary>
         public void draw()
         {
-            // movida
-            
+            // movida           
         }
-
+        
         /// <summary>
         /// Actualiza la postura actual. Si no hay posturas, las carga.
         /// </summary>
