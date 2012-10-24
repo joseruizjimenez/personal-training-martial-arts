@@ -39,7 +39,7 @@ namespace personal_training_martial_arts.Posture
         }
 
 
-        public Boolean storePosture(PostureInformation p) 
+        public static Boolean storePosture(PostureInformation p) 
         {
             // PROBLEMA DEL NOMBRE DEL FICHERO. ME LO PASAN O DEBERIA LA CLASE TENER UN NOMBRE??
             
@@ -60,7 +60,7 @@ namespace personal_training_martial_arts.Posture
                 XmlAttribute _Des = xmlDoc.CreateAttribute("description");
                 _Des.Value = p.description;
                 XmlAttribute _Dif = xmlDoc.CreateAttribute("difficulty");
-                _Dif.Value = System.Convert.ToString(p.description);
+                _Dif.Value = System.Convert.ToString(p.difficulty);
 
                 rootNode.Attributes.Append(_Name);
                 rootNode.Attributes.Append(_Des);
