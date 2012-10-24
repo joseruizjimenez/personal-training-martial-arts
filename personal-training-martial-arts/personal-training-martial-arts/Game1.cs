@@ -214,6 +214,7 @@ namespace personal_training_martial_arts
             // se produce un nuevo evento en StatusChangedEventArgs
             KinectSensor.KinectSensors.StatusChanged += new EventHandler<StatusChangedEventArgs>(KinectSensors_StatusChanged);
             DiscoverKinectSensor();
+            IsMouseVisible = true;
 
             base.Initialize();
         }

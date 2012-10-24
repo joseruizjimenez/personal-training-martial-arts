@@ -17,6 +17,7 @@ namespace personal_training_martial_arts.Core
 {
     class GameCore
     {
+        // ESTADOS DEL JUEGO Y PANTALLAS
         private enum screenState
         {
             INIT,
@@ -39,12 +40,27 @@ namespace personal_training_martial_arts.Core
         private playState currentPlayState, nextPlayState;
         private GameScreen gameScreen;
 
+        // POSTURAS Y ESQUELTO
         private Skeleton playerSkeleton;
         private Posture.Posture[] gamePostures;
         private int gamePosturesIndex;
         private Dictionary<Posture.Posture, float> gameScores;
 
+        // BOTONES
+        private const int NUMBER_OF_BUTTONS = 5;
+        private enum gameButton
+        {
+            MENU,
+            PLAY,
+            CONTINUE,
+            REPLAY,
+            EXIT
+        }
+        private gameButton[] gameButtons;
+
+        // TEMPORIZADORES
         private DateTime drawPostureTimeOut;
+        private DateTime gameChoiceTimeOut;
 
         public GameCore(KinectSensor sensor, GraphicsDevice graphicsDevice)
         {
@@ -54,7 +70,9 @@ namespace personal_training_martial_arts.Core
             this.playerSkeleton = null;
             this.gamePostures = null;
             this.gameScores = new Dictionary<Posture.Posture, float>();
+            this.gameButtons = new gameButton[NUMBER_OF_BUTTONS];
             this.drawPostureTimeOut = new DateTime(0);
+            this.gameChoiceTimeOut = new DateTime(0);
         }
 
         /// <summary>
@@ -119,8 +137,10 @@ namespace personal_training_martial_arts.Core
                             break;
 
                         case playState.SCORE:
-                            // se comprueba si se ha pulsado SIGUIENTE (nextPlayState = INIT)
-                            // o menu (nextPlayState = END)
+                            // se comprueba si se ha pulsado REINICIAR (nextPlayState = INIT)
+                            // o SIGUIENTE POSTURE (será default tras timeout) (nextPlayState = SELECT_POSTURE)
+                            // o IR AL MENU (nextPlayState = END)
+                            if(
                             break;
 
                         default:
