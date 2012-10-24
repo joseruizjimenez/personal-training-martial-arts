@@ -15,15 +15,6 @@ namespace personal_training_martial_arts.Posture
 {
     static class PostureLibrary
     {
-        public static PostureInformation[] getPostureList()
-        {
-
-
-
-
-
-        }
-
         public static Boolean storePosture(PostureInformation p) {
 
             // PROBLEMA DEL NOMBRE DEL FICHERO. ME LO PASAN O DEBERIA LA CLASE TENER UN NOMBRE??
