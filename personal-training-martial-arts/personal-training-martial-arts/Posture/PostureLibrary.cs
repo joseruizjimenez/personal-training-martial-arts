@@ -39,51 +39,67 @@ namespace personal_training_martial_arts.Posture
         }
 
 
-        public Boolean storePosture(PostureInformation p) 
+        public static Boolean storePosture(PostureInformation p) 
         {
             // PROBLEMA DEL NOMBRE DEL FICHERO. ME LO PASAN O DEBERIA LA CLASE TENER UN NOMBRE??
             
             try
             {
-                XmlDocument originalXml = new XmlDocument();
-                originalXml.CreateXmlDeclaration("1.0", "utf-8", null);
-                originalXml.Load(p.name+".xml"); 
-                XmlNode Elem_joints = originalXml.SelectSingleNode("Posture");
-                // atributos de la postura
-                XmlAttribute _Name = originalXml.CreateAttribute("name");
-                _Name.Value =  p.name;
-                XmlAttribute _Des = originalXml.CreateAttribute("description");
-                _Des.Value = p.description;
-                XmlAttribute _Dif = originalXml.CreateAttribute("difficulty");
-                _Dif.Value = System.Convert.ToString(p.description);
+                //XmlDocument originalXml = new XmlDocument();
+                //originalXml.CreateXmlDeclaration("1.0", "utf-8", null);
 
-                Elem_joints.Attributes.Append(_Name);
-                Elem_joints.Attributes.Append(_Des);
-                Elem_joints.Attributes.Append(_Dif);
+                XmlDocument xmlDoc = new XmlDocument();
+                // Write down the XML declaration
+                XmlDeclaration xmlDeclaration = xmlDoc.CreateXmlDeclaration("1.0", "utf-8", null);
+
+
+                // Create the root element
+                XmlElement rootNode = xmlDoc.CreateElement("Posture");
+                XmlAttribute _Name = xmlDoc.CreateAttribute("name");
+                _Name.Value = p.name;
+                XmlAttribute _Des = xmlDoc.CreateAttribute("description");
+                _Des.Value = p.description;
+                XmlAttribute _Dif = xmlDoc.CreateAttribute("difficulty");
+                _Dif.Value = System.Convert.ToString(p.difficulty);
+
+                rootNode.Attributes.Append(_Name);
+                rootNode.Attributes.Append(_Des);
+                rootNode.Attributes.Append(_Dif);
+                xmlDoc.InsertBefore(xmlDeclaration, xmlDoc.DocumentElement);
+                xmlDoc.AppendChild(rootNode);
+
+
+                //originalXml.Load(p.name+".xml"); 
+                //XmlNode Elem_joints = originalXml.SelectSingleNode("Posture");
+                // atributos de la postura
+                
+
+                
 
                 int index = 0;
                 foreach (Vector3 v in p.joints)
                 {
-                  
-                    XmlNode newSub = originalXml.CreateNode(XmlNodeType.Element, "joint", null);
-                    XmlAttribute _X = originalXml.CreateAttribute("x");
+
+                    XmlNode newSub = xmlDoc.CreateNode(XmlNodeType.Element, "joint", null);
+                    XmlAttribute _X = xmlDoc.CreateAttribute("x");
                     _X.Value =  System.Convert.ToString(v.X);
-                    XmlAttribute _Y = originalXml.CreateAttribute("y");
+                    XmlAttribute _Y = xmlDoc.CreateAttribute("y");
                     _Y.Value = System.Convert.ToString(v.Y);
-                    XmlAttribute _Z = originalXml.CreateAttribute("z");
+                    XmlAttribute _Z = xmlDoc.CreateAttribute("z");
                     _Z.Value = System.Convert.ToString(v.Z);
 
                     //los agregamos 
                     newSub.Attributes.Append(_X);
                     newSub.Attributes.Append(_Y);
                     newSub.Attributes.Append(_Z);
-                    Elem_joints.AppendChild(newSub);
+                    rootNode.AppendChild(newSub);
                 
                     index++;
                 }
                 
                 //grabamos 
-                originalXml.Save(p.name+".xml");
+                xmlDoc.Save(p.name + ".xml");
+               
                 return true;       
             }
             catch(Exception e)
@@ -92,6 +108,8 @@ namespace personal_training_martial_arts.Posture
                 return false;
             } 
         }
+
+        
 
 
         public static PostureInformation loadPosture(String name) 
