@@ -12,7 +12,7 @@ using Microsoft.Kinect;
 
 namespace personal_training_martial_arts.Posture
 {
-    class PostureInformation : Posture
+    class PostureInformation : Posture, IEquatable<PostureInformation>
     {
         public string name { get; set; }
         public string description { get; set; }
@@ -27,6 +27,22 @@ namespace personal_training_martial_arts.Posture
             this.description = description;
             this.difficulty = difficulty;
             this.joints = joints;
+        }
+
+
+        public override String GetHashCode()
+        {
+            return name;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as PostureInformation);
+        }
+
+        public bool Equals(PostureInformation obj)
+        {
+            return obj != null && obj.name == this.name;
         }
     }
 }
