@@ -12,16 +12,14 @@ using Microsoft.Kinect;
 
 namespace personal_training_martial_arts.Posture
 {
-    class PostureInformation : Posture
+    class PostureInformation : Posture, IEquatable<PostureInformation>
     {
         public string name { get; set; }
         public string description { get; set; }
         public int difficulty { get; set; }
 
         public PostureInformation(string name, string description, int difficulty, Skeleton skeleton)
-            : this(name, description, difficulty, Posture.castSkeletonToJoints(skeleton))
-        {
-        }
+            : this(name, description, difficulty, Posture.castSkeletonToJoints(skeleton)){}
 
         public PostureInformation(string name, string description, int difficulty, Vector3[] joints)
         {
@@ -32,6 +30,19 @@ namespace personal_training_martial_arts.Posture
         }
 
 
+        public override String GetHashCode()
+        {
+            return name;
+        }
 
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as PostureInformation);
+        }
+
+        public bool Equals(PostureInformation obj)
+        {
+            return obj != null && obj.name == this.name;
+        }
     }
 }

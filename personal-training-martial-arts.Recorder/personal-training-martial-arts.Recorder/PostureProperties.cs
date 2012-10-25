@@ -13,41 +13,27 @@ namespace personal_training_martial_arts.Recorder
 {
     public partial class PostureProperties : Form
     {
-        public Boolean isReady { get; set; }
-        public string name { get; set; }
-        public string description { get; set; }
-        public string difficulty { get; set; }
-        public Skeleton skeletonToRecord;
+        private Skeleton sk_rec;
 
-        public PostureProperties(Skeleton skeleton)
+        public PostureProperties(Skeleton sk)
         {
-            this.isReady = false;
-            this.skeletonToRecord = skeleton;
+            this.sk_rec = sk;
             InitializeComponent();
-        }
-
-        private void PostureProperties_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.name = this.textName.Text;
-            this.description = this.textDescription.Text;
-            this.difficulty = this.textDifficulty.Text;
-            this.isReady = true;
-
-            PostureLibrary.storePosture(new PostureInformation(this.name, this.description, Int16.Parse(this.difficulty), skeletonToRecord));
+            PostureLibrary.storePosture(
+                                        new PostureInformation(this.name.Text,
+                                                               this.description.Text,
+                                                               Int16.Parse(this.difficulty.Text),
+                                                               this.sk_rec
+                                                               )
+                                       );
             this.Hide();
         }
 
-        private void domainUpDown1_SelectedItemChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void PostureProperties_Load(object sender, EventArgs e)
         {
 
         }
