@@ -60,6 +60,7 @@ namespace personal_training_martial_arts.Recorder
         KinectSensor kinectSensor;
 
         Boolean isPPshown = false;
+        VerticalControl vc;
         PostureProperties pp;
 
         string connectedStatus = "KINECT NOT DETECTED";
@@ -170,7 +171,9 @@ namespace personal_training_martial_arts.Recorder
             try
             {
                 kinectSensor.Start();
-                kinectSensor.ElevationAngle = -1;
+                kinectSensor.ElevationAngle = -3;
+                this.vc = new VerticalControl(this.setVerticalAlignment);
+                this.vc.Show();
             }
             catch
             {
@@ -178,6 +181,12 @@ namespace personal_training_martial_arts.Recorder
                 return false;
             }
             return true;
+        }
+
+        public int setVerticalAlignment(int x)
+        {
+            this.kinectSensor.ElevationAngle = x;
+            return x;
         }
 
         /// <summary>

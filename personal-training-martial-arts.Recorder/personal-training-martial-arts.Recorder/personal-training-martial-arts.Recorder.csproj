@@ -125,6 +125,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="VerticalControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VerticalControl.Designer.cs">
+      <DependentUpon>VerticalControl.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />
@@ -166,6 +172,9 @@
   <ItemGroup>
     <EmbeddedResource Include="PostureProperties.resx">
       <DependentUpon>PostureProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VerticalControl.resx">
+      <DependentUpon>VerticalControl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
