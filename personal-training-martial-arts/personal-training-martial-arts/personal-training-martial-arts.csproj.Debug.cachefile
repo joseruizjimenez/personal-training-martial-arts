@@ -1,3 +1,6 @@
-Content\hand.xnb
-Content\overlay.xnb
-Content\SpriteFont1.xnb
+Content\joint.texture.xnb
+Content\continue.texture.xnb
+Content\exit.texture.xnb
+Content\play.texture.xnb
+Content\SpriteFont1.font.xnb
+Content\pause.texture.xnb

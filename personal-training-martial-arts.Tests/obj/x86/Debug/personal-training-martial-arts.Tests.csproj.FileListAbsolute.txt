@@ -26,7 +26,10 @@ C:\Users\Pablo\Documents\GitHub\personal-training-martial-arts\personal-training
 C:\Users\Pablo\Documents\GitHub\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\hand.xnb
 C:\Users\Pablo\Documents\GitHub\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\overlay.xnb
 C:\Users\Pablo\Documents\GitHub\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\SpriteFont1.xnb
-C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\hand.xnb
-C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\overlay.xnb
-C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\SpriteFont1.xnb
 C:\personal-training-martial-arts\personal-training-martial-arts.Tests\obj\x86\Debug\personal-training-martial-arts.Tests.csprojResolveAssemblyReference.cache
+C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\joint.texture.xnb
+C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\SpriteFont1.font.xnb
+C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\continue.texture.xnb
+C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\exit.texture.xnb
+C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\play.texture.xnb
+C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\pause.texture.xnb

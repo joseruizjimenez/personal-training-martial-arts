@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Threading;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
@@ -42,7 +44,7 @@ namespace personal_training_martial_arts.Core
         private playState currentPlayState, nextPlayState;
         private const int WINDOW_WIDTH = 640;
         private const int WINDOW_HEIGHT = 480;
-        private GameScreen gameScreen;
+        public GameScreen gameScreen;
 
         // POSTURAS Y ESQUELTO
         private Skeleton playerSkeleton;
@@ -61,8 +63,10 @@ namespace personal_training_martial_arts.Core
         private Button[] pauseButtons;
 
         // TEMPORIZADORES
-        private DateTime drawPostureTimeOut;
-        private DateTime scoreTimeOut;
+        private Stopwatch drawPostureTimeOut;
+        private Stopwatch scoreTimeOut;
+
+        public ContentHandler ch { get; set; }
 
         public GameCore(KinectSensor sensor, GraphicsDevice graphicsDevice)
         {
@@ -76,8 +80,8 @@ namespace personal_training_martial_arts.Core
             this.scoreButtons = new Button[GameButtonList.getScoreNumber()];
             this.gameButtons = new Button[GameButtonList.getGameNumber()];
             this.pauseButtons = new Button[GameButtonList.getPauseNumber()];
-            this.drawPostureTimeOut = new DateTime(0);
-            this.scoreTimeOut = new DateTime(0);
+            this.drawPostureTimeOut = Stopwatch.StartNew();
+            this.scoreTimeOut = Stopwatch.StartNew();
 
             // Crea los botones del juego
             // por ahora les asignamos su posicion en pantalla con esos metodos...
@@ -141,7 +145,7 @@ namespace personal_training_martial_arts.Core
                             if (updateCurrentGamePosture())
                             {
                                 /// @FIX001:
-                                this.drawPostureTimeOut = DateTime.Now;
+                                this.drawPostureTimeOut = Stopwatch.StartNew();
                                 this.nextPlayState = playState.DRAW_POSTURE;
                             }
                             // si no quedan mas posturas va a la puntuacion final
@@ -157,8 +161,7 @@ namespace personal_training_martial_arts.Core
                             
                             /// @FIX001: Estaba a null el this.drawPostureTimeOut, asique le he puesto valor en SELECT_POSTURE (Margen de error: 1frame).
                             updateButtonsState(pauseButtons);
-                            if (pauseButtons[(int) GameButtonList.pauseButton.CONTINUE].justPushed() ||
-                                isTimedOut(this.drawPostureTimeOut, 10))
+                            if (pauseButtons[(int) GameButtonList.pauseButton.CONTINUE].justPushed() || isTimedOut(this.drawPostureTimeOut, 10))
                                 this.nextPlayState = playState.DETECT_POSTURE;
                             break;
 
@@ -172,7 +175,7 @@ namespace personal_training_martial_arts.Core
                                 if (score >= 5F)
                                 {
                                     gameScores.Add(gamePostures[gamePosturesIndex], score);
-                                    this.scoreTimeOut = DateTime.Now;
+                                    this.scoreTimeOut = Stopwatch.StartNew();
                                     this.nextPlayState = playState.SCORE;
                                 }
                             }
@@ -226,9 +229,55 @@ namespace personal_training_martial_arts.Core
         /// <summary>
         /// Pinta el resultado de la lógica por pantalla.
         /// </summary>
-        public void draw()
+        public void draw(Texture2D kinectRGBVideo)
         {
-            // movida           
+            this.gameScreen.clearAll();
+            // movida
+            if (this.currentScreenState == screenState.MENU)
+            {
+                if (playerSkeleton != null)
+                {
+                    //this.gameScreen.layerAdd(kinectRGBVideo, new Rectangle(0, 0, 640, 480), Color.White);
+                    //this.gameScreen.skeletonAdd(playerSkeleton, (Texture2D)this.ch.get("joint"));
+                }
+                foreach (Button b in menuButtons)
+                {
+                    this.gameScreen.layerAdd((Texture2D) this.ch.get(b.name), b.rectangle, Color.White);
+                }
+            }
+            else if (this.currentScreenState == screenState.PLAY)
+            {
+                if (this.currentPlayState == playState.DRAW_POSTURE)
+                {
+                    this.gameScreen.postureAdd(this.gamePostures[this.gamePosturesIndex], (Texture2D) this.ch.get("joint"));
+                    Button b = pauseButtons[(int) GameButtonList.pauseButton.CONTINUE];
+                    this.gameScreen.layerAdd((Texture2D)this.ch.get(b.name), b.rectangle, Color.White);
+                }
+                else if (this.currentPlayState == playState.DETECT_POSTURE)
+                {
+                    this.gameScreen.layerAdd(kinectRGBVideo, new Rectangle(0, 0, 640, 480), Color.White);
+                    this.gameScreen.skeletonAdd(playerSkeleton, (Texture2D)this.ch.get("joint"));
+                    foreach (Button b in gameButtons)
+                    {
+                        this.gameScreen.layerAdd((Texture2D)this.ch.get(b.name), b.rectangle, Color.White);
+                    }
+                }
+                else if (this.currentPlayState == playState.PAUSE)
+                {
+                }
+                else if (this.currentPlayState == playState.SCORE)
+                {
+                }
+                else if (this.currentPlayState == playState.FINAL_SCORE)
+                {
+                }
+                else
+                {
+                    // Loading...
+                } // End if playState
+            } // End if screenState
+
+            this.gameScreen.drawAll();
         }
         
         /// <summary>
@@ -283,15 +332,22 @@ namespace personal_training_martial_arts.Core
         /// <param name="startTime">DateTime de inicio</param>
         /// <param name="secondsToTimeOut">Segundos para timeout</param>
         /// <returns>Si los segundos se han pasado o no</returns>
-        private Boolean isTimedOut(DateTime startTime, int secondsToTimeOut)
+        private Boolean isTimedOut(Stopwatch sw, int secondsToTimeOut)
         {
-            DateTime endTime = startTime.AddSeconds((double) secondsToTimeOut);
+            /*DateTime endTime = startTime.AddSeconds((double) secondsToTimeOut);
             DateTime now = DateTime.Now;
 
             if (DateTime.Compare(endTime, now) >= 0)
                 return true;
 
-            return false;
+            return false;*/
+            TimeSpan maxDuration = TimeSpan.FromSeconds(secondsToTimeOut);
+
+            if (sw.Elapsed < maxDuration)
+            {
+                return false;
+            }
+            return true;
         }
 
         // Los pinta centrados en vertical
@@ -338,7 +394,7 @@ namespace personal_training_martial_arts.Core
         {
             int x = WINDOW_WIDTH / 2 - GameButtonList.getPauseNumber() / 2 * GameButtonList.BUTTON_WIDTH -
                 (GameButtonList.getPauseNumber() % 2) * GameButtonList.BUTTON_WIDTH / 2;
-            int y = WINDOW_HEIGHT / 2 - GameButtonList.BUTTON_HEIGHT / 2;
+            int y = WINDOW_HEIGHT - GameButtonList.BUTTON_HEIGHT - 20;
             foreach (GameButtonList.pauseButton b in Enum.GetValues(typeof(GameButtonList.pauseButton)))
             {
                 buttons[(int)b] = new Button(b.ToString(), x, y, GameButtonList.BUTTON_WIDTH, GameButtonList.BUTTON_HEIGHT);
@@ -356,10 +412,17 @@ namespace personal_training_martial_arts.Core
         // estas se devuelven para registrarlas en el dicionario con las puntuaciones de cada ejercicio
         private float ratePosture(Posture.Posture player, Posture.Posture goal)
         {
+            return 0F;
             if (player.compareTo(goal, averageTolerance, puntualTolerance))
                 return 10F;
             else
                 return 0F;
+        }
+
+        public void loadContentHandler(ContentHandler ch)
+        {
+            this.ch = ch;
+            gameScreen.ch = ch;
         }
 
     }

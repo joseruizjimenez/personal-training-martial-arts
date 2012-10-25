@@ -134,8 +134,8 @@ namespace personal_training_martial_arts.Posture
                 XmlAttribute b = nodo.GetAttributeNode("y");
                 XmlAttribute c = nodo.GetAttributeNode("z");
 
-                joints[index] = new Vector3(System.Convert.ToInt64(a.Value), System.Convert.ToInt64(b.Value),
-                System.Convert.ToInt64(c.Value)); index++;
+                joints[index] = new Vector3(float.Parse(a.Value), float.Parse(b.Value), float.Parse(c.Value)); 
+                index++;
             }
 
             PostureInformation postureI = new PostureInformation(nam.Value, des.Value, System.Convert.ToInt16(dif.Value), joints);

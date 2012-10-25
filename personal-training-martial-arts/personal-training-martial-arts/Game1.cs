@@ -20,10 +20,12 @@ namespace personal_training_martial_arts
     /// </summary>
     public class Game1 : Microsoft.Xna.Framework.Game
     {
+        ContentHandler ch;
         GraphicsDeviceManager graphics;
         KinectSensor kinectSensor;
         GameCore gameCore;
         Texture2D kinectRGBVideo;
+        
         string connectedStatus = "KINECT NOT DETECTED";
 
         public Game1()
@@ -215,7 +217,7 @@ namespace personal_training_martial_arts
             KinectSensor.KinectSensors.StatusChanged += new EventHandler<StatusChangedEventArgs>(KinectSensors_StatusChanged);
             DiscoverKinectSensor();
             IsMouseVisible = true;
-
+           
             base.Initialize();
         }
 
@@ -226,6 +228,21 @@ namespace personal_training_martial_arts
         protected override void LoadContent()
         {
             kinectRGBVideo = new Texture2D(GraphicsDevice, 1337, 1337);
+            this.ch = new ContentHandler(Content);
+
+            this.ch.add("joint", "joint");
+            this.ch.add("defaultFont", "SpriteFont1");
+
+            // Botones de Jose
+            this.ch.add("PLAY", "play");
+            this.ch.add("CONTINUE", "continue");
+            this.ch.add("EXIT", "exit");
+            this.ch.add("PAUSE", "pause");
+
+            // Este load al final
+            this.ch.load();
+            this.gameCore.loadContentHandler(ch);
+            this.gameCore.gameScreen.spriteBatch = new SpriteBatch(GraphicsDevice);
         }
 
         /// <summary>
@@ -248,9 +265,9 @@ namespace personal_training_martial_arts
         {
             // Allows the game to exit
             //if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-            if (this.gameCore.update())
+            if (!this.gameCore.update())
                 this.Exit();
-
+            
             base.Update(gameTime);
         }
 
@@ -260,8 +277,8 @@ namespace personal_training_martial_arts
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-            gameCore.draw();
+            GraphicsDevice.Clear(Color.BlueViolet);
+            gameCore.draw(this.kinectRGBVideo);
 
             base.Draw(gameTime);
         }

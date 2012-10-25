@@ -44,14 +44,14 @@ namespace personal_training_martial_arts.Core
         {
             foreach (KeyValuePair<string, string> resource in this.invokes)
             {
-                if (this.checkIfResourceExistsAs(resource.Value, "png"))
-                    this.resources.Add(resource.Key, this.contentManager.Load<Texture2D>(resource.Value));
-                else if (this.checkIfResourceExistsAs(resource.Value, "spritefont"))
-                    this.resources.Add(resource.Key, this.contentManager.Load<SpriteFont>(resource.Value));
-                else if (this.checkIfResourceExistsAs(resource.Value, "wav"))
-                    this.resources.Add(resource.Key, this.contentManager.Load<SoundEffect>(resource.Value));
-                else if (this.checkIfResourceExistsAs(resource.Value, "mp3"))
-                    this.resources.Add(resource.Key, this.contentManager.Load<Song>(resource.Value));
+                if (this.checkIfResourceExistsAs(resource.Value, "texture"))
+                    this.resources.Add(resource.Key, this.contentManager.Load<Texture2D>(resource.Value + ".texture"));
+                else if (this.checkIfResourceExistsAs(resource.Value, "font"))
+                    this.resources.Add(resource.Key, this.contentManager.Load<SpriteFont>(resource.Value + ".font"));
+                else if (this.checkIfResourceExistsAs(resource.Value, "effect"))
+                    this.resources.Add(resource.Key, this.contentManager.Load<SoundEffect>(resource.Value + ".effect"));
+                else if (this.checkIfResourceExistsAs(resource.Value, "sound"))
+                    this.resources.Add(resource.Key, this.contentManager.Load<Song>(resource.Value + ".sound"));
                 else
                     throw new Exception("No se ha encontrado el recurso especificado como '" + resource.Value + "'.");
             }
@@ -59,10 +59,10 @@ namespace personal_training_martial_arts.Core
 
         private Boolean checkIfResourceExistsAs(string name, string extension)
         {
-            string[] filePaths = Directory.GetFiles(".", "*." + extension);
+            string[] filePaths = Directory.GetFiles(@".\Content\", "*." + extension + ".xnb");
             foreach (string path in filePaths)
             {
-                if (String.Compare(path, @".\" + name + "." + extension, true) == 0)
+                if (String.Compare(path, @".\Content\" + name + "." + extension + ".xnb", true) == 0)
                     return true;
             }
 

@@ -10,6 +10,9 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Kinect;
 
+using personal_training_martial_arts.Posture;
+using personal_training_martial_arts.Core;
+
 namespace personal_training_martial_arts.Graphics
 {
     class GameScreen
@@ -23,7 +26,7 @@ namespace personal_training_martial_arts.Graphics
         /// <summary>
         /// La clase que guarda todos los sprites para ser pintados.
         /// </summary>
-        private SpriteBatch spriteBatch;
+        public SpriteBatch spriteBatch;
 
         /// <summary>
         /// El device de graficos.
@@ -42,8 +45,9 @@ namespace personal_training_martial_arts.Graphics
         private List<Tuple<Texture2D, Rectangle, Color>> layerComponents = new List<Tuple<Texture2D, Rectangle, Color>>();
         private List<Tuple<SpriteFont, string, Vector2, Color>> textComponents = new List<Tuple<SpriteFont, string, Vector2, Color>>();
         private List<Tuple<Skeleton, Texture2D>> skComponents = new List<Tuple<Skeleton, Texture2D>>();
+        private List<Tuple<PostureInformation, Texture2D>> postureComponents = new List<Tuple<PostureInformation, Texture2D>>();
 
-
+        public ContentHandler ch;
 
         //******************************************************************************************
         //PROPOSITO GENERAL_________________________________________________________________________
@@ -71,10 +75,6 @@ namespace personal_training_martial_arts.Graphics
             {
                 this.mapper = new CoordinateMapper(sensor);
             }
-            if (graphicsDevice != null)
-            {
-                this.spriteBatch = new SpriteBatch(graphicsDevice);
-            }
         }
 
         /// <summary>
@@ -83,11 +83,16 @@ namespace personal_training_martial_arts.Graphics
         public void drawAll()
         {
             // Clear the screen. ADVERTENCIA: No se si debería legarse a CORE
-            graphicsDevice.Clear(Color.White);
+            
             //***************************************************************
             spriteBatch.Begin();
             //Pintamos esqueleto/s.
             foreach (Tuple<Skeleton, Texture2D> skeletonToRecord in this.skComponents)
+            {
+                drawPosture2D(skeletonToRecord.Item1, skeletonToRecord.Item2);
+            }
+            //Pintamos postura/s.
+            foreach (Tuple<PostureInformation, Texture2D> skeletonToRecord in this.postureComponents)
             {
                 drawPosture2D(skeletonToRecord.Item1, skeletonToRecord.Item2);
             }
@@ -110,9 +115,10 @@ namespace personal_training_martial_arts.Graphics
         //Borra todo el escenario completamente.
         public void clearAll()
         {
-            this.skeletonComponentsClear();
-            this.layerComponentsClear();
-            this.textComponentsClear();
+            this.skComponents.Clear();
+            this.layerComponents.Clear();
+            this.textComponents.Clear();
+            this.postureComponents.Clear();
         }
 
 
@@ -183,7 +189,8 @@ namespace personal_training_martial_arts.Graphics
         }
 
         /// <summary>
-        /// Actualizar un componente de texto en posición (index)
+        /// Actualizar un componente de texto
+        /// en posición (index)
         /// </summary>
         /// <param name="index">Posición en comonentes</param>
         /// <param name="text">Texto nuevo.</param>
@@ -225,6 +232,14 @@ namespace personal_training_martial_arts.Graphics
             return this.skComponents.LastIndexOf(data);
         }
 
+        public int postureAdd(PostureInformation skeletonToRecord, Texture2D spriteGraphic)
+        {
+            Tuple<PostureInformation, Texture2D> data = new Tuple<PostureInformation, Texture2D>(skeletonToRecord, spriteGraphic);
+            this.postureComponents.Add(data);
+            this.textAdd((SpriteFont) this.ch.get("defaultFont"), skeletonToRecord.name, new Vector2(150, 80), Color.SandyBrown);
+            return this.postureComponents.LastIndexOf(data);
+        }
+
         /// <summary>
         /// Modifica el esqueleto numero (index).
         /// </summary>
@@ -250,6 +265,29 @@ namespace personal_training_martial_arts.Graphics
         public void skeletonComponentsClear()
         {
             skComponents.Clear();
+        }
+
+        private void drawPosture2D(PostureInformation p, Texture2D spriteGraphic)
+        {
+            Vector2 jointOrigin = new Vector2(spriteGraphic.Width / 2, spriteGraphic.Height / 2);
+
+            foreach (Vector3 joint in p.joints)
+            {
+                Color jointColor = Color.White;
+                
+                //Es posible que se pueda usar otro override con menos parámetros.
+                //Pero mola mas asi :P xD
+                this.spriteBatch.Draw(
+                    spriteGraphic,
+                    new Vector2((((0.5f * joint.X) + 0.5f) * (640)), (((-0.5f * joint.Y) + 0.5f) * (480))),
+                    null,
+                    jointColor,
+                    0.0f,
+                    jointOrigin,
+                    1.0f,
+                    SpriteEffects.None,
+                    0.0f);
+            }
         }
 
         private void drawPosture2D (Skeleton skeletonToRecord, Texture2D spriteGraphic)
