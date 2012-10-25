@@ -7,28 +7,28 @@ namespace personal_training_martial_arts.Core
 {
     static class GameButtonList
     {
-        public static const int BUTTON_HEIGHT = 40;
-        public static const int BUTTON_WIDTH = 88;
+        public const int BUTTON_HEIGHT = 40;
+        public const int BUTTON_WIDTH = 88;
 
-        public static enum menuButton
+        public enum menuButton
         {
             PLAY,
             EXIT
         }
 
-        public static enum scoreButton
+        public enum scoreButton
         {
             MENU,
             REPLAY,
             NEXT
         }
 
-        public static enum gameButton
+        public enum gameButton
         {
             PAUSE
         }
 
-        public static enum pauseButton
+        public enum pauseButton
         {
             CONTINUE,
             REPLAY,

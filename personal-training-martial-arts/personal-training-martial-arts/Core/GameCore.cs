@@ -171,7 +171,7 @@ namespace personal_training_martial_arts.Core
                                 float score = ratePosture(new Posture.Posture(playerSkeleton), gamePostures[gamePosturesIndex]);
                                 if (score >= 5F)
                                 {
-                                    gameScores.add(gamePostures[gamePosturesIndex], score);
+                                    gameScores.Add(gamePostures[gamePosturesIndex], score);
                                     this.scoreTimeOut = DateTime.Now;
                                     this.nextPlayState = playState.SCORE;
                                 }
