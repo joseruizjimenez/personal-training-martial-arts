@@ -9,3 +9,5 @@ C:\personal-training-martial-arts\personal-training-martial-arts.Recorder\person
 C:\personal-training-martial-arts\personal-training-martial-arts.Recorder\personal-training-martial-arts.Recorder\bin\x86\Debug\Content\rec.xnb
 C:\personal-training-martial-arts\personal-training-martial-arts.Recorder\personal-training-martial-arts.Recorder\obj\x86\Debug\personal-training-martial-arts.Recorder.csprojResolveAssemblyReference.cache
 C:\personal-training-martial-arts\personal-training-martial-arts.Recorder\personal-training-martial-arts.Recorder\bin\x86\Debug\Content\KinectColorVisualizer.xnb
+C:\personal-training-martial-arts\personal-training-martial-arts.Recorder\personal-training-martial-arts.Recorder\obj\x86\Debug\personal_training_martial_arts.Recorder.PostureProperties.resources
+C:\personal-training-martial-arts\personal-training-martial-arts.Recorder\personal-training-martial-arts.Recorder\obj\x86\Debug\personal-training-martial-arts.Recorder.csproj.GenerateResource.Cache

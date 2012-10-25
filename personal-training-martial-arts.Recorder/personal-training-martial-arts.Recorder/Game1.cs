@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Kinect;
 using personal_training_martial_arts.Posture;
 
-namespace personal_training_martial_arts
+namespace personal_training_martial_arts.Recorder
 {
     /// <summary>
     /// This is the main type for your game
@@ -55,7 +55,11 @@ namespace personal_training_martial_arts
         Vector2[] jointPositions = new Vector2[20];
         Skeleton skeletonToRecord;
 
+
         KinectSensor kinectSensor;
+
+        Boolean isPPshown = false;
+        PostureProperties pp;
 
         string connectedStatus = "KINECT NOT DETECTED";
         string recordStatus = "PUSH TO RECORD";
@@ -502,9 +506,12 @@ namespace personal_training_martial_arts
             {
                 case REC_BUTTON_INDEX:
                     if (recordStatus == "RECORDED")
+                    {
+                        this.isPPshown = false;
                         recordStatus = "PUSH TO RECORD";
+                    } 
                     else
-                        if (recordFrameForPosture("test.dat"))
+                        if (recordFrameForPosture())
                             recordStatus = "RECORDED";
                     break;
                 default:
@@ -512,7 +519,7 @@ namespace personal_training_martial_arts
             }
         }
 
-        Boolean recordFrameForPosture(string filename)
+        Boolean recordFrameForPosture()
         {
             if (skeletonToRecord == null)
             {
@@ -520,21 +527,15 @@ namespace personal_training_martial_arts
                 return false;
             }
 
-            /**
-             * Insertamos el nombre y demás por consola.
-             */
-            Console.WriteLine("=====================================");
-            Console.WriteLine("==        POSTURE RECORDER         ==");
-            Console.WriteLine("=====================================");
-            Console.Write("Nombre: ");
-            string posture_name = Console.ReadLine();
-            Console.Write("Descripcion: ");
-            string posture_desc = Console.ReadLine();
-            Console.Write("Dificultad: ");
-            string posture_diff = Console.ReadLine();
-            int diff = Int16.Parse(posture_diff);
+            if (!this.isPPshown)
+            {
+                this.pp = new PostureProperties(skeletonToRecord);
+                this.pp.Show();
+                this.isPPshown = true;
+            }
+                
 
-            PostureLibrary.storePosture(new PostureInformation(posture_name, posture_desc, diff, skeletonToRecord));
+
 
             return true;
         }

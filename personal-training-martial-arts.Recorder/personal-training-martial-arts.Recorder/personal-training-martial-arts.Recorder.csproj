@@ -96,6 +96,9 @@
     <Reference Include="System">
       <Private>False</Private>
     </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml">
       <Private>False</Private>
     </Reference>
@@ -110,6 +113,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PostureProperties.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PostureProperties.Designer.cs">
+      <DependentUpon>PostureProperties.cs</DependentUpon>
+    </Compile>
     <Compile Include="Posture\Posture.cs" />
     <Compile Include="Posture\PostureInformation.cs" />
     <Compile Include="Posture\PostureLibrary.cs" />
@@ -153,6 +162,11 @@
       <ProductName>Microsoft XNA Framework Redistributable 4.0</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="PostureProperties.resx">
+      <DependentUpon>PostureProperties.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
