@@ -170,7 +170,7 @@ namespace personal_training_martial_arts.Recorder
             try
             {
                 kinectSensor.Start();
-                kinectSensor.ElevationAngle = -5;
+                kinectSensor.ElevationAngle = -1;
             }
             catch
             {

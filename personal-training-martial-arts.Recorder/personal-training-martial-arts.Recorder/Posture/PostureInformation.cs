@@ -30,9 +30,17 @@ namespace personal_training_martial_arts.Posture
         }
 
 
-        public override String GetHashCode()
+        public override int GetHashCode()
         {
-            return name;
+            int hash = 0;
+            int iteration = 1;
+            foreach (char c in name)
+            {
+                hash += (int) Char.GetNumericValue(c) * iteration;
+                iteration++;
+            }
+
+            return hash;
         }
 
         public override bool Equals(object obj)
