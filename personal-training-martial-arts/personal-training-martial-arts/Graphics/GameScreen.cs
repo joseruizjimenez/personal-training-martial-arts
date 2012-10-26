@@ -47,7 +47,7 @@ namespace personal_training_martial_arts.Graphics
         private List<Tuple<Texture2D, Rectangle, Color>> backgroundComponents = new List<Tuple<Texture2D, Rectangle, Color>>();
         private List<Tuple<Texture2D, Rectangle, Color>> layerComponents = new List<Tuple<Texture2D, Rectangle, Color>>();
         private List<Tuple<SpriteFont, string, Vector2, Color>> textComponents = new List<Tuple<SpriteFont, string, Vector2, Color>>();
-        private List<Tuple<Skeleton, Texture2D>> skComponents = new List<Tuple<Skeleton, Texture2D>>();
+        private List<Tuple<Skeleton, Texture2D,double[]>> skComponents = new List<Tuple<Skeleton, Texture2D,double[]>>();
         private List<Tuple<PostureInformation, Texture2D>> postureComponents = new List<Tuple<PostureInformation, Texture2D>>();
 
         private ContentHandler ch;
@@ -101,9 +101,9 @@ namespace personal_training_martial_arts.Graphics
                 spriteBatch.Draw(backgroundTuple.Item1, backgroundTuple.Item2, backgroundTuple.Item3);
             }
             //Pintamos esqueleto/s.
-            foreach (Tuple<Skeleton, Texture2D> skeletonToRecord in this.skComponents)
+            foreach (Tuple<Skeleton, Texture2D,double[]> skeletonToRecord in this.skComponents)
             {
-                drawPosture2D(skeletonToRecord.Item1, skeletonToRecord.Item2);
+                drawPosture2D(skeletonToRecord.Item1, skeletonToRecord.Item2,skeletonToRecord.Item3);
             }
             //Pintamos capas/s
             foreach (Tuple<Texture2D, Rectangle, Color> layerTuple in this.layerComponents)
@@ -286,9 +286,9 @@ namespace personal_training_martial_arts.Graphics
         /// <param name="skeletonToRecord">Esqueleto a pintar</param>
         /// <param name="spriteGraphic">El tipo de puntos que pinta</param>
         /// <returns>Indice en components</returns>
-        public int skeletonAdd(Skeleton skeletonToRecord, Texture2D spriteGraphic)
+        public int skeletonAdd(Skeleton skeletonToRecord, Texture2D spriteGraphic,double[] pointData)
         {
-            Tuple<Skeleton,Texture2D> data = new Tuple<Skeleton,Texture2D>(skeletonToRecord, spriteGraphic);
+            Tuple<Skeleton,Texture2D,double[]> data = new Tuple<Skeleton,Texture2D,double[]>(skeletonToRecord, spriteGraphic, pointData);
             this.skComponents.Add(data); 
             return this.skComponents.LastIndexOf(data);
         }
@@ -307,13 +307,13 @@ namespace personal_training_martial_arts.Graphics
         /// <param name="index">Numero de esqueleto</param>
         /// <param name="skeletonToRecord">Esqueleto</param>
         /// <returns>True si pudo realizarse correctamente, false si no.</returns>
-        public bool updateSkeletonIndex(int index, Skeleton skeletonToRecord)
+        public bool updateSkeletonIndex(int index, Skeleton skeletonToRecord,double[] pointData)
         {
-            Tuple<Skeleton,Texture2D> data;
+            Tuple<Skeleton,Texture2D,double[]> data;
             try{
                 //Todavía no se si modifica en memoria o replica.
                 data = this.skComponents.ElementAt(index);
-                this.skComponents.Insert(index,new Tuple<Skeleton,Texture2D>(skeletonToRecord,data.Item2));
+                this.skComponents.Insert(index,new Tuple<Skeleton,Texture2D,double[]>(skeletonToRecord,data.Item2,pointData));
 
                 return true;
             }catch(Exception e){
@@ -376,7 +376,7 @@ namespace personal_training_martial_arts.Graphics
             }
         }
 
-        private void drawPosture2D(Skeleton skeletonToRecord, Texture2D spriteGraphic)
+        private void drawPosture2D(Skeleton skeletonToRecord, Texture2D spriteGraphic, double[] pointData)
         {
             // PINTA HUESOS
             this.DrawBone(skeletonToRecord.Joints, JointType.Head, JointType.ShoulderCenter);
@@ -405,15 +405,18 @@ namespace personal_training_martial_arts.Graphics
 
             // PINTA ARTICULACIONES
             Vector2 jointOrigin = new Vector2(spriteGraphic.Width / 2, spriteGraphic.Height / 2);
-
+            int i = 0;
             foreach (Joint joint in skeletonToRecord.Joints)
             {
-                Color jointColor = Color.White;
+                float colorValue = float.Parse(""+pointData[i]);
+                Color jointColor = new Color(new Vector3(colorValue,(1-colorValue),0.0F));
+                i++;
+                /*Color jointColor = Color.White;
                 if (joint.TrackingState != JointTrackingState.Tracked)
                 {
                     jointColor = Color.Red;
-                }
-                new SkeletonPoint();
+                }*/ //Tracked state, no los keremos
+                
                 //Es posible que se pueda usar otro override con menos parámetros.
                 //Pero mola mas asi :P xD
                 this.spriteBatch.Draw(

@@ -134,7 +134,7 @@ namespace personal_training_martial_arts
             try
             {
                 kinectSensor.Start();
-                kinectSensor.ElevationAngle = -5;
+                kinectSensor.ElevationAngle = 0;
             }
             catch
             {

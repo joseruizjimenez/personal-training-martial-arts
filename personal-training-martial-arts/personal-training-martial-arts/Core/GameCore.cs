@@ -52,16 +52,9 @@ namespace personal_training_martial_arts.Core
         private int gamePosturesIndex;
         private Dictionary<PostureInformation, double> gameScores;
 
-        // TOLERANCIAS Y NIVEL
-        // NIVEL FACIL
-        private const float averageTolerance = 0.05F;
-        private const float puntualTolerance = 0.08F;
-        // NIVEL NORMAL
-        private const float averageTolerance = 0.05F;
-        private const float puntualTolerance = 0.06F;
-        // NIVEL DIFICIL
-        private const float averageTolerance = 0.05F;
-        private const float puntualTolerance = 0.05F;
+        // NIVEL NORMAL para modificar usar metodo chDificultyLevel(int);
+        private float averageTolerance = 0.05F;
+        private float puntualTolerance = 0.06F;
 
         private double[] jointScore = new double[20];
         private double score;
@@ -108,6 +101,41 @@ namespace personal_training_martial_arts.Core
         public void updatePlayerSkeleton(Skeleton playerSkeleton)
         {
             this.playerSkeleton = playerSkeleton;
+        }
+
+        private void chDificultyLevel(int level)
+        {
+            switch (level){
+                case 0:         
+                    // NIVEL MUY FACIL.
+                    this.averageTolerance = 0.1F;
+                    this.puntualTolerance = 0.1F;
+                    break;
+                case 1:
+                    // NIVEL FACIL.
+                    this.averageTolerance = 0.05F;
+                    this.puntualTolerance = 0.08F;
+                    break;
+                case 2:
+                    // NIVEL MEDIO
+                    this.averageTolerance = 0.05F;
+                    this.puntualTolerance = 0.06F;
+                    break;
+                case 3:
+                    // NIVEL DIFICIL
+                    this.averageTolerance = 0.05F;
+                    this.puntualTolerance = 0.05F;
+                    break;
+                case 4:
+                    // NIVEL KATANA (Like a boss)
+                    this.averageTolerance = 0.04F;
+                    this.puntualTolerance = 0.05F;
+                    break;
+                default:
+                    this.averageTolerance = 0.05F;
+                    this.puntualTolerance = 0.06F;
+                    break;
+            }
         }
 
         /// <summary>
@@ -266,8 +294,13 @@ namespace personal_training_martial_arts.Core
                 {
                     //**Update**
                     this.gameScreen.backgroundAdd(kinectRGBVideo, new Rectangle(0, 0, 640, 480), Color.White);
-                    if(playerSkeleton != null)
-                        this.gameScreen.skeletonAdd(playerSkeleton, (Texture2D)this.ch.get("joint"));
+
+                    if (playerSkeleton != null)
+                    {
+                        Posture.Posture p = new Posture.Posture(playerSkeleton);
+                        score = p.compareTo(gamePostures[gamePosturesIndex], ref jointScore, averageTolerance, puntualTolerance);
+                        this.gameScreen.skeletonAdd(playerSkeleton, (Texture2D)this.ch.get("joint"), jointScore);
+                    }
 
                     foreach (Button b in gameButtons)
                     {

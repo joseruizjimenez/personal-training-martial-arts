@@ -51,8 +51,9 @@ namespace personal_training_martial_arts.Posture
             Vector3[] e1 = pos1.joints;
             Vector3[] e2 = this.joints;
             double media = 0;
-            double difPuntual;
+            double difPuntual = 0;
             double mediaDif = 0;
+            result = new double[20];
 
 
             for (int j1 = 0; j1 < 20; j1++)
@@ -73,6 +74,7 @@ namespace personal_training_martial_arts.Posture
                     if (difPuntual > errorPuntual)
                     {
                         result[j1] += 0.05;
+                        result[j2] += 0.05;
                     }
                 }
             }
