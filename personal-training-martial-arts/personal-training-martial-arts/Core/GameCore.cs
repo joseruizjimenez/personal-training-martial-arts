@@ -53,7 +53,7 @@ namespace personal_training_martial_arts.Core
         private Dictionary<PostureInformation, double> gameScores;
 
         // NIVEL NORMAL para modificar usar metodo chDificultyLevel(int);
-        private float averageTolerance = 0.05F;
+        private float averageTolerance = 0.056F;
         private float puntualTolerance = 0.06F;
 
         private double[] jointScore = new double[20];
@@ -294,7 +294,7 @@ namespace personal_training_martial_arts.Core
                 {
                     //**Update**
                     this.gameScreen.backgroundAdd(kinectRGBVideo, new Rectangle(0, 0, 640, 480), Color.White);
-
+                    this.gameScreen.postureAdd(this.gamePostures[this.gamePosturesIndex], (Texture2D)this.ch.get("joint"));
                     if (playerSkeleton != null)
                     {
                         Posture.Posture p = new Posture.Posture(playerSkeleton);
