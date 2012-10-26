@@ -171,7 +171,10 @@ namespace personal_training_martial_arts.Core
                                 this.nextPlayState = playState.PAUSE;
                             else
                             {
-                                float score = ratePosture(new Posture.Posture(playerSkeleton), gamePostures[gamePosturesIndex]);
+                                float score = 0F;
+                                if (playerSkeleton != null)
+                                    score = ratePosture(new Posture.Posture(playerSkeleton), gamePostures[gamePosturesIndex]);
+
                                 if (score >= 5F)
                                 {
                                     gameScores.Add(gamePostures[gamePosturesIndex], score);
@@ -235,13 +238,6 @@ namespace personal_training_martial_arts.Core
             // movida
             if (this.currentScreenState == screenState.MENU)
             {
-                if (playerSkeleton != null)
-                {
-                    this.gameScreen.layerAdd(kinectRGBVideo, new Rectangle(0, 0, 640, 480), Color.White);
-                    //this.gameScreen.skeletonAdd(playerSkeleton, (Texture2D) this.ch.get("joint"));
-                    this.gameScreen.postureAdd(new PostureInformation("", "", 0, playerSkeleton), (Texture2D) this.ch.get("joint"));
-                    
-                }
                 foreach (Button b in menuButtons)
                 {
                     this.gameScreen.layerAdd((Texture2D) this.ch.get(b.name), b.rectangle, Color.White);
@@ -251,7 +247,6 @@ namespace personal_training_martial_arts.Core
             {
                 if (this.currentPlayState == playState.DRAW_POSTURE)
                 {
-                    this.gameScreen.postureAdd(new PostureInformation("", "", 0, playerSkeleton), (Texture2D)this.ch.get("joint"));
                     this.gameScreen.postureAdd(this.gamePostures[this.gamePosturesIndex], (Texture2D) this.ch.get("joint"));
                     Button b = pauseButtons[(int) GameButtonList.pauseButton.CONTINUE];
                     this.gameScreen.layerAdd((Texture2D)this.ch.get(b.name), b.rectangle, Color.White);
@@ -259,8 +254,9 @@ namespace personal_training_martial_arts.Core
                 else if (this.currentPlayState == playState.DETECT_POSTURE)
                 {
                     this.gameScreen.layerAdd(kinectRGBVideo, new Rectangle(0, 0, 640, 480), Color.White);
-                    //this.gameScreen.skeletonAdd(playerSkeleton, (Texture2D)this.ch.get("joint"));
-                    this.gameScreen.postureAdd(new PostureInformation("", "", 0, playerSkeleton), (Texture2D)this.ch.get("joint"));
+                    if(playerSkeleton != null)
+                        this.gameScreen.skeletonAdd(playerSkeleton, (Texture2D)this.ch.get("joint"));
+
                     foreach (Button b in gameButtons)
                     {
                         this.gameScreen.layerAdd((Texture2D)this.ch.get(b.name), b.rectangle, Color.White);
@@ -383,7 +379,7 @@ namespace personal_training_martial_arts.Core
         // Los pinta abajo a la derecha en vertical
         private static void initializeGameButtons(Button[] buttons)
         {
-            int x = WINDOW_WIDTH - GameButtonList.BUTTON_WIDTH / 2 - 20;
+            int x = WINDOW_WIDTH - GameButtonList.BUTTON_WIDTH - 20;
             int y = WINDOW_HEIGHT - GameButtonList.getGameNumber() / 2 * GameButtonList.BUTTON_HEIGHT -
                 (GameButtonList.getGameNumber() % 2) * GameButtonList.BUTTON_HEIGHT / 2 - 20;
             foreach (GameButtonList.gameButton b in Enum.GetValues(typeof(GameButtonList.gameButton)))
