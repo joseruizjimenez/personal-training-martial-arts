@@ -8,7 +8,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\bin\x86\Debug\Content\joint.texture.xnb</Output>
-      <Time>2012-10-25T10:05:46.0196768+02:00</Time>
+      <Time>2012-10-26T12:05:22.216422+02:00</Time>
     </Item>
     <Item>
       <Source>continue.texture.png</Source>
@@ -38,15 +38,6 @@
       <Time>2012-10-25T20:51:40.3513026+02:00</Time>
     </Item>
     <Item>
-      <Source>SpriteFont1.font.spritefont</Source>
-      <Name>SpriteFont1.font</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\bin\x86\Debug\Content\SpriteFont1.font.xnb</Output>
-      <Time>2012-10-25T08:58:45.2245857+02:00</Time>
-    </Item>
-    <Item>
       <Source>pause.texture.png</Source>
       <Name>pause.texture</Name>
       <Importer>TextureImporter</Importer>
@@ -54,6 +45,24 @@
       <Options>None</Options>
       <Output>C:\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\bin\x86\Debug\Content\pause.texture.xnb</Output>
       <Time>2012-10-25T20:52:17.5077271+02:00</Time>
+    </Item>
+    <Item>
+      <Source>bone.texture.png</Source>
+      <Name>bone.texture</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\bin\x86\Debug\Content\bone.texture.xnb</Output>
+      <Time>2012-07-29T18:23:28+02:00</Time>
+    </Item>
+    <Item>
+      <Source>SpriteFont1.font.spritefont</Source>
+      <Name>SpriteFont1.font</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\bin\x86\Debug\Content\SpriteFont1.font.xnb</Output>
+      <Time>2012-10-25T08:58:45.2245857+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

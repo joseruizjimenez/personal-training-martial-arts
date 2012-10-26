@@ -33,3 +33,4 @@ C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug
 C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\exit.texture.xnb
 C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\play.texture.xnb
 C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\pause.texture.xnb
+C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\bone.texture.xnb

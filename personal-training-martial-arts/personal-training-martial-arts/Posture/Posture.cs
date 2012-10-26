@@ -46,65 +46,47 @@ namespace personal_training_martial_arts.Posture
             return joints;
         }
 
-        private disVectors[] measurePosture(Vector3[] mv)
+        public float compareTo(Posture pos1, ref double[] result, double errorPuntual, double errorGeneral)
         {
-            disVectors[] dvs = null;
-            disVectors dv = new disVectors();
-            int ii = 0, j=0;
+            Vector3[] e1 = pos1.joints;
+            Vector3[] e2 = this.joints;
+            double media = 0;
+            double difPuntual;
+            double mediaDif = 0;
 
-            foreach (Vector3 v in mv)
+
+            for (int j1 = 0; j1 < 20; j1++)
             {
-                dv.index=ii;
-
-                foreach (Vector3 vv in mv)
+                for (int j2 = (j1 + 1); j2 < 20; j2++)
                 {
-                    if (j == ii) dv.Distance[j] = 0; 
-                    else dv.Distance[j] = Math.Abs((Math.Abs(v.X - vv.X)) + (Math.Abs(v.Y - vv.Y)) + (Math.Abs(v.Z - vv.Z)));         
+                    media += distancia(e1[j1], e1[j2]) / distancia(e2[j1], e2[j2]);
                 }
-                dvs[ii] = dv;
-                j = 0; ii++;
+            }
+            media = media / 190;
+
+            for (int j1 = 0; j1 < 20; j1++)
+            {
+                for (int j2 = (j1 + 1); j2 < 20; j2++)
+                {
+                    difPuntual = Math.Abs((distancia(e1[j1], e1[j2]) / distancia(e2[j1], e2[j2])) - media);
+                    mediaDif += difPuntual;
+                    if (difPuntual > errorPuntual)
+                    {
+                        result[j1] += 0.05;
+                    }
+                }
             }
 
-            return dvs;
+            Console.Write(" " + ((mediaDif / 190) / errorPuntual) + " \n");
+            return float.Parse("" + ((mediaDif / 190) / errorGeneral));
         }
 
-        private float[] proportion(float[] norma, float[] dd)
+        private double distancia(Vector3 punto1, Vector3 punto2)
         {
-            //Aqui habria que normalizar y blablabla
 
-            return dd;
+            return Math.Sqrt(Math.Pow(punto1.X - punto2.X, 2) + Math.Pow(punto1.Y - punto2.Y, 2) + Math.Pow(punto1.Z - punto2.Z, 2));
+
         }
-
-        public Boolean compareTo(Posture pos, float averageTolerance, float puntualTolerance)
-        {
-            float[] distance = null, distanceN =null;
-            float average=0;
-            int ii = 0;
-
-            disVectors[] dvSaved = measurePosture(this.joints); // Postura Almacenada XML
-            disVectors[] dvPos = measurePosture(pos.joints); // Postura Realizada
-
-            foreach (disVectors dd in dvSaved) 
-            {
-                distance = dd.Distance;
-                distanceN = dvPos[ii].Distance;
-
-                distanceN = proportion(distance, distanceN); //¿PROPORCION?
-
-                for (int k = 0; k < 20; k++)
-                {
-                    if ((Math.Abs(distance[k] - distanceN[k])) > puntualTolerance) return false; //Puntual
-                    else average += Math.Abs(distance[k] - distanceN[k]);
-                }
-
-                if (average > averageTolerance) return false; //Media
-                average = 0; ii++;
-            }
-            
-            return true; //Postura correcta
-        }
-
-
 
     } //END CLASS
 }

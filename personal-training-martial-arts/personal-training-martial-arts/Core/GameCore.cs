@@ -50,11 +50,21 @@ namespace personal_training_martial_arts.Core
         private Skeleton playerSkeleton;
         private PostureInformation[] gamePostures;
         private int gamePosturesIndex;
-        private Dictionary<PostureInformation, float> gameScores;
+        private Dictionary<PostureInformation, double> gameScores;
 
         // TOLERANCIAS Y NIVEL
-        private const float averageTolerance = 0.5F;
-        private const float puntualTolerance = 0.5F;
+        // NIVEL FACIL
+        private const float averageTolerance = 0.05F;
+        private const float puntualTolerance = 0.08F;
+        // NIVEL NORMAL
+        private const float averageTolerance = 0.05F;
+        private const float puntualTolerance = 0.06F;
+        // NIVEL DIFICIL
+        private const float averageTolerance = 0.05F;
+        private const float puntualTolerance = 0.05F;
+
+        private double[] jointScore = new double[20];
+        private double score;
 
         // BOTONES
         private Button[] menuButtons;
@@ -75,7 +85,7 @@ namespace personal_training_martial_arts.Core
             this.nextPlayState = playState.INIT;
             this.playerSkeleton = null;
             this.gamePostures = null;
-            this.gameScores = new Dictionary<PostureInformation, float>();
+            this.gameScores = new Dictionary<PostureInformation, double>();
             this.menuButtons = new Button[GameButtonList.getMenuNumber()];
             this.scoreButtons = new Button[GameButtonList.getScoreNumber()];
             this.gameButtons = new Button[GameButtonList.getGameNumber()];
@@ -171,15 +181,16 @@ namespace personal_training_martial_arts.Core
                                 this.nextPlayState = playState.PAUSE;
                             else
                             {
-                                float score = 0F;
                                 if (playerSkeleton != null)
-                                    score = ratePosture(new Posture.Posture(playerSkeleton), gamePostures[gamePosturesIndex]);
-
-                                if (score >= 5F)
                                 {
-                                    gameScores.Add(gamePostures[gamePosturesIndex], score);
-                                    this.scoreTimeOut = Stopwatch.StartNew();
-                                    this.nextPlayState = playState.SCORE;
+                                    Posture.Posture p = new Posture.Posture(playerSkeleton);
+                                    score = p.compareTo(gamePostures[gamePosturesIndex], ref jointScore, averageTolerance, puntualTolerance);
+                                    if (score < 1.0)
+                                    {
+                                        gameScores.Add(gamePostures[gamePosturesIndex], score);
+                                        this.scoreTimeOut = Stopwatch.StartNew();
+                                        this.nextPlayState = playState.SCORE;
+                                    }
                                 }
                             }
                             break;
@@ -253,7 +264,8 @@ namespace personal_training_martial_arts.Core
                 }
                 else if (this.currentPlayState == playState.DETECT_POSTURE)
                 {
-                    this.gameScreen.layerAdd(kinectRGBVideo, new Rectangle(0, 0, 640, 480), Color.White);
+                    //**Update**
+                    this.gameScreen.backgroundAdd(kinectRGBVideo, new Rectangle(0, 0, 640, 480), Color.White);
                     if(playerSkeleton != null)
                         this.gameScreen.skeletonAdd(playerSkeleton, (Texture2D)this.ch.get("joint"));
 
@@ -408,21 +420,10 @@ namespace personal_training_martial_arts.Core
                 button.updateState();
         }
 
-        // el compare to devolvera un float con una especie de puntuacion (de 0 a 10) en el futuro
-        // estas se devuelven para registrarlas en el dicionario con las puntuaciones de cada ejercicio
-        private float ratePosture(Posture.Posture player, Posture.Posture goal)
-        {
-            return 0F;
-            if (player.compareTo(goal, averageTolerance, puntualTolerance))
-                return 10F;
-            else
-                return 0F;
-        }
-
         public void loadContentHandler(ContentHandler ch)
         {
             this.ch = ch;
-            gameScreen.ch = ch;
+            gameScreen.updateContentHandler(ch);
         }
 
         public void loadKinectSensor(KinectSensor sensor)

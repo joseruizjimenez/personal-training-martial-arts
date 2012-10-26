@@ -231,6 +231,7 @@ namespace personal_training_martial_arts
             this.ch = new ContentHandler(Content);
 
             this.ch.add("joint", "joint");
+            this.ch.add("bone", "bone");
             this.ch.add("defaultFont", "SpriteFont1");
 
             // Botones de Jose

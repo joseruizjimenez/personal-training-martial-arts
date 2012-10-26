@@ -38,16 +38,19 @@ namespace personal_training_martial_arts.Graphics
         /// </summary>
         private CoordinateMapper mapper;
 
-        /// <summary>
-        /// Esqueletos a pintar
-        /// </summary>
+        // Textura del hueso
+        private Texture2D boneTexture;
 
+        /// <summary>
+        /// Escenario a pintar
+        /// </summary>
+        private List<Tuple<Texture2D, Rectangle, Color>> backgroundComponents = new List<Tuple<Texture2D, Rectangle, Color>>();
         private List<Tuple<Texture2D, Rectangle, Color>> layerComponents = new List<Tuple<Texture2D, Rectangle, Color>>();
         private List<Tuple<SpriteFont, string, Vector2, Color>> textComponents = new List<Tuple<SpriteFont, string, Vector2, Color>>();
         private List<Tuple<Skeleton, Texture2D>> skComponents = new List<Tuple<Skeleton, Texture2D>>();
         private List<Tuple<PostureInformation, Texture2D>> postureComponents = new List<Tuple<PostureInformation, Texture2D>>();
 
-        public ContentHandler ch;
+        private ContentHandler ch;
 
         //******************************************************************************************
         //PROPOSITO GENERAL_________________________________________________________________________
@@ -70,7 +73,16 @@ namespace personal_training_martial_arts.Graphics
         public GameScreen(GraphicsDevice graphicsDevice)
         {
             this.graphicsDevice = graphicsDevice;
+        }
 
+
+        public void updateKinectSensor(KinectSensor sensor)
+        {
+            this.sensor = sensor;
+            if (sensor != null)
+            {
+                this.mapper = new CoordinateMapper(sensor);
+            }
         }
 
         /// <summary>
@@ -82,20 +94,26 @@ namespace personal_training_martial_arts.Graphics
             
             //***************************************************************
             spriteBatch.Begin();
-            //Pintamos capas/s
-            foreach (Tuple<Texture2D, Rectangle, Color> layerTuple in this.layerComponents)
+
+            //Pintamos backgrounds/s
+            foreach (Tuple<Texture2D, Rectangle, Color> backgroundTuple in this.backgroundComponents)
             {
-                spriteBatch.Draw(layerTuple.Item1, layerTuple.Item2, layerTuple.Item3);
+                spriteBatch.Draw(backgroundTuple.Item1, backgroundTuple.Item2, backgroundTuple.Item3);
             }
             //Pintamos esqueleto/s.
             foreach (Tuple<Skeleton, Texture2D> skeletonToRecord in this.skComponents)
             {
                 drawPosture2D(skeletonToRecord.Item1, skeletonToRecord.Item2);
             }
-            //Pintamos postura/s.
-            foreach (Tuple<PostureInformation, Texture2D> skeletonToRecord in this.postureComponents)
+            //Pintamos capas/s
+            foreach (Tuple<Texture2D, Rectangle, Color> layerTuple in this.layerComponents)
             {
-                drawPosture2D(skeletonToRecord.Item1, skeletonToRecord.Item2);
+                spriteBatch.Draw(layerTuple.Item1, layerTuple.Item2, layerTuple.Item3);
+            }
+            //Pintamos postura/s.
+            foreach (Tuple<PostureInformation, Texture2D> posture in this.postureComponents)
+            {
+                drawPosture2D(posture.Item1, posture.Item2);
             }
             //Pintamos texto/s
             foreach (Tuple<SpriteFont, string, Vector2, Color> textTuple in this.textComponents)
@@ -115,9 +133,56 @@ namespace personal_training_martial_arts.Graphics
             this.layerComponents.Clear();
             this.textComponents.Clear();
             this.postureComponents.Clear();
+            this.backgroundComponents.Clear();
         }
 
 
+
+        //********************************************************************************************
+        //BACKGROUND__________________________________________________________________________________
+
+
+        /// <summary>
+        /// Añadir una capa, ya sea para hacer un boton o un interfaz bonico.
+        /// </summary>
+        /// <param name="texture">Textura a mostrar</param>
+        /// <param name="rectangle">Espacio que ocupa</param>
+        /// <param name="color">Color de fondo?</param>
+        /// <returns>Posición que ocupa en componentes para su edición</returns>
+        public int backgroundAdd(Texture2D texture, Rectangle rectangle, Color color)
+        {
+            Tuple<Texture2D, Rectangle, Color> data = new Tuple<Texture2D, Rectangle, Color>(texture, rectangle, color);
+            this.backgroundComponents.Add(data);
+            return this.backgroundComponents.LastIndexOf(data);
+        }
+
+        /// <summary>
+        /// Modificar una capa numero (index)
+        /// </summary>
+        /// <param name="index">La posición en componentes</param>
+        /// <param name="texture">Nueva textura a aplicar</param>
+        /// <returns>True si pudo realizarse correctamente, false si no.</returns>
+        public bool updateBackgroundIndex(int index, Texture2D texture)
+        {
+            Tuple<Texture2D, Rectangle, Color> data;
+            try
+            {
+                data = this.backgroundComponents.ElementAt(index);
+                this.backgroundComponents.Insert(index, new Tuple<Texture2D, Rectangle, Color>(texture, data.Item2, data.Item3));
+                return true;
+            }
+            catch (Exception e)
+            {
+                System.Console.WriteLine(e);
+                return false;
+            }
+        }
+
+        //Borrar los componentes para rehacer todo el escenario
+        public void backgroundComponentsClear()
+        {
+            backgroundComponents.Clear();
+        }
 
         //********************************************************************************************
         //LAYERS______________________________________________________________________________________
@@ -162,7 +227,7 @@ namespace personal_training_martial_arts.Graphics
         //Borrar los componentes para rehacer todo el escenario
         public void layerComponentsClear()
         {
-            textComponents.Clear();
+            layerComponents.Clear();
         }
 
         //********************************************************************************************
@@ -263,19 +328,44 @@ namespace personal_training_martial_arts.Graphics
             skComponents.Clear();
         }
 
-        private void drawPosture2D(PostureInformation p, Texture2D spriteGraphic)
+        private void drawPosture2D (Posture.Posture posture, Texture2D spriteGraphic)
         {
+            // PINTA HUESOS
+            this.DrawBone(posture.joints, JointType.Head, JointType.ShoulderCenter);
+            this.DrawBone(posture.joints, JointType.ShoulderCenter, JointType.ShoulderLeft);
+            this.DrawBone(posture.joints, JointType.ShoulderCenter, JointType.ShoulderRight);
+            this.DrawBone(posture.joints, JointType.ShoulderCenter, JointType.Spine);
+            this.DrawBone(posture.joints, JointType.Spine, JointType.HipCenter);
+            this.DrawBone(posture.joints, JointType.HipCenter, JointType.HipLeft);
+            this.DrawBone(posture.joints, JointType.HipCenter, JointType.HipRight);
+
+            this.DrawBone(posture.joints, JointType.ShoulderLeft, JointType.ElbowLeft);
+            this.DrawBone(posture.joints, JointType.ElbowLeft, JointType.WristLeft);
+            this.DrawBone(posture.joints, JointType.WristLeft, JointType.HandLeft);
+
+            this.DrawBone(posture.joints, JointType.ShoulderRight, JointType.ElbowRight);
+            this.DrawBone(posture.joints, JointType.ElbowRight, JointType.WristRight);
+            this.DrawBone(posture.joints, JointType.WristRight, JointType.HandRight);
+
+            this.DrawBone(posture.joints, JointType.HipLeft, JointType.KneeLeft);
+            this.DrawBone(posture.joints, JointType.KneeLeft, JointType.AnkleLeft);
+            this.DrawBone(posture.joints, JointType.AnkleLeft, JointType.FootLeft);
+
+            this.DrawBone(posture.joints, JointType.HipRight, JointType.KneeRight);
+            this.DrawBone(posture.joints, JointType.KneeRight, JointType.AnkleRight);
+            this.DrawBone(posture.joints, JointType.AnkleRight, JointType.FootRight);
+
+            // PINTA ARTICULACIONES
             Vector2 jointOrigin = new Vector2(spriteGraphic.Width / 2, spriteGraphic.Height / 2);
 
-            foreach (Vector3 joint in p.joints)
+            foreach (Vector3 joint in posture.joints)
             {
                 Color jointColor = Color.White;
-                
                 //Es posible que se pueda usar otro override con menos parámetros.
                 //Pero mola mas asi :P xD
                 this.spriteBatch.Draw(
                     spriteGraphic,
-                    new Vector2((((0.5f * joint.X) + 0.5f) * (640)), (((-0.5f * joint.Y) + 0.5f) * (480))),
+                    this.SkeletonToColorMap(joint),
                     null,
                     jointColor,
                     0.0f,
@@ -286,8 +376,34 @@ namespace personal_training_martial_arts.Graphics
             }
         }
 
-        private void drawPosture2D (Skeleton skeletonToRecord, Texture2D spriteGraphic)
+        private void drawPosture2D(Skeleton skeletonToRecord, Texture2D spriteGraphic)
         {
+            // PINTA HUESOS
+            this.DrawBone(skeletonToRecord.Joints, JointType.Head, JointType.ShoulderCenter);
+            this.DrawBone(skeletonToRecord.Joints, JointType.ShoulderCenter, JointType.ShoulderLeft);
+            this.DrawBone(skeletonToRecord.Joints, JointType.ShoulderCenter, JointType.ShoulderRight);
+            this.DrawBone(skeletonToRecord.Joints, JointType.ShoulderCenter, JointType.Spine);
+            this.DrawBone(skeletonToRecord.Joints, JointType.Spine, JointType.HipCenter);
+            this.DrawBone(skeletonToRecord.Joints, JointType.HipCenter, JointType.HipLeft);
+            this.DrawBone(skeletonToRecord.Joints, JointType.HipCenter, JointType.HipRight);
+
+            this.DrawBone(skeletonToRecord.Joints, JointType.ShoulderLeft, JointType.ElbowLeft);
+            this.DrawBone(skeletonToRecord.Joints, JointType.ElbowLeft, JointType.WristLeft);
+            this.DrawBone(skeletonToRecord.Joints, JointType.WristLeft, JointType.HandLeft);
+
+            this.DrawBone(skeletonToRecord.Joints, JointType.ShoulderRight, JointType.ElbowRight);
+            this.DrawBone(skeletonToRecord.Joints, JointType.ElbowRight, JointType.WristRight);
+            this.DrawBone(skeletonToRecord.Joints, JointType.WristRight, JointType.HandRight);
+
+            this.DrawBone(skeletonToRecord.Joints, JointType.HipLeft, JointType.KneeLeft);
+            this.DrawBone(skeletonToRecord.Joints, JointType.KneeLeft, JointType.AnkleLeft);
+            this.DrawBone(skeletonToRecord.Joints, JointType.AnkleLeft, JointType.FootLeft);
+
+            this.DrawBone(skeletonToRecord.Joints, JointType.HipRight, JointType.KneeRight);
+            this.DrawBone(skeletonToRecord.Joints, JointType.KneeRight, JointType.AnkleRight);
+            this.DrawBone(skeletonToRecord.Joints, JointType.AnkleRight, JointType.FootRight);
+
+            // PINTA ARTICULACIONES
             Vector2 jointOrigin = new Vector2(spriteGraphic.Width / 2, spriteGraphic.Height / 2);
 
             foreach (Joint joint in skeletonToRecord.Joints)
@@ -297,6 +413,7 @@ namespace personal_training_martial_arts.Graphics
                 {
                     jointColor = Color.Red;
                 }
+                new SkeletonPoint();
                 //Es posible que se pueda usar otro override con menos parámetros.
                 //Pero mola mas asi :P xD
                 this.spriteBatch.Draw(
@@ -324,13 +441,71 @@ namespace personal_training_martial_arts.Graphics
             return Vector2.Zero;
         }
 
-        public void updateKinectSensor(KinectSensor sensor)
+        private Vector2 SkeletonToColorMap(Vector3 joint)
         {
-            this.sensor = sensor;
-            if (sensor != null)
+            SkeletonPoint point = new SkeletonPoint();
+            point.X = joint.X;
+            point.Y = joint.Y;
+            point.Z = joint.Z;
+            if ((null != sensor) && (null != sensor.ColorStream))
             {
-                this.mapper = new CoordinateMapper(sensor);
+                // This is used to map a skeleton point to the color image location
+                ColorImagePoint colorPt = mapper.MapSkeletonPointToColorPoint(point, sensor.ColorStream.Format);
+                return new Vector2(colorPt.X, colorPt.Y);
             }
+
+            return Vector2.Zero;
         }
+
+        /// <summary>
+        /// This method draws a bone.
+        /// </summary>
+        /// <param name="joints">The joint data.</param>
+        /// <param name="startJoint">The starting joint.</param>
+        /// <param name="endJoint">The ending joint.</param>
+        private void DrawBone(Vector3[] joints, JointType startJoint, JointType endJoint)
+        {
+            Vector2 start = this.SkeletonToColorMap(joints[(int) startJoint]);
+            Vector2 end = this.SkeletonToColorMap(joints[(int) endJoint]);
+            Vector2 diff = end - start;
+            Vector2 scale = new Vector2(1.0f, diff.Length() / this.boneTexture.Height);
+
+            float angle = (float)Math.Atan2(diff.Y, diff.X) - MathHelper.PiOver2;
+            Color color = Color.LightGreen;
+
+            this.spriteBatch.Draw(this.boneTexture, start, null, color, angle, new Vector2(0.5f, 0.0f), scale, SpriteEffects.None, 1.0f);
+        }
+
+        /// <summary>
+        /// This method draws a bone.
+        /// </summary>
+        /// <param name="joints">The joint data.</param>
+        /// <param name="startJoint">The starting joint.</param>
+        /// <param name="endJoint">The ending joint.</param>
+        private void DrawBone(JointCollection joints, JointType startJoint, JointType endJoint)
+        {
+            Vector2 start = this.SkeletonToColorMap(joints[startJoint].Position);
+            Vector2 end = this.SkeletonToColorMap(joints[endJoint].Position);
+            Vector2 diff = end - start;
+            Vector2 scale = new Vector2(1.0f, diff.Length() / this.boneTexture.Height);
+
+            float angle = (float)Math.Atan2(diff.Y, diff.X) - MathHelper.PiOver2;
+
+            Color color = Color.LightGreen;
+            if (joints[startJoint].TrackingState != JointTrackingState.Tracked ||
+                joints[endJoint].TrackingState != JointTrackingState.Tracked)
+            {
+                color = Color.Gray;
+            }
+
+            this.spriteBatch.Draw(this.boneTexture, start, null, color, angle, new Vector2(0.5f, 0.0f), scale, SpriteEffects.None, 1.0f);
+        }
+
+        public void updateContentHandler(ContentHandler ch)
+        {
+            this.ch = ch;
+            boneTexture = (Texture2D)this.ch.get("bone");
+        }
+
     }
 }
