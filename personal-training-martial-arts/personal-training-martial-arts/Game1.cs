@@ -37,7 +37,7 @@ namespace personal_training_martial_arts
             graphics.PreferredBackBufferWidth = 640;
             graphics.PreferredBackBufferHeight = 480;
 
-            gameCore = new GameCore(this.kinectSensor, graphics.GraphicsDevice);
+            gameCore = new GameCore(graphics.GraphicsDevice);
         }
 
         /// <summary>
@@ -243,6 +243,8 @@ namespace personal_training_martial_arts
             this.ch.load();
             this.gameCore.loadContentHandler(ch);
             this.gameCore.gameScreen.spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            this.gameCore.loadKinectSensor(kinectSensor);
         }
 
         /// <summary>

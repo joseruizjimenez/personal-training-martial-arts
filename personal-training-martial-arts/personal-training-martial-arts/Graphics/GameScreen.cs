@@ -67,14 +67,10 @@ namespace personal_training_martial_arts.Graphics
         /// </summary>
         /// <param name="sensor">Sensor de kinect</param>
         /// <param name="graphicsDevice">Graficos XNA</param>
-        public GameScreen(KinectSensor sensor,GraphicsDevice graphicsDevice)
+        public GameScreen(GraphicsDevice graphicsDevice)
         {
-            this.sensor = sensor;
             this.graphicsDevice = graphicsDevice;
-            if (sensor != null)
-            {
-                this.mapper = new CoordinateMapper(sensor);
-            }
+
         }
 
         /// <summary>
@@ -326,6 +322,15 @@ namespace personal_training_martial_arts.Graphics
             }
 
             return Vector2.Zero;
+        }
+
+        public void updateKinectSensor(KinectSensor sensor)
+        {
+            this.sensor = sensor;
+            if (sensor != null)
+            {
+                this.mapper = new CoordinateMapper(sensor);
+            }
         }
     }
 }

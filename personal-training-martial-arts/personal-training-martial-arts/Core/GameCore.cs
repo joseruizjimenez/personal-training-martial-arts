@@ -68,9 +68,9 @@ namespace personal_training_martial_arts.Core
 
         public ContentHandler ch { get; set; }
 
-        public GameCore(KinectSensor sensor, GraphicsDevice graphicsDevice)
+        public GameCore(GraphicsDevice graphicsDevice)
         {
-            this.gameScreen = new GameScreen(sensor, graphicsDevice);
+            this.gameScreen = new GameScreen(graphicsDevice);
             this.nextScreenState = screenState.INIT;
             this.nextPlayState = playState.INIT;
             this.playerSkeleton = null;
@@ -423,6 +423,11 @@ namespace personal_training_martial_arts.Core
         {
             this.ch = ch;
             gameScreen.ch = ch;
+        }
+
+        public void loadKinectSensor(KinectSensor sensor)
+        {
+            this.gameScreen.updateKinectSensor(sensor);
         }
 
     }
