@@ -86,6 +86,11 @@ namespace personal_training_martial_arts.Graphics
             
             //***************************************************************
             spriteBatch.Begin();
+            //Pintamos capas/s
+            foreach (Tuple<Texture2D, Rectangle, Color> layerTuple in this.layerComponents)
+            {
+                spriteBatch.Draw(layerTuple.Item1, layerTuple.Item2, layerTuple.Item3);
+            }
             //Pintamos esqueleto/s.
             foreach (Tuple<Skeleton, Texture2D> skeletonToRecord in this.skComponents)
             {
@@ -95,11 +100,6 @@ namespace personal_training_martial_arts.Graphics
             foreach (Tuple<PostureInformation, Texture2D> skeletonToRecord in this.postureComponents)
             {
                 drawPosture2D(skeletonToRecord.Item1, skeletonToRecord.Item2);
-            }
-            //Pintamos capas/s
-            foreach (Tuple<Texture2D, Rectangle, Color> layerTuple in this.layerComponents)
-            {
-                spriteBatch.Draw(layerTuple.Item1, layerTuple.Item2, layerTuple.Item3);
             }
             //Pintamos texto/s
             foreach (Tuple<SpriteFont, string, Vector2, Color> textTuple in this.textComponents)

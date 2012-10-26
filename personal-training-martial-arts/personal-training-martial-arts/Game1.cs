@@ -277,7 +277,7 @@ namespace personal_training_martial_arts
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.BlueViolet);
+            GraphicsDevice.Clear(Color.Black);//.BlueViolet);
             gameCore.draw(this.kinectRGBVideo);
 
             base.Draw(gameTime);
