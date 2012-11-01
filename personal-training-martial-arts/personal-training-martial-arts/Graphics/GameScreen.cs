@@ -293,11 +293,11 @@ namespace personal_training_martial_arts.Graphics
             return this.skComponents.LastIndexOf(data);
         }
 
+        // Ya no pinta el titulo de la postura de forma automatica, solo su esqueleto :)
         public int postureAdd(PostureInformation skeletonToRecord, Texture2D spriteGraphic)
         {
             Tuple<PostureInformation, Texture2D> data = new Tuple<PostureInformation, Texture2D>(skeletonToRecord, spriteGraphic);
             this.postureComponents.Add(data);
-            this.textAdd((SpriteFont) this.ch.get("defaultFont"), skeletonToRecord.name, new Vector2(150, 80), Color.SandyBrown);
             return this.postureComponents.LastIndexOf(data);
         }
 
@@ -408,14 +408,15 @@ namespace personal_training_martial_arts.Graphics
             int i = 0;
             foreach (Joint joint in skeletonToRecord.Joints)
             {
-                float colorValue = float.Parse(""+pointData[i]);
-                Color jointColor = new Color(new Vector3(colorValue,(1-colorValue),0.0F));
+                // *BETA* - LO COMENTO PARA SACAR LA BETA
+                //float colorValue = float.Parse(""+pointData[i]);
+                //Color jointColor = new Color(new Vector3(colorValue,(1-colorValue),0.0F));
                 i++;
-                /*Color jointColor = Color.White;
+                Color jointColor = Color.SlateBlue;
                 if (joint.TrackingState != JointTrackingState.Tracked)
                 {
                     jointColor = Color.Red;
-                }*/ //Tracked state, no los keremos
+                } //Tracked state, no los keremos
                 
                 //Es posible que se pueda usar otro override con menos parámetros.
                 //Pero mola mas asi :P xD

@@ -34,6 +34,7 @@ namespace personal_training_martial_arts.Core
             SELECT_POSTURE,
             DRAW_POSTURE,
             DETECT_POSTURE,
+            HOLD_POSTURE,
             PAUSE,
             SCORE,
             FINAL_SCORE,
@@ -67,6 +68,8 @@ namespace personal_training_martial_arts.Core
 
         // TEMPORIZADORES
         private Stopwatch drawPostureTimeOut;
+        private Stopwatch holdPostureTimeOut;
+        private Stopwatch detectPostureTimeOut;
         private Stopwatch scoreTimeOut;
 
         public ContentHandler ch { get; set; }
@@ -199,8 +202,11 @@ namespace personal_training_martial_arts.Core
                             
                             /// @FIX001: Estaba a null el this.drawPostureTimeOut, asique le he puesto valor en SELECT_POSTURE (Margen de error: 1frame).
                             updateButtonsState(pauseButtons);
-                            if (pauseButtons[(int) GameButtonList.pauseButton.CONTINUE].justPushed() || isTimedOut(this.drawPostureTimeOut, 10))
+                            if (pauseButtons[(int)GameButtonList.pauseButton.CONTINUE].justPushed() || isTimedOut(this.drawPostureTimeOut, 10))
+                            {
+                                this.drawPostureTimeOut.Reset();
                                 this.nextPlayState = playState.DETECT_POSTURE;
+                            }
                             break;
 
                         case playState.DETECT_POSTURE:
@@ -215,9 +221,38 @@ namespace personal_training_martial_arts.Core
                                     score = p.compareTo(gamePostures[gamePosturesIndex], ref jointScore, averageTolerance, puntualTolerance);
                                     if (score < 1.0)
                                     {
-                                        gameScores.Add(gamePostures[gamePosturesIndex], score);
-                                        this.scoreTimeOut = Stopwatch.StartNew();
-                                        this.nextPlayState = playState.SCORE;
+                                        this.holdPostureTimeOut = Stopwatch.StartNew();
+                                        this.nextPlayState = playState.HOLD_POSTURE;
+                                    }
+                                }
+                            }
+                            break;
+
+                        case playState.HOLD_POSTURE:
+                            updateButtonsState(gameButtons);
+                            if (gameButtons[(int)GameButtonList.gameButton.PAUSE].justPushed())
+                                this.nextPlayState = playState.PAUSE;
+                            else
+                            {
+                                if (playerSkeleton != null)
+                                {
+                                    Posture.Posture p = new Posture.Posture(playerSkeleton);
+                                    score = p.compareTo(gamePostures[gamePosturesIndex], ref jointScore, averageTolerance, puntualTolerance);                                   
+                                    if (score < 1.0)
+                                    {
+                                        // La postura hay que mantenerla 2 segundos
+                                        if (isTimedOut(this.holdPostureTimeOut, 2))
+                                        {
+                                            gameScores.Add(gamePostures[gamePosturesIndex], score);
+                                            this.holdPostureTimeOut.Reset();
+                                            this.scoreTimeOut = Stopwatch.StartNew();
+                                            this.nextPlayState = playState.SCORE;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        this.holdPostureTimeOut.Reset();
+                                        this.nextPlayState = playState.DETECT_POSTURE;
                                     }
                                 }
                             }
@@ -238,11 +273,20 @@ namespace personal_training_martial_arts.Core
                             // TIMEOUT de 10 segundos a la siguiente postura o se pulsa alguna opcion
                             if (scoreButtons[(int)GameButtonList.scoreButton.NEXT].justPushed() ||
                                 isTimedOut(this.scoreTimeOut, 10))
+                            {
+                                this.scoreTimeOut.Reset();
                                 this.nextPlayState = playState.DETECT_POSTURE;
+                            }
                             else if (scoreButtons[(int)GameButtonList.scoreButton.MENU].justPushed())
+                            {
+                                this.scoreTimeOut.Reset();
                                 this.nextPlayState = playState.END;
+                            }
                             else if (scoreButtons[(int)GameButtonList.scoreButton.REPLAY].justPushed())
+                            {
+                                this.scoreTimeOut.Reset();
                                 this.nextPlayState = playState.INIT;
+                            }
                             break;
 
                         case playState.FINAL_SCORE:
@@ -274,7 +318,6 @@ namespace personal_training_martial_arts.Core
         public void draw(Texture2D kinectRGBVideo)
         {
             this.gameScreen.clearAll();
-            // movida
             if (this.currentScreenState == screenState.MENU)
             {
                 foreach (Button b in menuButtons)
@@ -286,6 +329,8 @@ namespace personal_training_martial_arts.Core
             {
                 if (this.currentPlayState == playState.DRAW_POSTURE)
                 {
+                    this.gameScreen.textAdd((SpriteFont) this.ch.get("defaultFont"), this.gamePostures[this.gamePosturesIndex].name,
+                        new Vector2(150, 80), Color.SandyBrown);
                     this.gameScreen.postureAdd(this.gamePostures[this.gamePosturesIndex], (Texture2D) this.ch.get("joint"));
                     Button b = pauseButtons[(int) GameButtonList.pauseButton.CONTINUE];
                     this.gameScreen.layerAdd((Texture2D)this.ch.get(b.name), b.rectangle, Color.White);
@@ -294,11 +339,29 @@ namespace personal_training_martial_arts.Core
                 {
                     //**Update**
                     this.gameScreen.backgroundAdd(kinectRGBVideo, new Rectangle(0, 0, 640, 480), Color.White);
+                    // *BETA* TO-DO
+                    // Postura de ayuda para complir la postura... mas adelante la pondremos escalada en peque
                     this.gameScreen.postureAdd(this.gamePostures[this.gamePosturesIndex], (Texture2D)this.ch.get("joint"));
                     if (playerSkeleton != null)
                     {
-                        Posture.Posture p = new Posture.Posture(playerSkeleton);
-                        score = p.compareTo(gamePostures[gamePosturesIndex], ref jointScore, averageTolerance, puntualTolerance);
+                        this.gameScreen.skeletonAdd(playerSkeleton, (Texture2D)this.ch.get("joint"), jointScore);
+                    }
+
+                    foreach (Button b in gameButtons)
+                    {
+                        this.gameScreen.layerAdd((Texture2D)this.ch.get(b.name), b.rectangle, Color.White);
+                    }
+                }
+                else if (this.currentPlayState == playState.HOLD_POSTURE)
+                {
+                    this.gameScreen.backgroundAdd(kinectRGBVideo, new Rectangle(0, 0, 640, 480), Color.White);
+                    // *BETA* TO-DO
+                    // Postura de ayuda para complir la postura... mas adelante la pondremos escalada en peque
+                    this.gameScreen.postureAdd(this.gamePostures[this.gamePosturesIndex], (Texture2D)this.ch.get("joint"));
+                    this.gameScreen.textAdd((SpriteFont)this.ch.get("defaultFont"), "GOOD! DON'T MOVE...",
+                        new Vector2(150, 80), Color.LawnGreen);
+                    if (playerSkeleton != null)
+                    {
                         this.gameScreen.skeletonAdd(playerSkeleton, (Texture2D)this.ch.get("joint"), jointScore);
                     }
 
