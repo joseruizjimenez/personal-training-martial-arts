@@ -19,3 +19,4 @@ C:\personal-training-martial-arts\personal-training-martial-arts\personal-traini
 C:\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\bin\x86\Debug\Content\play.texture.xnb
 C:\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\bin\x86\Debug\Content\pause.texture.xnb
 C:\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\bin\x86\Debug\Content\bone.texture.xnb
+C:\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\obj\x86\Debug\ResolveAssemblyReference.cache

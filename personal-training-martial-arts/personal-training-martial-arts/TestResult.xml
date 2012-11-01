@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!--This file represents the results of running a test suite-->
-<test-results name="C:\Users\jruiz\Documents\Visual Studio 2010\Projects\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts.csproj" total="0" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2012-10-09" time="12:19:53">
-  <environment nunit-version="2.6.1.12217" clr-version="2.0.50727.4927" os-version="Microsoft Windows NT 6.1.7600.0" platform="Win32NT" cwd="C:\Windows\system32" machine-name="JRUIZ-WIN7" user="jruiz" user-domain="jruiz-win7" />
+<test-results name="C:\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts.csproj" total="0" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2012-11-01" time="17:52:09">
+  <environment nunit-version="2.6.1.12217" clr-version="2.0.50727.4927" os-version="Microsoft Windows NT 6.1.7600.0" platform="Win32NT" cwd="C:\personal-training-martial-arts" machine-name="JRUIZ-WIN7" user="jruiz" user-domain="jruiz-win7" />
   <culture-info current-culture="es-ES" current-uiculture="es-ES" />
-  <test-suite type="Project" name="C:\Users\jruiz\Documents\Visual Studio 2010\Projects\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts.csproj" executed="True" result="Inconclusive" success="False" time="0.030" asserts="0">
+  <test-suite type="Project" name="C:\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts.csproj" executed="True" result="Inconclusive" success="False" time="0.044" asserts="0">
     <results>
-      <test-suite type="Assembly" name="C:\Users\jruiz\Documents\Visual Studio 2010\Projects\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\bin\x86\Debug\personal-training-martial-arts.exe" executed="True" result="Inconclusive" success="False" time="0.010" asserts="0" />
+      <test-suite type="Assembly" name="C:\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\bin\x86\Debug\personal-training-martial-arts.exe" executed="True" result="Inconclusive" success="False" time="0.000" asserts="0" />
     </results>
   </test-suite>
 </test-results>

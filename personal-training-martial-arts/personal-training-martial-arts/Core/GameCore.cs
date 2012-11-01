@@ -66,11 +66,13 @@ namespace personal_training_martial_arts.Core
         private Button[] gameButtons;
         private Button[] pauseButtons;
 
-        // TEMPORIZADORES
+        // TEMPORIZADORES (tiempos en segundos)
         private Stopwatch drawPostureTimeOut;
         private Stopwatch holdPostureTimeOut;
-        private Stopwatch detectPostureTimeOut;
         private Stopwatch scoreTimeOut;
+        private const int DRAW_POSTURE_TIME = 10;
+        private const int HOLD_POSTURE_TIME = 3;
+        private const int SCORE_TIME = 10;
 
         public ContentHandler ch { get; set; }
 
@@ -87,6 +89,7 @@ namespace personal_training_martial_arts.Core
             this.gameButtons = new Button[GameButtonList.getGameNumber()];
             this.pauseButtons = new Button[GameButtonList.getPauseNumber()];
             this.drawPostureTimeOut = Stopwatch.StartNew();
+            this.holdPostureTimeOut = Stopwatch.StartNew();
             this.scoreTimeOut = Stopwatch.StartNew();
 
             // Crea los botones del juego
@@ -158,13 +161,13 @@ namespace personal_training_martial_arts.Core
                     break;
 
                 case screenState.MENU:
-                    updateButtonsState(menuButtons);
-                    if (menuButtons[(int) GameButtonList.menuButton.PLAY].justPushed())
+                    updateButtonsState(this.menuButtons);
+                    if (this.menuButtons[(int)GameButtonList.menuButton.PLAY].justPushed())
                     {
                         this.nextScreenState = screenState.PLAY;
                         this.nextPlayState = playState.INIT;
                     }
-                    else if (menuButtons[(int) GameButtonList.menuButton.EXIT].justPushed())
+                    else if (this.menuButtons[(int)GameButtonList.menuButton.EXIT].justPushed())
                     {
                         // termina el juego
                         return false;
@@ -201,8 +204,9 @@ namespace personal_training_martial_arts.Core
                             // TIMEOUT de 10 segundos o pulsar CONTINUE
                             
                             /// @FIX001: Estaba a null el this.drawPostureTimeOut, asique le he puesto valor en SELECT_POSTURE (Margen de error: 1frame).
-                            updateButtonsState(pauseButtons);
-                            if (pauseButtons[(int)GameButtonList.pauseButton.CONTINUE].justPushed() || isTimedOut(this.drawPostureTimeOut, 10))
+                            updateButtonsState(this.pauseButtons);
+                            if (this.pauseButtons[(int)GameButtonList.pauseButton.CONTINUE].justPushed() ||
+                                isTimedOut(this.drawPostureTimeOut, DRAW_POSTURE_TIME))
                             {
                                 this.drawPostureTimeOut.Reset();
                                 this.nextPlayState = playState.DETECT_POSTURE;
@@ -210,8 +214,8 @@ namespace personal_training_martial_arts.Core
                             break;
 
                         case playState.DETECT_POSTURE:
-                            updateButtonsState(gameButtons);
-                            if (gameButtons[(int)GameButtonList.gameButton.PAUSE].justPushed())
+                            updateButtonsState(this.gameButtons);
+                            if (this.gameButtons[(int)GameButtonList.gameButton.PAUSE].justPushed())
                                 this.nextPlayState = playState.PAUSE;
                             else
                             {
@@ -229,8 +233,8 @@ namespace personal_training_martial_arts.Core
                             break;
 
                         case playState.HOLD_POSTURE:
-                            updateButtonsState(gameButtons);
-                            if (gameButtons[(int)GameButtonList.gameButton.PAUSE].justPushed())
+                            updateButtonsState(this.gameButtons);
+                            if (this.gameButtons[(int)GameButtonList.gameButton.PAUSE].justPushed())
                                 this.nextPlayState = playState.PAUSE;
                             else
                             {
@@ -240,8 +244,8 @@ namespace personal_training_martial_arts.Core
                                     score = p.compareTo(gamePostures[gamePosturesIndex], ref jointScore, averageTolerance, puntualTolerance);                                   
                                     if (score < 1.0)
                                     {
-                                        // La postura hay que mantenerla 2 segundos
-                                        if (isTimedOut(this.holdPostureTimeOut, 2))
+                                        // La postura hay que mantenerla 2 segundos (HOLD_POSTURE_TIME)
+                                        if (isTimedOut(this.holdPostureTimeOut, HOLD_POSTURE_TIME))
                                         {
                                             gameScores.Add(gamePostures[gamePosturesIndex], score);
                                             this.holdPostureTimeOut.Reset();
@@ -259,30 +263,30 @@ namespace personal_training_martial_arts.Core
                             break;
 
                         case playState.PAUSE:
-                            updateButtonsState(pauseButtons);
-                            if (pauseButtons[(int) GameButtonList.pauseButton.CONTINUE].justPushed())
+                            updateButtonsState(this.pauseButtons);
+                            if (this.pauseButtons[(int)GameButtonList.pauseButton.CONTINUE].justPushed())
                                 this.nextPlayState = playState.DETECT_POSTURE;
-                            else if (pauseButtons[(int) GameButtonList.pauseButton.REPLAY].justPushed())
+                            else if (this.pauseButtons[(int)GameButtonList.pauseButton.REPLAY].justPushed())
                                 this.nextPlayState = playState.INIT;
-                            else if (pauseButtons[(int) GameButtonList.pauseButton.EXIT].justPushed())
+                            else if (this.pauseButtons[(int)GameButtonList.pauseButton.EXIT].justPushed())
                                 this.nextPlayState = playState.END;
                             break;
 
                         case playState.SCORE:
-                            updateButtonsState(scoreButtons);
+                            updateButtonsState(this.scoreButtons);
                             // TIMEOUT de 10 segundos a la siguiente postura o se pulsa alguna opcion
-                            if (scoreButtons[(int)GameButtonList.scoreButton.NEXT].justPushed() ||
-                                isTimedOut(this.scoreTimeOut, 10))
+                            if (this.scoreButtons[(int)GameButtonList.scoreButton.NEXT].justPushed() ||
+                                isTimedOut(this.scoreTimeOut, SCORE_TIME))
                             {
                                 this.scoreTimeOut.Reset();
                                 this.nextPlayState = playState.DETECT_POSTURE;
                             }
-                            else if (scoreButtons[(int)GameButtonList.scoreButton.MENU].justPushed())
+                            else if (this.scoreButtons[(int)GameButtonList.scoreButton.MENU].justPushed())
                             {
                                 this.scoreTimeOut.Reset();
                                 this.nextPlayState = playState.END;
                             }
-                            else if (scoreButtons[(int)GameButtonList.scoreButton.REPLAY].justPushed())
+                            else if (this.scoreButtons[(int)GameButtonList.scoreButton.REPLAY].justPushed())
                             {
                                 this.scoreTimeOut.Reset();
                                 this.nextPlayState = playState.INIT;
@@ -290,10 +294,10 @@ namespace personal_training_martial_arts.Core
                             break;
 
                         case playState.FINAL_SCORE:
-                            updateButtonsState(scoreButtons);
-                            if (scoreButtons[(int)GameButtonList.scoreButton.MENU].justPushed())
+                            updateButtonsState(this.scoreButtons);
+                            if (this.scoreButtons[(int)GameButtonList.scoreButton.MENU].justPushed())
                                 this.nextPlayState = playState.END;
-                            else if (scoreButtons[(int)GameButtonList.scoreButton.REPLAY].justPushed())
+                            else if (this.scoreButtons[(int)GameButtonList.scoreButton.REPLAY].justPushed())
                                 this.nextPlayState = playState.INIT;
                             break;
 
@@ -315,12 +319,16 @@ namespace personal_training_martial_arts.Core
         /// <summary>
         /// Pinta el resultado de la lógica por pantalla.
         /// </summary>
-        public void draw(Texture2D kinectRGBVideo)
+        public void draw(Texture2D kinectRGBVideo, String connectedStatus)
         {
             this.gameScreen.clearAll();
+            if (connectedStatus == "KINECT NOT DETECTED")
+                this.gameScreen.textAdd((SpriteFont)this.ch.get("defaultFont"), connectedStatus, new Vector2(150, 80), Color.Tomato);
             if (this.currentScreenState == screenState.MENU)
             {
-                foreach (Button b in menuButtons)
+                if (connectedStatus == "KINECT DETECTED")
+                    this.gameScreen.textAdd((SpriteFont)this.ch.get("defaultFont"), connectedStatus, new Vector2(150, 80), Color.LightGreen);
+                foreach (Button b in this.menuButtons)
                 {
                     this.gameScreen.layerAdd((Texture2D) this.ch.get(b.name), b.rectangle, Color.White);
                 }
@@ -332,7 +340,7 @@ namespace personal_training_martial_arts.Core
                     this.gameScreen.textAdd((SpriteFont) this.ch.get("defaultFont"), this.gamePostures[this.gamePosturesIndex].name,
                         new Vector2(150, 80), Color.SandyBrown);
                     this.gameScreen.postureAdd(this.gamePostures[this.gamePosturesIndex], (Texture2D) this.ch.get("joint"));
-                    Button b = pauseButtons[(int) GameButtonList.pauseButton.CONTINUE];
+                    Button b = this.pauseButtons[(int)GameButtonList.pauseButton.CONTINUE];
                     this.gameScreen.layerAdd((Texture2D)this.ch.get(b.name), b.rectangle, Color.White);
                 }
                 else if (this.currentPlayState == playState.DETECT_POSTURE)
@@ -347,7 +355,7 @@ namespace personal_training_martial_arts.Core
                         this.gameScreen.skeletonAdd(playerSkeleton, (Texture2D)this.ch.get("joint"), jointScore);
                     }
 
-                    foreach (Button b in gameButtons)
+                    foreach (Button b in this.gameButtons)
                     {
                         this.gameScreen.layerAdd((Texture2D)this.ch.get(b.name), b.rectangle, Color.White);
                     }
@@ -358,26 +366,44 @@ namespace personal_training_martial_arts.Core
                     // *BETA* TO-DO
                     // Postura de ayuda para complir la postura... mas adelante la pondremos escalada en peque
                     this.gameScreen.postureAdd(this.gamePostures[this.gamePosturesIndex], (Texture2D)this.ch.get("joint"));
-                    this.gameScreen.textAdd((SpriteFont)this.ch.get("defaultFont"), "GOOD! DON'T MOVE...",
+                    this.gameScreen.textAdd((SpriteFont)this.ch.get("defaultFont"),
+                        "GOOD! DON'T MOVE... " + (HOLD_POSTURE_TIME - this.holdPostureTimeOut.Elapsed.Seconds).ToString(),
                         new Vector2(150, 80), Color.LawnGreen);
                     if (playerSkeleton != null)
                     {
                         this.gameScreen.skeletonAdd(playerSkeleton, (Texture2D)this.ch.get("joint"), jointScore);
                     }
 
-                    foreach (Button b in gameButtons)
+                    foreach (Button b in this.gameButtons)
                     {
                         this.gameScreen.layerAdd((Texture2D)this.ch.get(b.name), b.rectangle, Color.White);
                     }
                 }
                 else if (this.currentPlayState == playState.PAUSE)
                 {
+                    foreach (Button b in this.pauseButtons)
+                    {
+                        this.gameScreen.layerAdd((Texture2D)this.ch.get(b.name), b.rectangle, Color.White);
+                    }
                 }
                 else if (this.currentPlayState == playState.SCORE)
                 {
+                    this.gameScreen.textAdd((SpriteFont)this.ch.get("defaultFont"), "POSTURE COMPLETED!",
+                        new Vector2(150, 80), Color.LawnGreen);
+                    foreach (Button b in this.scoreButtons)
+                    {
+                        this.gameScreen.layerAdd((Texture2D)this.ch.get(b.name), b.rectangle, Color.White);
+                    }
                 }
                 else if (this.currentPlayState == playState.FINAL_SCORE)
                 {
+                    this.gameScreen.textAdd((SpriteFont)this.ch.get("defaultFont"), "CHALLENGE COMPLETED!",
+                        new Vector2(150, 80), Color.LawnGreen);
+                    foreach (Button b in this.scoreButtons)
+                    {
+                        if (GameButtonList.scoreButton.NEXT.ToString() != b.name)
+                            this.gameScreen.layerAdd((Texture2D)this.ch.get(b.name), b.rectangle, Color.White);
+                    }
                 }
                 else
                 {

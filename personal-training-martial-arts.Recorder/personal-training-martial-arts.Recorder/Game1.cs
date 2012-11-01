@@ -39,8 +39,7 @@ namespace personal_training_martial_arts.Recorder
             REC_BUTTON_INDEX = 0,
             BUTTON_HEIGHT = 480,
             BUTTON_WIDTH = 640;
-        Color background_color;
-        Boolean isPosturePropertiesOpen;
+
         Color[] button_color = new Color[NUMBER_OF_BUTTONS];
         Rectangle[] button_rectangle = new Rectangle[NUMBER_OF_BUTTONS];
         BState[] button_state = new BState[NUMBER_OF_BUTTONS];
@@ -70,7 +69,6 @@ namespace personal_training_martial_arts.Recorder
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            this.isPosturePropertiesOpen = false;
 
             // Ajustamos la pantalla a la resolucion del kinect para copiar mapa 1:1
             graphics.PreferredBackBufferWidth = 640;
@@ -546,13 +544,8 @@ namespace personal_training_martial_arts.Recorder
             }
                 
 
-
-
             return true;
         }
 
-        /*
-         * DRAW BONES http://msdn.microsoft.com/en-us/library/jj131025.aspx
-         */
     }
 }

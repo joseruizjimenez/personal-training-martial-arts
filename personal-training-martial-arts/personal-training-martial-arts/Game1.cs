@@ -236,14 +236,17 @@ namespace personal_training_martial_arts
 
             // Botones de Jose
             this.ch.add("PLAY", "play");
-            this.ch.add("CONTINUE", "continue");
             this.ch.add("EXIT", "exit");
+            this.ch.add("MENU", "menu");
+            this.ch.add("REPLAY", "replay");
+            this.ch.add("NEXT", "next");
             this.ch.add("PAUSE", "pause");
-
+            this.ch.add("CONTINUE", "continue");
+            
             // Este load al final
             this.ch.load();
             this.gameCore.loadContentHandler(ch);
-            this.gameCore.gameScreen.spriteBatch = new SpriteBatch(GraphicsDevice);
+            this.gameCore.gameScreen.updateSpriteBatch(new SpriteBatch(GraphicsDevice));
 
             this.gameCore.loadKinectSensor(kinectSensor);
         }
@@ -281,7 +284,7 @@ namespace personal_training_martial_arts
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);//.BlueViolet);
-            gameCore.draw(this.kinectRGBVideo);
+            gameCore.draw(this.kinectRGBVideo, connectedStatus);
 
             base.Draw(gameTime);
         }
@@ -295,9 +298,10 @@ namespace personal_training_martial_arts
         }
 
         // Stub para los test
-        public void InitializeStub()
+        public void InitializeStub(KinectSensor sensorMock)
         {
             this.Initialize();
+            this.kinectSensor = sensorMock;
         }
 
     }

@@ -26,18 +26,20 @@ namespace personal_training_martial_arts.Tests
         public void TestDiscoverKinectSensor_NotDetected()
         {           
             kinectSensorMock.ExpectAndReturn("Status", KinectStatus.Disconnected);
-            game.InitializeStub();
+            game.InitializeStub((KinectSensor) kinectSensorMock.MockInstance);
 
             Assert.AreEqual("KINECT NOT DETECTED", game.GetConnectedStatus());
         }
 
-        //[Test]
-        //public void TestDiscoverKinectSensor_Detected()
-        //{
-        //    kinectSensorMock.ExpectAndReturn("Status", KinectStatus.Connected);
-        //    game.InitializeStub();
+        /*
+        [Test]
+        public void TestDiscoverKinectSensor_Detected()
+        {
+            kinectSensorMock.ExpectAndReturn("Status", KinectStatus.Connected);
+            game.InitializeStub((KinectSensor) kinectSensorMock.MockInstance);
 
-        //    Assert.AreEqual("KINECT DETECTED", game.GetConnectedStatus());
-        //}
+            Assert.AreEqual("KINECT DETECTED", game.GetConnectedStatus());
+        }
+        */
     }
 }

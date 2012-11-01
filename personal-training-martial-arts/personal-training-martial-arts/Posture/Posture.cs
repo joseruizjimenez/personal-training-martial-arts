@@ -17,12 +17,6 @@ namespace personal_training_martial_arts.Posture
     {
         public Vector3[] joints {get; set;}
 
-        public struct disVectors
-        {
-            public int index; //Marcador miembro
-            public float[] Distance; //Distancias a los puntos (de index a cada parte)
-        }
-
         public Posture(){}
 
         public Posture(Skeleton skeleton): this(Posture.castSkeletonToJoints(skeleton)){}

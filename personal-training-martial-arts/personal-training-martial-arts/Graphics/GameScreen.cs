@@ -26,7 +26,7 @@ namespace personal_training_martial_arts.Graphics
         /// <summary>
         /// La clase que guarda todos los sprites para ser pintados.
         /// </summary>
-        public SpriteBatch spriteBatch;
+        private SpriteBatch spriteBatch;
 
         /// <summary>
         /// El device de graficos.
@@ -477,7 +477,8 @@ namespace personal_training_martial_arts.Graphics
             float angle = (float)Math.Atan2(diff.Y, diff.X) - MathHelper.PiOver2;
             Color color = Color.LightGreen;
 
-            this.spriteBatch.Draw(this.boneTexture, start, null, color, angle, new Vector2(0.5f, 0.0f), scale, SpriteEffects.None, 1.0f);
+            this.spriteBatch.Draw(this.boneTexture, start, null, color, angle, new Vector2(0.5f, 0.0f),
+                scale, SpriteEffects.None, 1.0f);
         }
 
         /// <summary>
@@ -502,13 +503,19 @@ namespace personal_training_martial_arts.Graphics
                 color = Color.Gray;
             }
 
-            this.spriteBatch.Draw(this.boneTexture, start, null, color, angle, new Vector2(0.5f, 0.0f), scale, SpriteEffects.None, 1.0f);
+            this.spriteBatch.Draw(this.boneTexture, start, null, color, angle,
+                new Vector2(0.5f, 0.0f), scale, SpriteEffects.None, 1.0f);
         }
 
         public void updateContentHandler(ContentHandler ch)
         {
             this.ch = ch;
             boneTexture = (Texture2D)this.ch.get("bone");
+        }
+
+        public void updateSpriteBatch(SpriteBatch sb)
+        {
+            this.spriteBatch = sb;
         }
 
     }
