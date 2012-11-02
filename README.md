@@ -13,3 +13,5 @@ About us
 * Jesús Mayor
 * Sebastián de Marcos
 * José Ruiz
+
+Avaliable: Beta 1.0
