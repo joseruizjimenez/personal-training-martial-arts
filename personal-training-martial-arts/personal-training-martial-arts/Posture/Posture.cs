@@ -13,7 +13,7 @@ using System.Xml;
 
 namespace personal_training_martial_arts.Posture
 {
-    class Posture
+    public class Posture
     {
         public Vector3[] joints {get; set;}
 

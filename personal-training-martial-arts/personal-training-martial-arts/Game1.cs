@@ -298,11 +298,16 @@ namespace personal_training_martial_arts
         }
 
         // Stub para los test
-        public void InitializeStub(KinectSensor sensorMock)
+        public KinectSensor getKinectSensorToStub()
+        {
+            return this.kinectSensor;
+        }
+
+        public void InitializeToStub()
         {
             this.Initialize();
-            this.kinectSensor = sensorMock;
         }
 
     }
+
 }

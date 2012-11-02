@@ -12,7 +12,7 @@ using Microsoft.Kinect;
 
 namespace personal_training_martial_arts.Posture
 {
-    class PostureInformation : Posture, IEquatable<PostureInformation>
+    public class PostureInformation : Posture, IEquatable<PostureInformation>
     {
         public string name { get; set; }
         public string description { get; set; }

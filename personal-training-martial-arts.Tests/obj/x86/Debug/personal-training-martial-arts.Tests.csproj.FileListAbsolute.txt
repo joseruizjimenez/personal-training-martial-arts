@@ -34,3 +34,6 @@ C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug
 C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\pause.texture.xnb
 C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\bone.texture.xnb
 C:\personal-training-martial-arts\personal-training-martial-arts.Tests\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\NMock2.AcceptanceTests.dll
+C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\NMock2.dll
+C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\NMock2.Test.dll

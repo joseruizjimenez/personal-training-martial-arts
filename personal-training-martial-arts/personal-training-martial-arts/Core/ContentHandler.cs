@@ -13,7 +13,7 @@ using System.IO;
 
 namespace personal_training_martial_arts.Core
 {
-    class ContentHandler
+    public class ContentHandler
     {
         private ContentManager contentManager;
         private Dictionary<string, string> invokes;

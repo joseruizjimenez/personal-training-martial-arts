@@ -15,7 +15,7 @@ using personal_training_martial_arts.Core;
 
 namespace personal_training_martial_arts.Graphics
 {
-    class GameScreen
+    public class GameScreen
     {
         /// <summary>
         /// El KinectSensor en uso. Es posible que este objeto se pueda sacar

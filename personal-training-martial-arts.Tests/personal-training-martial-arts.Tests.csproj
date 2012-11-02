@@ -46,6 +46,15 @@
     <Reference Include="Microsoft.Xna.Framework.Storage, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Xna.Framework.Video, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Xna.Framework.Xact, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+    <Reference Include="NMock2">
+      <HintPath>nmock2\NMock2.dll</HintPath>
+    </Reference>
+    <Reference Include="NMock2.AcceptanceTests">
+      <HintPath>nmock2\NMock2.AcceptanceTests.dll</HintPath>
+    </Reference>
+    <Reference Include="NMock2.Test">
+      <HintPath>nmock2\NMock2.Test.dll</HintPath>
+    </Reference>
     <Reference Include="nunit-console-runner">
       <HintPath>NUnit\nunit-console-runner.dll</HintPath>
     </Reference>
@@ -80,15 +89,9 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestFixture.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="NUnit\nunit-console-runner.dll" />
-    <None Include="NUnit\nunit.framework.dll" />
-    <None Include="NUnit\nunit.mocks.dll" />
-    <None Include="NUnit\nunit.util.dll" />
-    <None Include="NUnit\nunit.core.interfaces.dll" />
-    <None Include="NUnit\nunit.core.dll" />
+    <Compile Include="TestGame1.cs" />
+    <Compile Include="TestGameCore.cs" />
+    <Compile Include="TestPosture.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts.csproj">

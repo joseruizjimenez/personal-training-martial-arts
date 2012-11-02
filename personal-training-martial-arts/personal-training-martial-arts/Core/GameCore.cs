@@ -17,7 +17,7 @@ using personal_training_martial_arts.Graphics;
 
 namespace personal_training_martial_arts.Core
 {
-    class GameCore
+    public class GameCore
     {
         // ESTADOS DEL JUEGO Y PANTALLAS
         private enum screenState
@@ -74,7 +74,7 @@ namespace personal_training_martial_arts.Core
         private const int HOLD_POSTURE_TIME = 3;
         private const int SCORE_TIME = 10;
 
-        public ContentHandler ch { get; set; }
+        private ContentHandler ch { get; set; }
 
         public GameCore(GraphicsDevice graphicsDevice)
         {
@@ -466,15 +466,8 @@ namespace personal_training_martial_arts.Core
         /// <param name="startTime">DateTime de inicio</param>
         /// <param name="secondsToTimeOut">Segundos para timeout</param>
         /// <returns>Si los segundos se han pasado o no</returns>
-        private Boolean isTimedOut(Stopwatch sw, int secondsToTimeOut)
+        public static Boolean isTimedOut(Stopwatch sw, int secondsToTimeOut)
         {
-            /*DateTime endTime = startTime.AddSeconds((double) secondsToTimeOut);
-            DateTime now = DateTime.Now;
-
-            if (DateTime.Compare(endTime, now) >= 0)
-                return true;
-
-            return false;*/
             TimeSpan maxDuration = TimeSpan.FromSeconds(secondsToTimeOut);
 
             if (sw.Elapsed < maxDuration)

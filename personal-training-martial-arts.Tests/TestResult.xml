@@ -1,38 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!--This file represents the results of running a test suite-->
-<test-results name="C:\personal-training-martial-arts\personal-training-martial-arts.Tests\personal-training-martial-arts.Tests.csproj" total="2" errors="2" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2012-11-01" time="19:53:01">
+<test-results name="C:\personal-training-martial-arts\personal-training-martial-arts.Tests\personal-training-martial-arts.Tests.csproj" total="8" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2012-11-02" time="19:18:04">
   <environment nunit-version="2.6.1.12217" clr-version="2.0.50727.4927" os-version="Microsoft Windows NT 6.1.7600.0" platform="Win32NT" cwd="C:\personal-training-martial-arts" machine-name="JRUIZ-WIN7" user="jruiz" user-domain="jruiz-win7" />
   <culture-info current-culture="es-ES" current-uiculture="es-ES" />
-  <test-suite type="Project" name="C:\personal-training-martial-arts\personal-training-martial-arts.Tests\personal-training-martial-arts.Tests.csproj" executed="True" result="Failure" success="False" time="1.992" asserts="0">
+  <test-suite type="Project" name="C:\personal-training-martial-arts\personal-training-martial-arts.Tests\personal-training-martial-arts.Tests.csproj" executed="True" result="Success" success="True" time="1.086" asserts="0">
     <results>
-      <test-suite type="Assembly" name="C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\personal-training-martial-arts.Tests.exe" executed="True" result="Failure" success="False" time="1.981" asserts="0">
+      <test-suite type="Assembly" name="C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\personal-training-martial-arts.Tests.exe" executed="True" result="Success" success="True" time="1.066" asserts="0">
         <results>
-          <test-suite type="Namespace" name="personal_training_martial_arts" executed="True" result="Failure" success="False" time="1.981" asserts="0">
+          <test-suite type="Namespace" name="personal_training_martial_arts" executed="True" result="Success" success="True" time="1.060" asserts="0">
             <results>
-              <test-suite type="Namespace" name="Tests" executed="True" result="Failure" success="False" time="1.980" asserts="0">
+              <test-suite type="Namespace" name="Test" executed="True" result="Success" success="True" time="0.397" asserts="0">
                 <results>
-                  <test-suite type="TestFixture" name="TestGame1" executed="True" result="Failure" success="False" time="1.977" asserts="0">
+                  <test-suite type="TestFixture" name="TestGameCore" executed="True" result="Success" success="True" time="0.227" asserts="0">
                     <results>
-                      <test-case name="personal_training_martial_arts.Tests.TestGame1.TestDiscoverKinectSensor_Detected" executed="True" result="Error" success="False" time="1.419" asserts="0">
-                        <failure>
-                          <message><![CDATA[System.ArgumentException : classToProxy argument must derive from MarshalByRef type.]]></message>
-                          <stack-trace><![CDATA[at System.Runtime.Remoting.Proxies.RealProxy..ctor(Type classToProxy, IntPtr stub, Object stubData)
-at NUnit.Mocks.MockInterfaceHandler..ctor(Type type, ICallHandler callHandler)
-at NUnit.Mocks.DynamicMock.get_MockInstance()
-at personal_training_martial_arts.Tests.TestGame1.TestDiscoverKinectSensor_Detected() in C:\personal-training-martial-arts\personal-training-martial-arts.Tests\TestFixture.cs:line 38
-]]></stack-trace>
-                        </failure>
-                      </test-case>
-                      <test-case name="personal_training_martial_arts.Tests.TestGame1.TestDiscoverKinectSensor_NotDetected" executed="True" result="Error" success="False" time="0.062" asserts="0">
-                        <failure>
-                          <message><![CDATA[System.ArgumentException : classToProxy argument must derive from MarshalByRef type.]]></message>
-                          <stack-trace><![CDATA[at System.Runtime.Remoting.Proxies.RealProxy..ctor(Type classToProxy, IntPtr stub, Object stubData)
-at NUnit.Mocks.MockInterfaceHandler..ctor(Type type, ICallHandler callHandler)
-at NUnit.Mocks.DynamicMock.get_MockInstance()
-at personal_training_martial_arts.Tests.TestGame1.TestDiscoverKinectSensor_NotDetected() in C:\personal-training-martial-arts\personal-training-martial-arts.Tests\TestFixture.cs:line 29
-]]></stack-trace>
-                        </failure>
-                      </test-case>
+                      <test-case name="personal_training_martial_arts.Test.TestGameCore.TestIsTimedOut_False" executed="True" result="Success" success="True" time="0.168" asserts="1" />
+                      <test-case name="personal_training_martial_arts.Test.TestGameCore.TestIsTimedOut_True" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                      <test-case name="personal_training_martial_arts.Test.TestGameCore.TestUpdate_StartAtInit" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                    </results>
+                  </test-suite>
+                  <test-suite type="TestFixture" name="TestPosture" executed="True" result="Success" success="True" time="0.151" asserts="0">
+                    <results>
+                      <test-case name="personal_training_martial_arts.Test.TestPosture.TestCastSkeletonToJoins" executed="True" result="Success" success="True" time="0.056" asserts="1" />
+                      <test-case name="personal_training_martial_arts.Test.TestPosture.TestPostureCompareTo_ClosePosture" executed="True" result="Success" success="True" time="0.020" asserts="1" />
+                      <test-case name="personal_training_martial_arts.Test.TestPosture.TestPostureCompareTo_DiffPosture" executed="True" result="Success" success="True" time="0.012" asserts="1" />
+                      <test-case name="personal_training_martial_arts.Test.TestPosture.TestPostureCompareTo_SamePosture" executed="True" result="Success" success="True" time="0.023" asserts="1" />
+                    </results>
+                  </test-suite>
+                </results>
+              </test-suite>
+              <test-suite type="Namespace" name="Tests" executed="True" result="Success" success="True" time="0.654" asserts="0">
+                <results>
+                  <test-suite type="TestFixture" name="TestGame1" executed="True" result="Success" success="True" time="0.647" asserts="0">
+                    <results>
+                      <test-case name="personal_training_martial_arts.Tests.TestGame1.TestDiscoverKinectSensor_NotDetected" executed="True" result="Success" success="True" time="0.635" asserts="1" />
                     </results>
                   </test-suite>
                 </results>

@@ -13,11 +13,11 @@ using System.Xml;
 
 namespace personal_training_martial_arts.Posture
 {
-    static class PostureLibrary
+    public static class PostureLibrary
     {
         public static PostureInformation[] getPostureList()
         {
-            String[] nombresficheros = System.IO.Directory.GetFiles(".");
+            String[] nombresficheros = System.IO.Directory.GetFiles("./postures/");
             int a = 0;
             foreach (String n in nombresficheros)
             {
@@ -41,8 +41,6 @@ namespace personal_training_martial_arts.Posture
 
         public static Boolean storePosture(PostureInformation p)
         {
-            // PROBLEMA DEL NOMBRE DEL FICHERO. ME LO PASAN O DEBERIA LA CLASE TENER UN NOMBRE??
-
             try
             {
                 //XmlDocument originalXml = new XmlDocument();
@@ -68,14 +66,6 @@ namespace personal_training_martial_arts.Posture
                 xmlDoc.InsertBefore(xmlDeclaration, xmlDoc.DocumentElement);
                 xmlDoc.AppendChild(rootNode);
 
-
-                //originalXml.Load(p.name+".xml");
-                //XmlNode Elem_joints = originalXml.SelectSingleNode("Posture");
-                // atributos de la postura
-
-
-
-
                 int index = 0;
                 foreach (Vector3 v in p.joints)
                 {
@@ -98,7 +88,7 @@ namespace personal_training_martial_arts.Posture
                 }
 
                 //grabamos
-                xmlDoc.Save(p.name + ".xml");
+                xmlDoc.Save("./postures/" + p.name + ".xml");
 
                 return true;
             }
@@ -108,9 +98,6 @@ namespace personal_training_martial_arts.Posture
                 return false;
             }
         }
-
-
-
 
         public static PostureInformation loadPosture(String name)
         {
