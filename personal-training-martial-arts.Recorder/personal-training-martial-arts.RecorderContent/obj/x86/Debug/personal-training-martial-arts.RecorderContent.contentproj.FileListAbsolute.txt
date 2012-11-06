@@ -1,1 +1,1 @@
-C:\personal-training-martial-arts\personal-training-martial-arts.Recorder\personal-training-martial-arts.RecorderContent\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\personal-training-martial-arts\personal-training-martial-arts.Recorder\personal-training-martial-arts.RecorderContent\obj\x86\Debug\personal-training-martial-arts.RecorderContent.contentprojResolveAssemblyReference.cache

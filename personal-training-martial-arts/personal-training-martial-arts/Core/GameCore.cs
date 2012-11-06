@@ -54,8 +54,8 @@ namespace personal_training_martial_arts.Core
         private Dictionary<PostureInformation, double> gameScores;
 
         // NIVEL NORMAL para modificar usar metodo chDificultyLevel(int);
-        private float averageTolerance = 0.056F;
-        private float puntualTolerance = 0.06F;
+        private float averageTolerance = 0.058F;
+        private float puntualTolerance = 0.07F;
 
         private double[] jointScore = new double[20];
         private double score;
@@ -124,8 +124,8 @@ namespace personal_training_martial_arts.Core
                     break;
                 case 2:
                     // NIVEL MEDIO
-                    this.averageTolerance = 0.05F;
-                    this.puntualTolerance = 0.06F;
+                    this.averageTolerance = 0.058F;
+                    this.puntualTolerance = 0.07F;
                     break;
                 case 3:
                     // NIVEL DIFICIL

@@ -22,3 +22,4 @@ C:\personal-training-martial-arts\personal-training-martial-arts\personal-traini
 C:\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\bin\x86\Debug\Content\menu.texture.xnb
 C:\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\bin\x86\Debug\Content\next.texture.xnb
 C:\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\bin\x86\Debug\Content\replay.texture.xnb
+C:\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\obj\x86\Debug\personal-training-martial-arts.csprojResolveAssemblyReference.cache
