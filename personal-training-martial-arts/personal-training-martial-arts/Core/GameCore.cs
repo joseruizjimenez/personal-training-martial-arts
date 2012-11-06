@@ -279,7 +279,7 @@ namespace personal_training_martial_arts.Core
                                 isTimedOut(this.scoreTimeOut, SCORE_TIME))
                             {
                                 this.scoreTimeOut.Reset();
-                                this.nextPlayState = playState.DETECT_POSTURE;
+                                this.nextPlayState = playState.SELECT_POSTURE;
                             }
                             else if (this.scoreButtons[(int)GameButtonList.scoreButton.MENU].justPushed())
                             {
