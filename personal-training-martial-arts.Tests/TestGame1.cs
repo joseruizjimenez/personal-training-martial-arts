@@ -25,6 +25,15 @@ namespace personal_training_martial_arts.Tests
             //kinectSensorMock = mocks.NewMock<IKinectSensor>();            
         }
 
+        [TearDown]
+        public void TestEnd()
+        {
+            mocks = null;
+            game = null;
+            kinectSensorMock = null;
+        }
+
+
         [Test]
         public void TestDiscoverKinectSensor_NotDetected()
         {

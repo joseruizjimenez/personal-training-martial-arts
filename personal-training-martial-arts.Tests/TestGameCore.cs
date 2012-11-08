@@ -21,6 +21,12 @@ namespace personal_training_martial_arts.Test
             gameCore = new GameCore(null);         
         }
 
+        [TearDown]
+        public void TestEnd()
+        {
+            gameCore = null;
+        }
+
         [Test]
         public void TestIsTimedOut_True()
         {
