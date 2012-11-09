@@ -91,6 +91,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestGame1.cs" />
     <Compile Include="TestGameCore.cs" />
+    <Compile Include="TestGestureXML.cs" />
     <Compile Include="TestPosture.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -98,6 +99,9 @@
       <Project>{A2B7360D-22B3-48FC-9AC0-CF91D837123D}</Project>
       <Name>personal-training-martial-arts</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

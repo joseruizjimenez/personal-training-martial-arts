@@ -40,3 +40,4 @@ C:\personal-training-martial-arts\personal-training-martial-arts.Tests\obj\x86\D
 C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\menu.texture.xnb
 C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\next.texture.xnb
 C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\replay.texture.xnb
+C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\personal-training-martial-arts.Tests.exe.config

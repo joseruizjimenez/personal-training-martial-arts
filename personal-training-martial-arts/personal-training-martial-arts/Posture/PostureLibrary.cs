@@ -43,11 +43,8 @@ namespace personal_training_martial_arts.Posture
         {
             try
             {
-                //XmlDocument originalXml = new XmlDocument();
-                //originalXml.CreateXmlDeclaration("1.0", "utf-8", null);
-
+               
                 XmlDocument xmlDoc = new XmlDocument();
-                // Write down the XML declaration
                 XmlDeclaration xmlDeclaration = xmlDoc.CreateXmlDeclaration("1.0", "utf-8", null);
 
 
@@ -66,7 +63,7 @@ namespace personal_training_martial_arts.Posture
                 xmlDoc.InsertBefore(xmlDeclaration, xmlDoc.DocumentElement);
                 xmlDoc.AppendChild(rootNode);
 
-                int index = 0;
+              
                 foreach (Vector3 v in p.joints)
                 {
 
@@ -84,7 +81,7 @@ namespace personal_training_martial_arts.Posture
                     newSub.Attributes.Append(_Z);
                     rootNode.AppendChild(newSub);
 
-                    index++;
+                    
                 }
 
                 //grabamos

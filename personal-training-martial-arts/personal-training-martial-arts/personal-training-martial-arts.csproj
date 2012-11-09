@@ -114,6 +114,7 @@
     <Compile Include="Core\GameButtonList.cs" />
     <Compile Include="Core\ContentHandler.cs" />
     <Compile Include="Core\GameCore.cs" />
+    <Compile Include="Gesture\GestureLibrary.cs" />
     <Compile Include="Graphics\ColorRender.cs" />
     <Compile Include="Graphics\GameScreen.cs" />
     <Compile Include="Gesture\Gesture.cs" />
