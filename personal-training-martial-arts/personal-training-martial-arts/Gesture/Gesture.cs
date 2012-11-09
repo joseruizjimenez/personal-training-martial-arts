@@ -16,10 +16,12 @@ namespace personal_training_martial_arts.Gesture
         public string description { get; set; }
         public int difficulty { get; set; }
         
-        public Gesture(string name,PostureInformation[] postures)
+        public Gesture(string name,PostureInformation[] postures,string def, int dif)
         {
             this.name = name;
             this.postures = postures;
+            this.description = def;
+            this.difficulty = dif;
         }
     }
 }

@@ -11,6 +11,58 @@ namespace personal_training_martial_arts.Gesture
     public class GestureLibrary
     {
 
+
+
+        public Gesture loadGesture(String nombreGesture) {
+
+            XmlDocument xDoc = new XmlDocument();
+
+            xDoc.Load("./gestures/"+nombreGesture + ".xml");
+            XmlNodeList gesto = xDoc.GetElementsByTagName("Gesture");
+            XmlAttribute nam = ((XmlElement)gesto[0]).GetAttributeNode("name");
+            XmlAttribute des = ((XmlElement)gesto[0]).GetAttributeNode("description");
+            XmlAttribute dif = ((XmlElement)gesto[0]).GetAttributeNode("difficulty");
+
+            XmlNodeList listaPostures = ((XmlElement)gesto[0]).GetElementsByTagName("Posture");
+            PostureInformation[] posturas = new PostureInformation[listaPostures.Count];
+            int i = 0;
+            foreach (XmlElement pos in listaPostures) {
+
+                posturas[i] = this.loadPostureNode(pos);
+                i++;
+                
+            }
+            return new Gesture(nam.Value,posturas ,des.Value, System.Convert.ToInt16(dif.Value));
+        
+        }
+
+        private  PostureInformation loadPostureNode(XmlElement pos)
+        {
+
+            XmlAttribute nam = pos.GetAttributeNode("name");
+            XmlAttribute des = pos.GetAttributeNode("description");
+            XmlAttribute dif = pos.GetAttributeNode("difficulty");
+            XmlNodeList listaJoints = (pos.GetElementsByTagName("joint"));
+            Vector3[] joints = new Vector3[20];
+            int index = 0;
+
+            foreach (XmlElement nodo in listaJoints)
+            {
+                XmlAttribute a = nodo.GetAttributeNode("x");
+                XmlAttribute b = nodo.GetAttributeNode("y");
+                XmlAttribute c = nodo.GetAttributeNode("z");
+
+                joints[index] = new Vector3(float.Parse(a.Value), float.Parse(b.Value), float.Parse(c.Value));
+                index++;
+            }
+
+            return  new PostureInformation(nam.Value, des.Value, System.Convert.ToInt16(dif.Value), joints);
+           
+
+        }
+
+
+
         public Boolean storeGesture(Gesture gesture)
         {
             try
@@ -38,7 +90,6 @@ namespace personal_training_martial_arts.Gesture
                 foreach (PostureInformation p in gesture.postures) {
 
                     XmlNode Node = this.createPostureNode(p, xmlDoc);
-                    Console.WriteLine("putaaaaaaaaaaaaaaaaa4");
                     rootNode.AppendChild(Node);
                 }
                 

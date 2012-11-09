@@ -102,7 +102,6 @@ namespace personal_training_martial_arts.Posture
             int index = 0;
             XmlDocument xDoc = new XmlDocument();
 
-            //xDoc.Load("../../../../personas1.xml");
             xDoc.Load(name + ".xml");
             XmlNodeList postura = xDoc.GetElementsByTagName("Posture");
 
