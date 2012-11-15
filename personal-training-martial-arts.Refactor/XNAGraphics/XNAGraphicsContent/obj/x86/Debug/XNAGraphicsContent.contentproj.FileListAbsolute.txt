@@ -1,0 +1,2 @@
+C:\Users\Luis\Documents\Visual Studio 2010\Projects\XNAGraphics\XNAGraphics\XNAGraphicsContent\obj\x86\Debug\XNAGraphicsContent.contentprojResolveAssemblyReference.cache
+C:\Users\Luis\Desktop\XNAGraphics\XNAGraphics\XNAGraphicsContent\obj\x86\Debug\XNAGraphicsContent.contentprojResolveAssemblyReference.cache

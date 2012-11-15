@@ -1,0 +1,81 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.GamerServices;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
+
+namespace XNAGraphics.Component.LayerBundle
+{
+    class Layer
+    {
+        public Object sprite;
+        public Color color;
+        public int x;
+        public int y;
+        public int priority;
+
+        public Layer(Object sprite)
+            : this(sprite, 0, 0, Color.White, 0) { }
+
+        public Layer(Object sprite, int priority)
+            : this(sprite, 0, 0, Color.White, priority) { }
+
+        public Layer(Object sprite, int x, int y)
+            : this(sprite, x, y, Color.White, 0) { }
+
+        public Layer(Object sprite, int x, int y, Color color)
+            : this(sprite, x, y, Color.White, 0) { }
+
+        public Layer(Object sprite, int x, int y, int priority)
+            : this(sprite, x, y, Color.White, priority) { }
+
+        public Layer(Object sprite, int x, int y, Color color, int priority)
+        {
+            this.sprite = sprite;
+            this.color = color;
+            this.x = x;
+            this.y = y;
+            this.priority = priority;
+        }
+
+        /// <summary>
+        /// Generates a new Rectangle based on layer's coordinates and properties.
+        /// </summary>
+        /// <returns>A new Rectangle.</returns>
+        public Rectangle getRectangle()
+        {
+            if (this.sprite is Texture2D)
+            {
+                Texture2D tex = (Texture2D) this.sprite;
+                return this.getCustomRectangle(tex.Width, tex.Height);
+            }
+
+            return new Rectangle(0, 0, 0, 0);
+        }
+
+        /// <summary>
+        /// Generates a new Rectangle based on layer's coordinates and parameters.
+        /// </summary>
+        /// <param name="width">Width.</param>
+        /// <param name="height">Height.</param>
+        /// <returns>A new Rectangle.</returns>
+        public Rectangle getCustomRectangle(int width, int height)
+        {
+            return new Rectangle(this.x, this.y, width, height);
+        }
+
+        /// <summary>
+        /// Generates a new Vector2 based on layer's coordinates.
+        /// </summary>
+        /// <returns>A new Vector2 with layer's coordinates.</returns>
+        public Vector2 getCoordinatesAsVector()
+        {
+            return new Vector2(this.x, this.y);
+        }
+    }
+}

@@ -1,0 +1,29 @@
+﻿ List of framework agreements
+----------------------------
+
+# Naming #
+### Variables ###
+ - **Local:** Lowercased. Spaces as underscores.
+ - **Class:** Called by `this.*`. Lowercased. Spaces as underscores.
+ - **Constant:** Uppercased. Spaces as underscores.
+
+### Functions ###
+ - **Any function:** Camel cased. Excepting `Core` class.
+
+
+# Grouping #
+ - **Object:** Basic unit.
+ - **Collection:** Group of objects. May contain some object-related properties.
+ - **Registry:** Group of object bundles. Can't contain any property excepting a list of bundles.
+ - **Bundle:** Group of an object, collection, registry and other object-related classes.
+
+# Sorting #
+ - **Collection:** Low to high (if unit priority).
+ - **Registry:** Low to high (if bundle priority).
+
+# Layers #
+ - **Priority:** Layer priority is set to 999 by default (worst priority).
+
+# Animation #
+ - **Layout:** An animation sprite MUST be horizontally splitted.
+ 
