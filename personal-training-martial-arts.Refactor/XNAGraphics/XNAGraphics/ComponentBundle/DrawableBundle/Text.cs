@@ -29,13 +29,13 @@ namespace XNAGraphics.ComponentBundle.DrawableBundle
             this.text = text;
         }
 
-        public override void load(Game game)
+        protected override void onLoad(Game game)
         { }
 
-        public override void update(GameTime gameTime)
+        protected override void onUpdate(GameTime gameTime)
         { }
 
-        public override void draw(SpriteBatch spriteBatch)
+        protected override void onDraw(SpriteBatch spriteBatch)
         {
             spriteBatch.DrawString((SpriteFont)this.sprite, this.text, this.getPosition(), this.color);
         }

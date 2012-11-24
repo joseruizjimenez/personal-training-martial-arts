@@ -9,3 +9,10 @@ Content\walk_iso.texture.xnb
 Content\starfield.texture.xnb
 Content\new_bg.texture.xnb
 Content\grobold.font.xnb
+Content\continue.texture.xnb
+Content\exit.texture.xnb
+Content\pause.texture.xnb
+Content\replay.texture.xnb
+Content\video_footer.texture.xnb
+Content\video_header.texture.xnb
+Content\waiting.texture.xnb

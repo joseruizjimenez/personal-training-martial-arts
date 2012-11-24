@@ -94,6 +94,9 @@
     <Reference Include="System">
       <Private>False</Private>
     </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml">
       <Private>False</Private>
     </Reference>
@@ -109,6 +112,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ComponentBundle\DrawableBundle\Animation.cs" />
+    <Compile Include="ComponentBundle\DrawableBundle\BorderedText.cs" />
     <Compile Include="ComponentBundle\DrawableBundle\KinectVideo.cs" />
     <Compile Include="ComponentBundle\DrawableBundle\Panel.cs" />
     <Compile Include="ComponentBundle\DrawableBundle\ScrollingImage.cs" />
@@ -117,8 +121,12 @@
     <Compile Include="ComponentBundle\DrawableBundle\Image.cs" />
     <Compile Include="ComponentBundle\LayerBundle\Layer.cs" />
     <Compile Include="ComponentBundle\LayerBundle\LayerCollection.cs" />
+    <Compile Include="ComponentBundle\MovementBundle\Linear.cs" />
+    <Compile Include="ComponentBundle\MovementBundle\Screw.cs" />
     <Compile Include="KernelBundle\BasicsBundle\BasicCollection.cs" />
+    <Compile Include="KernelBundle\BasicsBundle\BasicCore.cs" />
     <Compile Include="KernelBundle\BasicsBundle\BasicDrawable.cs" />
+    <Compile Include="KernelBundle\BasicsBundle\BasicMovement.cs" />
     <Compile Include="KernelBundle\BasicsBundle\BasicRegistry.cs" />
     <Compile Include="KernelBundle\ContentHandler.cs" />
     <Compile Include="KernelBundle\Core.cs" />

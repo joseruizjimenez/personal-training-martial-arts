@@ -20,3 +20,10 @@ C:\Users\Luis\Desktop\XNAGraphics\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\
 C:\Users\Luis\Desktop\XNAGraphics\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\starfield.texture.xnb
 C:\Users\Luis\Desktop\XNAGraphics\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\new_bg.texture.xnb
 C:\Users\Luis\Desktop\XNAGraphics\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\grobold.font.xnb
+C:\Users\Luis\Desktop\XNAGraphics\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\continue.texture.xnb
+C:\Users\Luis\Desktop\XNAGraphics\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\exit.texture.xnb
+C:\Users\Luis\Desktop\XNAGraphics\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\pause.texture.xnb
+C:\Users\Luis\Desktop\XNAGraphics\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\replay.texture.xnb
+C:\Users\Luis\Desktop\XNAGraphics\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\video_footer.texture.xnb
+C:\Users\Luis\Desktop\XNAGraphics\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\video_header.texture.xnb
+C:\Users\Luis\Desktop\XNAGraphics\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\waiting.texture.xnb

@@ -70,7 +70,7 @@ namespace XNAGraphics.ComponentBundle.DrawableBundle
             this.b_color = border_color;
         }
 
-        public override void load(Game game)
+        protected override void onLoad(Game game)
         {
             this.fill_texture = new Texture2D(game.GraphicsDevice, 1, 1);
                 this.fill_texture.SetData(new Color[] { this.color });
@@ -79,10 +79,10 @@ namespace XNAGraphics.ComponentBundle.DrawableBundle
                 this.b_texture.SetData(new Color[] { this.b_color });
         }
 
-        public override void update(GameTime gameTime)
+        protected override void onUpdate(GameTime gameTime)
         { }
 
-        public override void draw(SpriteBatch spriteBatch)
+        protected override void onDraw(SpriteBatch spriteBatch)
         {
             // Dibujamos primero el borde
             spriteBatch.Draw(this.b_texture, new Rectangle(
@@ -93,6 +93,7 @@ namespace XNAGraphics.ComponentBundle.DrawableBundle
 
             // Dibujamos el cuadro
             spriteBatch.Draw(this.fill_texture, new Rectangle((int)this.x, (int)this.y, (int)this.width, (int)this.height), this.color);
+            //spriteBatch.Draw(this.fill_texture, this.getPosition(), null, this.color, this.rotation, new Vector2(), this.scale, SpriteEffects.None, 0f);
         }
     }
 }

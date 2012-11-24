@@ -7,17 +7,28 @@ namespace XNAGraphics.ComponentBundle.LayerBundle
 {
     class LayerCollection : XNAGraphics.KernelBundle.BasicsBundle.BasicCollection
     {
-        public LayerCollection()
-            : base() { }
+        public LayerCollection(string identifier)
+            : base(identifier) { }
 
-        public LayerCollection(int priority)
-            : base(priority) { }
+        public LayerCollection(string identifier, int priority)
+            : base(identifier, priority) { }
 
-        public LayerCollection(params Layer[] layers)
-            : base(layers) { }
+        public LayerCollection(string identifier, params Layer[] layers)
+            : base(identifier, layers) { }
 
-        public LayerCollection(int priority, params Layer[] layers)
-            : base(priority, layers) { }
+        public LayerCollection(string identifier, int priority, params Layer[] layers)
+            : base(identifier, priority, layers) { }
+
+        public Layer get(string identifier)
+        {
+            foreach (Layer l in this.components)
+            {
+                if (l.identifier.ToLowerInvariant() == identifier.ToLowerInvariant())
+                    return l;
+            }
+            
+            return null;
+        }
 
         /// <summary>
         /// Sort layers in collection by layer priority.

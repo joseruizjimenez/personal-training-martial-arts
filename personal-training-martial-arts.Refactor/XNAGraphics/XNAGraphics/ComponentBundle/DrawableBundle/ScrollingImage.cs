@@ -30,10 +30,10 @@ namespace XNAGraphics.ComponentBundle.DrawableBundle
             this.y = this.graphicsDevice.PreferredBackBufferHeight / 2;
         }
 
-        public override void load(Game game)
+        protected override void onLoad(Game game)
         { }
 
-        public override void update(GameTime gameTime)
+        protected override void onUpdate(GameTime gameTime)
         {
             float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
             Texture2D texture = (Texture2D) this.sprite;
@@ -45,7 +45,7 @@ namespace XNAGraphics.ComponentBundle.DrawableBundle
                 //throw new Exception("Oopa GANGNAMSTYLE!!");
         }
 
-        public override void draw(SpriteBatch spriteBatch)
+        protected override void onDraw(SpriteBatch spriteBatch)
         {
             Texture2D texture = (Texture2D)this.sprite;
 

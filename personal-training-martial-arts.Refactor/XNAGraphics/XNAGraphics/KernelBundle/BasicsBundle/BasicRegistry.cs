@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using XNAGraphics.ComponentBundle.LayerBundle;
+
 namespace XNAGraphics.KernelBundle.BasicsBundle
 {
     class BasicRegistry
@@ -12,6 +14,17 @@ namespace XNAGraphics.KernelBundle.BasicsBundle
         public BasicRegistry()
         {
             this.components = new List<BasicCollection>();
+        }
+
+        public LayerCollection get(string identifier)
+        {
+            foreach (LayerCollection lc in this.components)
+            {
+                if (lc.identifier.ToLowerInvariant() == identifier.ToLowerInvariant())
+                    return lc;
+            }
+
+            return null;
         }
 
         /// <summary>

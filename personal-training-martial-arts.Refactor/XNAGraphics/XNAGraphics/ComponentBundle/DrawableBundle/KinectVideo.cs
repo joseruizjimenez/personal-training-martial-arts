@@ -24,15 +24,15 @@ namespace XNAGraphics.ComponentBundle.DrawableBundle
             this.kinect = k;
         }
 
-        public override void load(Game game)
+        protected override void onLoad(Game game)
         { }
 
-        public override void update(GameTime gameTime)
+        protected override void onUpdate(GameTime gameTime)
         {
             this.sprite = (Texture2D)this.kinect.kinectRGBVideo;
         }
 
-        public override void draw(SpriteBatch spriteBatch)
+        protected override void onDraw(SpriteBatch spriteBatch)
         {
             // Simple texture draw with a rectangle 0, 0, 640, 480, texture kinectRGBVideo y color.white
             Texture2D texture = (Texture2D)this.sprite;

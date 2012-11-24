@@ -17,12 +17,14 @@ namespace XNAGraphics.ComponentBundle.LayerBundle
     {
         public BasicDrawable drawable;
         public int priority;
+        public string identifier;
 
-        public Layer(BasicDrawable drawable)
-            : this(drawable, 999) { }
+        public Layer(string identifier, BasicDrawable drawable)
+            : this(identifier, drawable, 999) { }
 
-        public Layer(BasicDrawable drawable, int priority)
+        public Layer(string identifier, BasicDrawable drawable, int priority)
         {
+            this.identifier = identifier;
             this.drawable = drawable;
             this.priority = priority;
         }

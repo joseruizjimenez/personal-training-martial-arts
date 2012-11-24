@@ -13,7 +13,7 @@ using Microsoft.Xna.Framework.Media;
 namespace XNAGraphics.ComponentBundle.DrawableBundle
 {
     class Image : XNAGraphics.KernelBundle.BasicsBundle.BasicDrawable
-    {   
+    {
         public Image(Object texture)
             : this(texture, 0, 0, 1, Color.White) { }
 
@@ -33,13 +33,13 @@ namespace XNAGraphics.ComponentBundle.DrawableBundle
             this.scale = scale;
         }
 
-        public override void load(Game game)
+        protected override void onLoad(Game game)
         { }
 
-        public override void update(GameTime gameTime)
+        protected override void onUpdate(GameTime gameTime)
         { }
 
-        public override void draw(SpriteBatch spriteBatch)
+        protected override void onDraw(SpriteBatch spriteBatch)
         {
             Texture2D texture = (Texture2D) this.sprite;
             //spriteBatch.Draw(texture, new Rectangle(this.x, this.y, texture.Width, texture.Height), this.color);

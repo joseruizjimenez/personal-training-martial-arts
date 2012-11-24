@@ -7,17 +7,19 @@ namespace XNAGraphics.KernelBundle.BasicsBundle
 {
     class BasicCollection
     {
+        public string identifier;
         public List<Object> components;
         public int priority;
 
-        public BasicCollection()
-            : this(0) { }
+        public BasicCollection(string identifier)
+            : this(identifier, 0) { }
 
-        public BasicCollection(params Object[] components)
-            : this(0, components) { }
+        public BasicCollection(string identifier, params Object[] components)
+            : this(identifier, 0, components) { }
 
-        public BasicCollection(int priority, Object[] components)
+        public BasicCollection(string identifier, int priority, Object[] components)
         {
+            this.identifier = identifier;
             this.components = new List<Object>();
             this.priority = priority;
 
@@ -34,6 +36,26 @@ namespace XNAGraphics.KernelBundle.BasicsBundle
         public void add(Object component)
         {
             this.components.Add(component);
+        }
+
+        public void remove(Object component)
+        {
+            this.components.Remove(component);
+        }
+
+        public Boolean hasNext()
+        {
+            //this.components.Add("shit");
+            //throw new Exception(">>> "+ this.components.Count);
+            if (this.components.Count > 1)
+                return true;
+            return false;
+        }
+
+        public Object first()
+        {
+            //throw new Exception("ñaau");
+            return this.components[1];
         }
     }
 }

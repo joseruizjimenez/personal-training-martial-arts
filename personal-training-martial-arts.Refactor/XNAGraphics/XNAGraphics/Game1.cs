@@ -71,6 +71,8 @@ namespace XNAGraphics
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
+            if (!this.core.UnloadContent())
+                throw new Exception("Couldn't load content");
         }
 
         /// <summary>

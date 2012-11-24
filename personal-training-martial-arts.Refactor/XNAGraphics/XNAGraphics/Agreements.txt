@@ -27,3 +27,50 @@
 # Animation #
  - **Layout:** An animation sprite MUST be horizontally splitted.
  
+
+
+
+
+
+ ESTO ES LO QUE HABÍA EN EL LOAD CONTENT:
+ 
+            
+
+            /*LayerCollection juego = new LayerCollection("Juego",
+                new Layer("Background", 
+                    new ScrollingImage(this.content.get("bgnew"), this.game.graphics, 0, 0, Color.White, 30, 1f, 0),
+                    1000
+                ),
+                new Layer("Background panel kinect", 
+                    new Panel(new Rectangle(30, 30, 740, this.game.GraphicsDevice.Viewport.Height - 60), Color.Black * 0.9f, 2, Color.Gray * 0.5f)
+                ),
+                new Layer("Background panel derecha", 
+                    new Panel(new Rectangle(800, 30, 610, this.game.GraphicsDevice.Viewport.Height - 60), Color.Black * 0.9f, 2, Color.Gray * 0.5f)
+                ),
+                new Layer("Panel Kinect", 
+                    new KinectVideo(80, 80, this.kinect)
+                    //new Image(this.content.get("menu"), 80, 80)
+                ),
+                new Layer("Panel de postura actual", 
+                    new Panel(new Rectangle(850, 80, 510, 480), Color.CornflowerBlue * 0.5f)
+                ),
+                new Layer("Puntos totales", 
+                    new BorderedText(this.content.get("grobold"), "34201", 830, 800, Color.Red, 4f, Color.Black)
+                )
+            ); r.add(juego);*/
+
+            //this.r.get("juego").get("puntos totales").drawable.addMovement(new Linear(300, 300, 100, 2f));
+            //this.r.get("juego").get("puntos totales").drawable.addMovement(new Linear(300, 300, 100, 1f));
+            this.r.get("juego").get("puntos totales").drawable.addMovement(new Screw(1.05f, 0f, 30, true));
+            this.r.get("juego").get("puntos totales").drawable.addMovement(new Screw(1f, 0f, 30));
+            this.r.get("juego").get("puntos totales").drawable.addMovement(new Screw(1.05f, 0f, 30));
+            this.r.get("juego").get("puntos totales").drawable.addMovement(new Screw(1f, 0f, 30));
+            this.r.get("juego").get("puntos totales").drawable.addMovement(new Screw(1.05f, 0f, 30));
+            this.r.get("juego").get("puntos totales").drawable.addMovement(new Screw(1f, 0f, 30));
+            this.r.get("juego").get("puntos totales").drawable.addMovement(new Screw(1.05f, 0f, 30));
+            this.r.get("juego").get("puntos totales").drawable.addMovement(new Screw(1f, 0f, 30));
+            //this.r.get("juego").get("panel kinect").drawable.addMovement(new Screw(2f, 05f, 300));
+            this.r.get("juego").get("panel kinect").drawable.addMovement(new Linear(200, 200, 200, 2f));
+            this.r.get("juego").get("panel kinect").drawable.addMovement(new Linear(800, 500, 200));
+            this.r.get("juego").get("panel kinect").drawable.addMovement(new Linear(200, 500, 200));
+            this.r.get("juego").get("panel kinect").drawable.addMovement(new Linear(80, 80, 100));

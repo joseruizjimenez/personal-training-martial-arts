@@ -73,10 +73,10 @@ namespace XNAGraphics.ComponentBundle.DrawableBundle
             this.paused = true;
         }
 
-        public override void load(Game game)
+        protected override void onLoad(Game game)
         { }
 
-        public override void update(GameTime gameTime)
+        protected override void onUpdate(GameTime gameTime)
         {
             float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
@@ -96,7 +96,7 @@ namespace XNAGraphics.ComponentBundle.DrawableBundle
             }
         }
 
-        public override void draw(SpriteBatch spriteBatch)
+        protected override void onDraw(SpriteBatch spriteBatch)
         {
             Texture2D texture = (Texture2D)this.sprite;
             int frame_width = texture.Width / this.frame_count;

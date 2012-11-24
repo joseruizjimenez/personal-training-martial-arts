@@ -53,7 +53,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Luis\Desktop\XNAGraphics\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\background.texture.xnb</Output>
-      <Time>2012-11-12T02:26:13.3173178+01:00</Time>
+      <Time>2012-11-23T13:11:23.9666692+01:00</Time>
     </Item>
     <Item>
       <Source>mario_running.texture.png</Source>
@@ -102,6 +102,69 @@
       <Options>None</Options>
       <Output>C:\Users\Luis\Desktop\XNAGraphics\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\grobold.font.xnb</Output>
       <Time>2012-11-15T00:48:54.9844666+01:00</Time>
+    </Item>
+    <Item>
+      <Source>continue.texture.png</Source>
+      <Name>continue.texture</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Luis\Desktop\XNAGraphics\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\continue.texture.xnb</Output>
+      <Time>2012-11-07T16:03:27.1869264+01:00</Time>
+    </Item>
+    <Item>
+      <Source>exit.texture.png</Source>
+      <Name>exit.texture</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Luis\Desktop\XNAGraphics\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\exit.texture.xnb</Output>
+      <Time>2012-11-07T16:03:27.1879258+01:00</Time>
+    </Item>
+    <Item>
+      <Source>pause.texture.png</Source>
+      <Name>pause.texture</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Luis\Desktop\XNAGraphics\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\pause.texture.xnb</Output>
+      <Time>2012-11-07T16:03:27.1989277+01:00</Time>
+    </Item>
+    <Item>
+      <Source>replay.texture.png</Source>
+      <Name>replay.texture</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Luis\Desktop\XNAGraphics\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\replay.texture.xnb</Output>
+      <Time>2012-11-07T16:03:27.2039288+01:00</Time>
+    </Item>
+    <Item>
+      <Source>video_footer.texture.png</Source>
+      <Name>video_footer.texture</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Luis\Desktop\XNAGraphics\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\video_footer.texture.xnb</Output>
+      <Time>2012-11-23T20:41:29.3401566+01:00</Time>
+    </Item>
+    <Item>
+      <Source>video_header.texture.png</Source>
+      <Name>video_header.texture</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Luis\Desktop\XNAGraphics\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\video_header.texture.xnb</Output>
+      <Time>2012-11-23T20:41:28.7832957+01:00</Time>
+    </Item>
+    <Item>
+      <Source>waiting.texture.png</Source>
+      <Name>waiting.texture</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Luis\Desktop\XNAGraphics\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\waiting.texture.xnb</Output>
+      <Time>2012-11-23T20:20:47.197537+01:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

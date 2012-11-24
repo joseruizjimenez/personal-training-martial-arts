@@ -35,34 +35,27 @@ namespace XNAGraphics.KernelBundle
             return true;
         }
 
-        public Boolean update(GameTime gameTime, Registry layer_registry)
+        public Boolean update(GameTime gameTime, LayerCollection actual_screen)
         {
-            foreach (LayerCollection layer_collection in layer_registry.components)
-            {
-                layer_collection.sortByPriority();
+            actual_screen.sortByPriority();
 
-                foreach (Layer layer in layer_collection.components)
-                {
-                    layer.drawable.update(gameTime);
-                }
+            foreach (Layer layer in actual_screen.components)
+            {
+                layer.drawable.update(gameTime);
             }
 
             return true;
         }
 
-        public Boolean draw(Registry layer_registry)
+        public Boolean draw(LayerCollection actual_screen)
         {
-            layer_registry.sortByPriority();
             spriteBatch.Begin();
-            
-            foreach (LayerCollection layer_collection in layer_registry.components)
-            {
-                layer_collection.sortByPriority();
 
-                foreach (Layer layer in layer_collection.components)
-                {
-                    layer.drawable.draw(spriteBatch);
-                }
+            actual_screen.sortByPriority();
+
+            foreach (Layer layer in actual_screen.components)
+            {
+                layer.drawable.draw(spriteBatch);
             }
 
             spriteBatch.End();

@@ -22,7 +22,7 @@ namespace XNAGraphics.KinectBundle
 
         public Kinect()
         {
-            this.elevationAngle = -3;
+            this.elevationAngle = 2;
         }
 
         public void initialize()
@@ -40,8 +40,11 @@ namespace XNAGraphics.KinectBundle
 
         public void unload()
         {
-            this.kinectSensor.Stop();
-            this.kinectSensor.Dispose();
+            if (this.kinectSensor != null)
+            {
+                this.kinectSensor.Stop();
+                this.kinectSensor.Dispose();
+            }
         }
 
         /// <summary>
@@ -198,8 +201,8 @@ namespace XNAGraphics.KinectBundle
                     {
                         for (int x = 0; x < colorImageFrame.Width; x++, index += 4)
                         {
-                            color[y * colorImageFrame.Width + x] =
-                                new Color(pixelsFromFrame[index + 2], pixelsFromFrame[index + 1], pixelsFromFrame[index + 0]);
+                                color[y * colorImageFrame.Width + x] = 
+                                    new Color(pixelsFromFrame[index + 2], pixelsFromFrame[index + 1], pixelsFromFrame[index + 0]);
                         }
                     }
 
