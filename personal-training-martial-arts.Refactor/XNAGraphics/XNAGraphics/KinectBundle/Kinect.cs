@@ -15,7 +15,7 @@ namespace XNAGraphics.KinectBundle
 {
     class Kinect
     {
-        KinectSensor kinectSensor;
+        public KinectSensor kinectSensor;
         public Texture2D kinectRGBVideo;
         public Skeleton skeleton;
         int elevationAngle;

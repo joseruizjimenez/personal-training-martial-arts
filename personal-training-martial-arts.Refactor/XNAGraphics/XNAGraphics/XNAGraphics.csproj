@@ -132,6 +132,9 @@
     <Compile Include="KernelBundle\Core.cs" />
     <Compile Include="KernelBundle\Screen.cs" />
     <Compile Include="KinectBundle\Kinect.cs" />
+    <Compile Include="KinectBundle\PostureBundle\Posture.cs" />
+    <Compile Include="KinectBundle\PostureBundle\PostureInformation.cs" />
+    <Compile Include="KinectBundle\PostureBundle\PostureLibrary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
