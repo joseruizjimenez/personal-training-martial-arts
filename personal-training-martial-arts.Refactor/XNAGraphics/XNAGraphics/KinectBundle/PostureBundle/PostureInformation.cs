@@ -10,16 +10,16 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Kinect;
 
-namespace XNAGraphics.ComponentBundle.PostureBundle
+namespace XNAGraphics.KinectBundle.PostureBundle
 {
-    public class PostureInformation : PostureBundle, IEquatable<PostureInformation>
+    public class PostureInformation : Posture, IEquatable<PostureInformation>
     {
         public string name { get; set; }
         public string description { get; set; }
         public int difficulty { get; set; }
 
         public PostureInformation(string name, string description, int difficulty, Skeleton skeleton)
-            : this(name, description, difficulty, PostureBundle.castSkeletonToJoints(skeleton)){}
+            : this(name, description, difficulty, Posture.castSkeletonToJoints(skeleton)){}
 
         public PostureInformation(string name, string description, int difficulty, Vector3[] joints)
         {

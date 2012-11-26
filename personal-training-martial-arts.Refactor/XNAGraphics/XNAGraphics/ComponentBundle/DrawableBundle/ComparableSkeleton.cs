@@ -16,23 +16,29 @@ using XNAGraphics.KinectBundle.PostureBundle;
 
 namespace XNAGraphics.ComponentBundle.DrawableBundle
 {
-    class Skeleton : XNAGraphics.KernelBundle.BasicsBundle.BasicDrawable
+    class ComparableSkeleton : XNAGraphics.KernelBundle.BasicsBundle.BasicDrawable
     {
+        private double[] accuracy;
         private KinectSensor sensor;
         private KinectSkeleton skeleton = null;
-        public Posture posture;
+        public Posture postureToCompare = null;
+        private Kinect kinect;
+        private Posture posture;
         // Textura del hueso
         private Texture2D boneTexture;
         // Textura de la articulacion
+        private Texture2D jointTexture;
         private CoordinateMapper mapper;
    
-        public Skeleton(int x, int y, Kinect kinect, Posture posture)
+        public ComparableSkeleton(int x, int y, Kinect kinect, Object jointTexture)
             : base(x, y)
         {
-            this.posture = posture;
             this.sensor = kinect.kinectSensor;
+            this.kinect = kinect;
+            this.accuracy = new double[20];
             if(this.sensor != null)
                 this.mapper = new CoordinateMapper(this.sensor);
+            this.jointTexture = (Texture2D)jointTexture;
         }
 
         protected override void onLoad(Game game)
@@ -43,11 +49,20 @@ namespace XNAGraphics.ComponentBundle.DrawableBundle
 
         protected override void onUpdate(GameTime gameTime)
         {
+            this.skeleton = this.kinect.skeleton;
             if (this.skeleton != null)
             {
+
                 if (this.posture != null) this.posture.joints = Posture.castSkeletonToJoints(this.skeleton);
                 else this.posture = new Posture(this.skeleton);
             }
+            // IMPORTANT:
+            // FIX: ARREGLAR ESTO PARA QUE CALCULE LOS ERRORES Y LA DIFICULTAD LA DE DESDE UNA CAPA MAS ARRIBA...
+            if (postureToCompare != null && this.posture != null)
+                this.posture.compareTo(this.postureToCompare, ref accuracy, 0.07f, 0.058f);
+            else
+                if (this.kinect.skeleton != null)
+                    accuracy = new double[20] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         }
 
 
@@ -80,7 +95,7 @@ namespace XNAGraphics.ComponentBundle.DrawableBundle
             this.DrawBone(this.posture.joints, JointType.AnkleRight, JointType.FootRight, spriteBatch);
 
             // PINTA ARTICULACIONES
-            /*Vector2 jointOrigin = new Vector2(jointTexture.Width / 2, jointTexture.Height / 2);
+            Vector2 jointOrigin = new Vector2(jointTexture.Width / 2, jointTexture.Height / 2);
             for ( int i = 0; i < this.posture.joints.Length; i++)
             {
                 Vector3 joint = this.posture.joints[i];
@@ -100,7 +115,7 @@ namespace XNAGraphics.ComponentBundle.DrawableBundle
                     1.0f,
                     SpriteEffects.None,
                     0.0f);
-            }*/
+            }
         }
 
         private Vector2 SkeletonToColorMap(Vector3 joint)
@@ -133,7 +148,7 @@ namespace XNAGraphics.ComponentBundle.DrawableBundle
             Vector2 scale = new Vector2(1.0f, diff.Length() / this.boneTexture.Height);
 
             float angle = (float)Math.Atan2(diff.Y, diff.X) - MathHelper.PiOver2;
-            Color color = Color.Red;
+            Color color = Color.LightGreen;
 
             spriteBatch.Draw(this.boneTexture, start, null, color, angle, new Vector2(0.5f, 0.0f),
                 scale, SpriteEffects.None, 1.0f);

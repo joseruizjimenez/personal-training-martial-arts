@@ -7,7 +7,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Luis\Desktop\XNAGraphics\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\menu.texture.xnb</Output>
+      <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\menu.texture.xnb</Output>
       <Time>2012-11-07T16:03:27.1899276+01:00</Time>
     </Item>
     <Item>
@@ -16,7 +16,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Luis\Desktop\XNAGraphics\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\next.texture.xnb</Output>
+      <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\next.texture.xnb</Output>
       <Time>2012-11-07T16:03:27.1909279+01:00</Time>
     </Item>
     <Item>
@@ -25,17 +25,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Luis\Desktop\XNAGraphics\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\play.texture.xnb</Output>
+      <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\play.texture.xnb</Output>
       <Time>2012-11-07T16:03:27.2019278+01:00</Time>
-    </Item>
-    <Item>
-      <Source>arial.font.spritefont</Source>
-      <Name>arial.font</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Luis\Desktop\XNAGraphics\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\arial.font.xnb</Output>
-      <Time>2012-11-08T17:21:31.2056551+01:00</Time>
     </Item>
     <Item>
       <Source>ship.texture.png</Source>
@@ -43,7 +34,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Luis\Desktop\XNAGraphics\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\ship.texture.xnb</Output>
+      <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\ship.texture.xnb</Output>
       <Time>2012-11-12T02:06:06.6120464+01:00</Time>
     </Item>
     <Item>
@@ -52,7 +43,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Luis\Desktop\XNAGraphics\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\background.texture.xnb</Output>
+      <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\background.texture.xnb</Output>
       <Time>2012-11-23T13:11:23.9666692+01:00</Time>
     </Item>
     <Item>
@@ -61,7 +52,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Luis\Desktop\XNAGraphics\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\mario_running.texture.xnb</Output>
+      <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\mario_running.texture.xnb</Output>
       <Time>2012-11-12T02:44:02.0893555+01:00</Time>
     </Item>
     <Item>
@@ -73,7 +64,7 @@
         <Data Key="ColorKeyColor">255, 255, 255, 255</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>C:\Users\Luis\Desktop\XNAGraphics\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\walk_iso.texture.xnb</Output>
+      <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\walk_iso.texture.xnb</Output>
       <Time>2012-11-12T02:49:05.3914946+01:00</Time>
     </Item>
     <Item>
@@ -82,7 +73,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Luis\Desktop\XNAGraphics\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\starfield.texture.xnb</Output>
+      <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\starfield.texture.xnb</Output>
       <Time>2012-11-12T08:01:47.8509557+01:00</Time>
     </Item>
     <Item>
@@ -91,17 +82,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Luis\Desktop\XNAGraphics\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\new_bg.texture.xnb</Output>
+      <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\new_bg.texture.xnb</Output>
       <Time>2012-11-13T00:44:39.7971449+01:00</Time>
-    </Item>
-    <Item>
-      <Source>grobold.font.spritefont</Source>
-      <Name>grobold.font</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Luis\Desktop\XNAGraphics\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\grobold.font.xnb</Output>
-      <Time>2012-11-15T00:48:54.9844666+01:00</Time>
     </Item>
     <Item>
       <Source>continue.texture.png</Source>
@@ -109,7 +91,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Luis\Desktop\XNAGraphics\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\continue.texture.xnb</Output>
+      <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\continue.texture.xnb</Output>
       <Time>2012-11-07T16:03:27.1869264+01:00</Time>
     </Item>
     <Item>
@@ -118,7 +100,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Luis\Desktop\XNAGraphics\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\exit.texture.xnb</Output>
+      <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\exit.texture.xnb</Output>
       <Time>2012-11-07T16:03:27.1879258+01:00</Time>
     </Item>
     <Item>
@@ -127,7 +109,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Luis\Desktop\XNAGraphics\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\pause.texture.xnb</Output>
+      <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\pause.texture.xnb</Output>
       <Time>2012-11-07T16:03:27.1989277+01:00</Time>
     </Item>
     <Item>
@@ -136,7 +118,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Luis\Desktop\XNAGraphics\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\replay.texture.xnb</Output>
+      <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\replay.texture.xnb</Output>
       <Time>2012-11-07T16:03:27.2039288+01:00</Time>
     </Item>
     <Item>
@@ -145,7 +127,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Luis\Desktop\XNAGraphics\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\video_footer.texture.xnb</Output>
+      <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\video_footer.texture.xnb</Output>
       <Time>2012-11-23T20:41:29.3401566+01:00</Time>
     </Item>
     <Item>
@@ -154,7 +136,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Luis\Desktop\XNAGraphics\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\video_header.texture.xnb</Output>
+      <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\video_header.texture.xnb</Output>
       <Time>2012-11-23T20:41:28.7832957+01:00</Time>
     </Item>
     <Item>
@@ -163,8 +145,44 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Luis\Desktop\XNAGraphics\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\waiting.texture.xnb</Output>
+      <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\waiting.texture.xnb</Output>
       <Time>2012-11-23T20:20:47.197537+01:00</Time>
+    </Item>
+    <Item>
+      <Source>arial.font.spritefont</Source>
+      <Name>arial.font</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\arial.font.xnb</Output>
+      <Time>2012-11-08T17:21:31.2056551+01:00</Time>
+    </Item>
+    <Item>
+      <Source>grobold.font.spritefont</Source>
+      <Name>grobold.font</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\grobold.font.xnb</Output>
+      <Time>2012-11-26T16:33:40.9160507+01:00</Time>
+    </Item>
+    <Item>
+      <Source>joint.texture.png</Source>
+      <Name>joint.texture</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\joint.texture.xnb</Output>
+      <Time>2012-11-24T14:02:13.2347176+01:00</Time>
+    </Item>
+    <Item>
+      <Source>debug.font.spritefont</Source>
+      <Name>debug.font</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\debug.font.xnb</Output>
+      <Time>2012-11-26T15:27:34.0328367+01:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -172,10 +190,10 @@
       <TargetProfile>HiDef</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\Luis\Desktop\XNAGraphics\XNAGraphics\XNAGraphicsContent\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\Luis\Desktop\XNAGraphics\XNAGraphics\XNAGraphics\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\Luis\Desktop\XNAGraphics\XNAGraphics\XNAGraphicsContent\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\Luis\Desktop\XNAGraphics\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphicsContent\</RootDirectory>
+      <LoggerRootDirectory>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphicsContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>

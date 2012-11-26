@@ -113,9 +113,12 @@
   <ItemGroup>
     <Compile Include="ComponentBundle\DrawableBundle\Animation.cs" />
     <Compile Include="ComponentBundle\DrawableBundle\BorderedText.cs" />
+    <Compile Include="ComponentBundle\DrawableBundle\Button.cs" />
+    <Compile Include="ComponentBundle\DrawableBundle\InfoGraph.cs" />
     <Compile Include="ComponentBundle\DrawableBundle\KinectVideo.cs" />
     <Compile Include="ComponentBundle\DrawableBundle\Panel.cs" />
     <Compile Include="ComponentBundle\DrawableBundle\ScrollingImage.cs" />
+    <Compile Include="ComponentBundle\DrawableBundle\ComparableSkeleton.cs" />
     <Compile Include="ComponentBundle\DrawableBundle\Skeleton.cs" />
     <Compile Include="ComponentBundle\DrawableBundle\Text.cs" />
     <Compile Include="ComponentBundle\DrawableBundle\Image.cs" />

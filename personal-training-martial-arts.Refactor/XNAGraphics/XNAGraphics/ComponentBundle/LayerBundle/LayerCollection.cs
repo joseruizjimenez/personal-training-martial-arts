@@ -27,7 +27,7 @@ namespace XNAGraphics.ComponentBundle.LayerBundle
                     return l;
             }
             
-            return null;
+            throw new Exception("Layer \"" + identifier + "\" do not exist!");
         }
 
         /// <summary>

@@ -11,11 +11,11 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Kinect;
 using System.Xml;
 
-namespace XNAGraphics.ComponentBundle.PostureBundle
+namespace XNAGraphics.KinectBundle.PostureBundle
 {
     public class Posture
     {
-        public Vector3[] joints {get; set;}
+        public Vector3[] joints;
 
         public Posture(){}
 
@@ -25,7 +25,7 @@ namespace XNAGraphics.ComponentBundle.PostureBundle
         {
             this.joints = joints;
         }
-
+        
         public static Vector3[] castSkeletonToJoints(Skeleton s)
         {
             Vector3[] joints = new Vector3[20];

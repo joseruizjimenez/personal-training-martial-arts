@@ -11,13 +11,13 @@ with.
     <!--
     Modify this string to change the font that will be imported.
     -->
-    <FontName>GROBOLD</FontName>
+    <FontName>hachicro</FontName>
 
     <!--
     Size is a float value, measured in points. Modify this value to change
     the size of the font.
     -->
-    <Size>47</Size>
+    <Size>8</Size>
 
     <!--
     Spacing is a float value, measured in pixels. Modify this value to change
@@ -54,14 +54,6 @@ with.
       <CharacterRegion>
         <Start>&#32;</Start>
         <End>&#126;</End>
-      </CharacterRegion>
-      <CharacterRegion>
-        <Start>&#130;</Start>
-        <End>&#130;</End>
-      </CharacterRegion>
-      <CharacterRegion>
-        <Start>&#143;</Start>
-        <End>&#250;</End>
       </CharacterRegion>
     </CharacterRegions>
   </Asset>

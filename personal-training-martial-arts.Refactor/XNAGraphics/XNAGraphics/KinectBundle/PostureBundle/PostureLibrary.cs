@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Kinect;
 using System.Xml;
 
-namespace XNAGraphics.ComponentBundle.PostureBundle
+namespace XNAGraphics.KinectBundle.PostureBundle
 {
     public static class PostureLibrary
     {
