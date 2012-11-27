@@ -21,7 +21,7 @@ using XNAGraphics.KinectBundle;
 
 namespace XNAGraphics.KernelBundle
 {
-    class Core : XNAGraphics.KernelBundle.BasicsBundle.BasicCore
+    public class Core : XNAGraphics.KernelBundle.BasicsBundle.BasicCore
     {
         // ESTADOS DEL JUEGO Y PANTALLAS
         private enum screenState
@@ -84,10 +84,6 @@ namespace XNAGraphics.KernelBundle
             this.drawPostureTimeOut = Stopwatch.StartNew();
             this.holdPostureTimeOut = Stopwatch.StartNew();
             this.scoreTimeOut = Stopwatch.StartNew();
-
-
-
-
 
             this.kinect = new Kinect();
 
@@ -396,11 +392,11 @@ namespace XNAGraphics.KernelBundle
                             {
                                 if (this.kinect.skeleton != null)
                                 {
-                                    BorderedText ti = (BorderedText)this.r.get("Detectar postura").get("Texto central").drawable;
-                                    ti.text = "";
-
                                     Posture p = new Posture(this.kinect.skeleton);
                                     score = p.compareTo(gamePostures[gamePosturesIndex], ref jointScore, averageTolerance, puntualTolerance);
+                                    BorderedText ti = (BorderedText)this.r.get("Detectar postura").get("Texto central").drawable;
+                                    ti.text = score.ToString();
+
                                     if (score < 1.0)
                                     {
                                         this.holdPostureTimeOut = Stopwatch.StartNew();
@@ -602,6 +598,18 @@ namespace XNAGraphics.KernelBundle
                 postures[t] = postures[r];
                 postures[r] = tmp;
             }
+        }
+
+        public static String getPostureTextFeedback(float score)
+        {
+            if (score >= 2)
+                return "¡Situate en la pantalla!";
+            else if (score > 1.5)
+                return "Vas fatal...";
+            else if (score > 1)
+                return "¡Casi la tienes!";
+            else
+                return "¡Eres un maquina!";
         }
     }
 }

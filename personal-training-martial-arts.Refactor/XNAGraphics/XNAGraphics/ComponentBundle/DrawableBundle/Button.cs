@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace XNAGraphics.ComponentBundle.DrawableBundle
 {
-    class Button : XNAGraphics.KernelBundle.BasicsBundle.BasicDrawable
+    public class Button : XNAGraphics.KernelBundle.BasicsBundle.BasicDrawable
     {
         public enum BState
         {

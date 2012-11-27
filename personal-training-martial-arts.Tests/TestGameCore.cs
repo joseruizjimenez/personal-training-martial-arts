@@ -7,6 +7,9 @@ using NUnit.Framework;
 using NMock2;
 using Microsoft.Kinect;
 using personal_training_martial_arts.Core;
+using XNACore = XNAGraphics.KernelBundle.Core;
+using XNAGame = XNAGraphics.Game1;
+using XNAGraphics.ComponentBundle.DrawableBundle;
 
 namespace personal_training_martial_arts.Test
 {
@@ -14,11 +17,13 @@ namespace personal_training_martial_arts.Test
     public class TestGameCore
     {
         GameCore gameCore;
+        XNACore xnaCore;
 
         [SetUp]
         public void TestInit()
         {
-            gameCore = new GameCore(null);         
+            gameCore = new GameCore(null);
+            xnaCore = new XNACore(new XNAGame());
         }
 
         [Test]
@@ -41,6 +46,16 @@ namespace personal_training_martial_arts.Test
         public void TestUpdate_StartAtInit()
         {
             Assert.IsTrue(gameCore.update());
+        }
+
+        [Test]
+        public void TestPostureTextFeedback_NoSkeleton()
+        {
+            float out_of_range_score = 2;
+            String actual_feedback = XNACore.getPostureTextFeedback(out_of_range_score);
+
+            String expected_feedback = "¡Situate en la pantalla!";
+            Assert.AreEqual(expected_feedback, actual_feedback);
         }
 
     }

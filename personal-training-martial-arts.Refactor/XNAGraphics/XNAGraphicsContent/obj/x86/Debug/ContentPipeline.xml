@@ -8,7 +8,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\video_footer.texture.xnb</Output>
-      <Time>2012-11-23T20:41:29.3401566+01:00</Time>
+      <Time>2012-11-27T15:23:57.361472+01:00</Time>
     </Item>
     <Item>
       <Source>video_header.texture.png</Source>
@@ -17,7 +17,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\video_header.texture.xnb</Output>
-      <Time>2012-11-23T20:41:28.7832957+01:00</Time>
+      <Time>2012-11-27T15:23:57.361472+01:00</Time>
     </Item>
     <Item>
       <Source>waiting.texture.png</Source>
@@ -26,7 +26,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\waiting.texture.xnb</Output>
-      <Time>2012-11-23T20:20:47.197537+01:00</Time>
+      <Time>2012-11-27T15:23:57.361472+01:00</Time>
     </Item>
     <Item>
       <Source>arial.font.spritefont</Source>
@@ -35,7 +35,7 @@
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
       <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\arial.font.xnb</Output>
-      <Time>2012-11-27T01:05:02.7719866+01:00</Time>
+      <Time>2012-11-27T15:23:57.2990713+01:00</Time>
     </Item>
     <Item>
       <Source>grobold.font.spritefont</Source>
@@ -44,7 +44,7 @@
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
       <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\grobold.font.xnb</Output>
-      <Time>2012-11-26T17:09:46.6739428+01:00</Time>
+      <Time>2012-11-27T15:23:57.3302714+01:00</Time>
     </Item>
     <Item>
       <Source>joint.texture.png</Source>
@@ -53,7 +53,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\joint.texture.xnb</Output>
-      <Time>2012-11-24T14:02:13.2347176+01:00</Time>
+      <Time>2012-11-27T15:23:57.3302714+01:00</Time>
     </Item>
     <Item>
       <Source>debug.font.spritefont</Source>
@@ -62,7 +62,7 @@
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
       <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\debug.font.xnb</Output>
-      <Time>2012-11-26T17:03:25.764936+01:00</Time>
+      <Time>2012-11-27T15:23:57.3302714+01:00</Time>
     </Item>
     <Item>
       <Source>btn.continue.texture.png</Source>
@@ -71,7 +71,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\btn.continue.texture.xnb</Output>
-      <Time>2012-11-27T00:24:27.5147752+01:00</Time>
+      <Time>2012-11-27T15:23:57.3146541+01:00</Time>
     </Item>
     <Item>
       <Source>background_xbox.texture.png</Source>
@@ -80,7 +80,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\background_xbox.texture.xnb</Output>
-      <Time>2012-11-27T00:08:39.2780035+01:00</Time>
+      <Time>2012-11-27T15:23:57.3146541+01:00</Time>
     </Item>
     <Item>
       <Source>background_new.texture.png</Source>
@@ -89,7 +89,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\background_new.texture.xnb</Output>
-      <Time>2012-11-13T00:44:39.7971449+01:00</Time>
+      <Time>2012-11-27T15:23:57.2990713+01:00</Time>
     </Item>
     <Item>
       <Source>btn.exit.texture.png</Source>
@@ -98,7 +98,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\btn.exit.texture.xnb</Output>
-      <Time>2012-11-27T00:10:18.997765+01:00</Time>
+      <Time>2012-11-27T15:23:57.3146541+01:00</Time>
     </Item>
     <Item>
       <Source>btn.exit_to_menu.texture.png</Source>
@@ -107,7 +107,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\btn.exit_to_menu.texture.xnb</Output>
-      <Time>2012-11-27T00:22:02.0882901+01:00</Time>
+      <Time>2012-11-27T15:23:57.3302714+01:00</Time>
     </Item>
     <Item>
       <Source>btn.pause.texture.png</Source>
@@ -116,7 +116,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\btn.pause.texture.xnb</Output>
-      <Time>2012-11-27T00:25:11.6054387+01:00</Time>
+      <Time>2012-11-27T15:23:57.3302714+01:00</Time>
     </Item>
     <Item>
       <Source>btn.play.texture.png</Source>
@@ -125,7 +125,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\btn.play.texture.xnb</Output>
-      <Time>2012-11-27T00:11:02.2533973+01:00</Time>
+      <Time>2012-11-27T15:23:57.3302714+01:00</Time>
     </Item>
     <Item>
       <Source>btn.replay_postures.texture.png</Source>
@@ -134,7 +134,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\btn.replay_postures.texture.xnb</Output>
-      <Time>2012-11-27T00:23:22.8403364+01:00</Time>
+      <Time>2012-11-27T15:23:57.3302714+01:00</Time>
     </Item>
     <Item>
       <Source>title_martial_arts.texture.png</Source>
@@ -143,7 +143,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\title_martial_arts.texture.xnb</Output>
-      <Time>2012-11-27T00:39:05.269889+01:00</Time>
+      <Time>2012-11-27T15:23:57.3458551+01:00</Time>
     </Item>
     <Item>
       <Source>title_personal_training.texture.png</Source>
@@ -152,7 +152,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\title_personal_training.texture.xnb</Output>
-      <Time>2012-11-27T00:38:36.4268011+01:00</Time>
+      <Time>2012-11-27T15:23:57.3458551+01:00</Time>
     </Item>
     <Item>
       <Source>btn.next.texture.png</Source>
@@ -161,7 +161,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\btn.next.texture.xnb</Output>
-      <Time>2012-11-26T23:51:47.9192082+01:00</Time>
+      <Time>2012-11-27T15:23:57.3302714+01:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace XNAGraphics.ComponentBundle.DrawableBundle
 {
-    class BorderedText : XNAGraphics.KernelBundle.BasicsBundle.BasicDrawable
+    public class BorderedText : XNAGraphics.KernelBundle.BasicsBundle.BasicDrawable
     {
         public string text;
         public float border;

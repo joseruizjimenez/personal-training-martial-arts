@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace XNAGraphics.KernelBundle.BasicsBundle
 {
-    abstract class BasicDrawable
+    public abstract class BasicDrawable
     {
         public Object sprite;
         public Color color;

@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace XNAGraphics.KernelBundle.BasicsBundle
 {
-    abstract class BasicMovement
+    public abstract class BasicMovement
     {
         public BasicDrawable drawable;
         public int speed;

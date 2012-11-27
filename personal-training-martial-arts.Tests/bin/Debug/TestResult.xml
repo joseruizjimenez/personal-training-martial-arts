@@ -1,36 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!--This file represents the results of running a test suite-->
-<test-results name="C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\personal-training-martial-arts.Tests.exe" total="8" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2012-11-06" time="15:19:53">
-  <environment nunit-version="2.6.1.12217" clr-version="2.0.50727.5456" os-version="Microsoft Windows NT 6.1.7601 Service Pack 1" platform="Win32NT" cwd="C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug" machine-name="PABLO-PC" user="Pablo" user-domain="Pablo-PC" />
-  <culture-info current-culture="es-ES" current-uiculture="es-ES" />
-  <test-suite type="Assembly" name="C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\personal-training-martial-arts.Tests.exe" executed="True" result="Success" success="True" time="1.359" asserts="0">
+<test-results name="C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\personal-training-martial-arts.Tests.exe" total="1" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2012-11-27" time="19:16:23">
+  <environment nunit-version="2.6.2.12296" clr-version="2.0.50727.6400" os-version="Microsoft Windows NT 6.2.9200.0" platform="Win32NT" cwd="C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug" machine-name="BLACKBONE" user="Luis" user-domain="BlackBone" />
+  <culture-info current-culture="es-ES" current-uiculture="en-US" />
+  <test-suite type="Assembly" name="C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\personal-training-martial-arts.Tests.exe" executed="True" result="Success" success="True" time="1.126" asserts="0">
     <results>
-      <test-suite type="Namespace" name="personal_training_martial_arts" executed="True" result="Success" success="True" time="1.351" asserts="0">
+      <test-suite type="Namespace" name="personal_training_martial_arts" executed="True" result="Success" success="True" time="1.102" asserts="0">
         <results>
-          <test-suite type="Namespace" name="Test" executed="True" result="Success" success="True" time="0.315" asserts="0">
+          <test-suite type="Namespace" name="Test" executed="True" result="Success" success="True" time="1.102" asserts="0">
             <results>
-              <test-suite type="TestFixture" name="TestGameCore" executed="True" result="Success" success="True" time="0.150" asserts="0">
+              <test-suite type="TestFixture" name="TestGameCore" executed="True" result="Success" success="True" time="1.099" asserts="0">
                 <results>
-                  <test-case name="personal_training_martial_arts.Test.TestGameCore.TestIsTimedOut_False" executed="True" result="Success" success="True" time="0.125" asserts="1" />
-                  <test-case name="personal_training_martial_arts.Test.TestGameCore.TestIsTimedOut_True" executed="True" result="Success" success="True" time="0.001" asserts="1" />
-                  <test-case name="personal_training_martial_arts.Test.TestGameCore.TestUpdate_StartAtInit" executed="True" result="Success" success="True" time="0.002" asserts="1" />
-                </results>
-              </test-suite>
-              <test-suite type="TestFixture" name="TestPosture" executed="True" result="Success" success="True" time="0.158" asserts="0">
-                <results>
-                  <test-case name="personal_training_martial_arts.Test.TestPosture.TestCastSkeletonToJoins" executed="True" result="Success" success="True" time="0.110" asserts="1" />
-                  <test-case name="personal_training_martial_arts.Test.TestPosture.TestPostureCompareTo_ClosePosture" executed="True" result="Success" success="True" time="0.010" asserts="1" />
-                  <test-case name="personal_training_martial_arts.Test.TestPosture.TestPostureCompareTo_DiffPosture" executed="True" result="Success" success="True" time="0.005" asserts="1" />
-                  <test-case name="personal_training_martial_arts.Test.TestPosture.TestPostureCompareTo_SamePosture" executed="True" result="Success" success="True" time="0.012" asserts="1" />
-                </results>
-              </test-suite>
-            </results>
-          </test-suite>
-          <test-suite type="Namespace" name="Tests" executed="True" result="Success" success="True" time="1.027" asserts="0">
-            <results>
-              <test-suite type="TestFixture" name="TestGame1" executed="True" result="Success" success="True" time="1.026" asserts="0">
-                <results>
-                  <test-case name="personal_training_martial_arts.Tests.TestGame1.TestDiscoverKinectSensor_NotDetected" executed="True" result="Success" success="True" time="1.024" asserts="1" />
+                  <test-case name="personal_training_martial_arts.Test.TestGameCore.TestPostureTextFeedback_NoSkeleton" executed="True" result="Success" success="True" time="1.071" asserts="1" />
                 </results>
               </test-suite>
             </results>

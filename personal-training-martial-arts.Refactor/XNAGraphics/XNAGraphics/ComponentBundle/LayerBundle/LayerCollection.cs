@@ -5,7 +5,7 @@ using System.Text;
 
 namespace XNAGraphics.ComponentBundle.LayerBundle
 {
-    class LayerCollection : XNAGraphics.KernelBundle.BasicsBundle.BasicCollection
+    public class LayerCollection : XNAGraphics.KernelBundle.BasicsBundle.BasicCollection
     {
         public LayerCollection(string identifier)
             : base(identifier) { }

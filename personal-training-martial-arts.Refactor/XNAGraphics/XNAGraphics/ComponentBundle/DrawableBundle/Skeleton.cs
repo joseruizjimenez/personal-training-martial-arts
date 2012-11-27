@@ -16,7 +16,7 @@ using XNAGraphics.KinectBundle.PostureBundle;
 
 namespace XNAGraphics.ComponentBundle.DrawableBundle
 {
-    class Skeleton : XNAGraphics.KernelBundle.BasicsBundle.BasicDrawable
+    public class Skeleton : XNAGraphics.KernelBundle.BasicsBundle.BasicDrawable
     {
         private KinectSensor sensor;
         private KinectSkeleton skeleton = null;

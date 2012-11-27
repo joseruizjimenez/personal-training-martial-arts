@@ -7,7 +7,7 @@ using XNAGraphics.ComponentBundle.LayerBundle;
 
 namespace XNAGraphics.KernelBundle.BasicsBundle
 {
-    class BasicRegistry
+    public class BasicRegistry
     {
         public List<BasicCollection> components;
 

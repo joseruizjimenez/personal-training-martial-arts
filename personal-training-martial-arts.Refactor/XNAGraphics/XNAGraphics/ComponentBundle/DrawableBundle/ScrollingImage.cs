@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace XNAGraphics.ComponentBundle.DrawableBundle
 {
-    class ScrollingImage : XNAGraphics.KernelBundle.BasicsBundle.BasicDrawable
+    public class ScrollingImage : XNAGraphics.KernelBundle.BasicsBundle.BasicDrawable
     {
         public int speed;
         public GraphicsDeviceManager graphicsDevice;

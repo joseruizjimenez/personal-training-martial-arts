@@ -13,7 +13,7 @@ using XNAGraphics.KernelBundle.BasicsBundle;
 
 namespace XNAGraphics.ComponentBundle.LayerBundle
 {
-    class Layer
+    public class Layer
     {
         public BasicDrawable drawable;
         public int priority;

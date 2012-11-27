@@ -5,7 +5,7 @@ using System.Text;
 
 namespace XNAGraphics.KernelBundle.BasicsBundle
 {
-    class BasicCollection
+    public class BasicCollection
     {
         public string identifier;
         public List<Object> components;

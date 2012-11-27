@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace XNAGraphics.ComponentBundle.DrawableBundle
 {
-    class Image : XNAGraphics.KernelBundle.BasicsBundle.BasicDrawable
+    public class Image : XNAGraphics.KernelBundle.BasicsBundle.BasicDrawable
     {
         public Image(Object texture)
             : this(texture, 0, 0, 1, Color.White) { }

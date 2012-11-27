@@ -13,7 +13,7 @@ using Microsoft.Kinect;
 
 namespace XNAGraphics.KinectBundle
 {
-    class Kinect
+    public class Kinect
     {
         public KinectSensor kinectSensor;
         public Texture2D kinectRGBVideo;

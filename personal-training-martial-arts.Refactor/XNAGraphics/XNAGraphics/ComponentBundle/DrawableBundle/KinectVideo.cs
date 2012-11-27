@@ -14,7 +14,7 @@ using XNAGraphics.KinectBundle;
 
 namespace XNAGraphics.ComponentBundle.DrawableBundle
 {
-    class KinectVideo : XNAGraphics.KernelBundle.BasicsBundle.BasicDrawable
+    public class KinectVideo : XNAGraphics.KernelBundle.BasicsBundle.BasicDrawable
     {
         Kinect kinect;
 

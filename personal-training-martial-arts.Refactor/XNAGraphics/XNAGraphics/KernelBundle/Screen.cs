@@ -16,7 +16,7 @@ using XNAGraphics.ComponentBundle.LayerBundle;
 
 namespace XNAGraphics.KernelBundle
 {
-    class Screen
+    public class Screen
     {
         // INFO: [Screen] SpriteBatch.
         public SpriteBatch spriteBatch;

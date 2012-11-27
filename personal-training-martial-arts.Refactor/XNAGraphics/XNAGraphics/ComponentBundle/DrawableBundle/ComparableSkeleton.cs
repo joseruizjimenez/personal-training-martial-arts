@@ -16,7 +16,7 @@ using XNAGraphics.KinectBundle.PostureBundle;
 
 namespace XNAGraphics.ComponentBundle.DrawableBundle
 {
-    class ComparableSkeleton : XNAGraphics.KernelBundle.BasicsBundle.BasicDrawable
+    public class ComparableSkeleton : XNAGraphics.KernelBundle.BasicsBundle.BasicDrawable
     {
         private double[] accuracy;
         private KinectSensor sensor;
@@ -43,8 +43,8 @@ namespace XNAGraphics.ComponentBundle.DrawableBundle
 
         protected override void onLoad(Game game)
         {
-            this.boneTexture = new Texture2D(game.GraphicsDevice, 3, 1);
-            this.boneTexture.SetData(new Color[] { Color.White * 0.75f, Color.White * 0.75f, Color.White * 0.75f });
+            this.boneTexture = new Texture2D(game.GraphicsDevice, 5, 1);
+            this.boneTexture.SetData(new Color[] { Color.White * 0.75f, Color.White * 0.75f, Color.White * 0.75f, Color.White * 0.75f, Color.White * 0.75f });
         }
 
         protected override void onUpdate(GameTime gameTime)
@@ -112,7 +112,7 @@ namespace XNAGraphics.ComponentBundle.DrawableBundle
                     jointColor,
                     0.0f,
                     jointOrigin,
-                    1.0f,
+                    1.15f,
                     SpriteEffects.None,
                     0.0f);
             }

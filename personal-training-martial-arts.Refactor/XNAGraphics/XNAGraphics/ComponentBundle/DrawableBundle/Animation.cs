@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace XNAGraphics.ComponentBundle.DrawableBundle
 {
-    class Animation : XNAGraphics.KernelBundle.BasicsBundle.BasicDrawable
+    public class Animation : XNAGraphics.KernelBundle.BasicsBundle.BasicDrawable
     {
         public int frame_count;
         public float time_per_frame;

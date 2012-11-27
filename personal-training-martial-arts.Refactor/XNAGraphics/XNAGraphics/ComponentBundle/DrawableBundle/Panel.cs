@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace XNAGraphics.ComponentBundle.DrawableBundle
 {
-    class Panel : XNAGraphics.KernelBundle.BasicsBundle.BasicDrawable
+    public class Panel : XNAGraphics.KernelBundle.BasicsBundle.BasicDrawable
     {
         public int width;
         public int height;

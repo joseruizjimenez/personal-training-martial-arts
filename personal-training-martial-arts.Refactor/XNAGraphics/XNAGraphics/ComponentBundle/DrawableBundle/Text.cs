@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace XNAGraphics.ComponentBundle.DrawableBundle
 {
-    class Text : XNAGraphics.KernelBundle.BasicsBundle.BasicDrawable
+    public class Text : XNAGraphics.KernelBundle.BasicsBundle.BasicDrawable
     {
         public string text;
 

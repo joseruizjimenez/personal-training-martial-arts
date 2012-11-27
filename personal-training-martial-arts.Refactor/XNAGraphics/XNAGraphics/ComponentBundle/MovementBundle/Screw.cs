@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace XNAGraphics.ComponentBundle.MovementBundle
 {
-    class Screw : XNAGraphics.KernelBundle.BasicsBundle.BasicMovement
+    public class Screw : XNAGraphics.KernelBundle.BasicsBundle.BasicMovement
     {
         float s, r;
         float s_speed, r_speed;

@@ -20,7 +20,7 @@ using XNAGraphics.KinectBundle;
 
 namespace XNAGraphics.KernelBundle.BasicsBundle
 {
-    abstract class BasicCore
+    public abstract class BasicCore
     {
         protected Game1 game;
         protected Screen screen;

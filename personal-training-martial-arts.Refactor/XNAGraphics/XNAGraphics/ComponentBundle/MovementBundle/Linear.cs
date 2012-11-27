@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace XNAGraphics.ComponentBundle.MovementBundle
 {
-    class Linear : XNAGraphics.KernelBundle.BasicsBundle.BasicMovement
+    public class Linear : XNAGraphics.KernelBundle.BasicsBundle.BasicMovement
     {
         float a, b; // Lados de nuestro triángulo
         float a_speed, b_speed; // Velocudades de nuestros laterales

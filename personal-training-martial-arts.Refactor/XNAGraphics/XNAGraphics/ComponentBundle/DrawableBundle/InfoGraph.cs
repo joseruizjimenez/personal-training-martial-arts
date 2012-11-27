@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace XNAGraphics.ComponentBundle.DrawableBundle
 {
-    class InfoGraph : XNAGraphics.KernelBundle.BasicsBundle.BasicDrawable
+    public class InfoGraph : XNAGraphics.KernelBundle.BasicsBundle.BasicDrawable
     {
         MouseState mouse_state;
         string text;
