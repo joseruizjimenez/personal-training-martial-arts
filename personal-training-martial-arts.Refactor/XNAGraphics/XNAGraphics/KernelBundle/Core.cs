@@ -52,7 +52,7 @@ namespace XNAGraphics.KernelBundle
         private Stopwatch drawPostureTimeOut;
         private Stopwatch holdPostureTimeOut;
         private Stopwatch scoreTimeOut;
-        private const int DRAW_POSTURE_TIME = 10;
+        private const int DRAW_POSTURE_TIME = 15;
         private const int HOLD_POSTURE_TIME = 3;
         private const int SCORE_TIME = 10;
 
@@ -72,7 +72,7 @@ namespace XNAGraphics.KernelBundle
         Kinect kinect;
 
         // TODO: ¿Esto aquí? Ya se verá... (Está aquí para que en los cambios de pantalla no se note el cambio brusco)
-        Layer background;
+        Layer background, background_xbox;
 
         public Core(Game1 game)
             : base(game)
@@ -110,16 +110,21 @@ namespace XNAGraphics.KernelBundle
         public override Boolean onLoadContent()
         {
             // Texture2D
-            this.content.add("bg", "background");
-            this.content.add("bgnew", "new_bg");
-            this.content.add("btn.menu", "menu");
-            this.content.add("btn.play", "play");
-            this.content.add("btn.replay", "play");
-            this.content.add("btn.next", "next");
-            this.content.add("btn.exit", "exit");
-            this.content.add("btn.continue", "continue");
-            this.content.add("btn.pause", "pause");
+            this.content.add("bg_xbox", "background_xbox");
+            this.content.add("bg_new", "background_new");
+            this.content.add("btn.menu", "btn.exit_to_menu");
+            this.content.add("btn.play", "btn.play");
+            this.content.add("btn.replay", "btn.replay_postures");
+            this.content.add("btn.next", "btn.next");
+            this.content.add("btn.exit", "btn.exit");
+            this.content.add("btn.exit_to_menu", "btn.exit_to_menu");
+            this.content.add("btn.continue", "btn.continue");
+            this.content.add("btn.pause", "btn.pause");
             this.content.add("skeleton.joint", "joint");
+
+            // Del logo
+            this.content.add("logo.title", "title_personal_training");
+            this.content.add("logo.edition", "title_martial_arts");
 
             // Del video
             this.content.add("video.header", "video_header");
@@ -135,26 +140,33 @@ namespace XNAGraphics.KernelBundle
             this.content.load();
 
             // Inicializamos nuestro señor fondo (que nos va a servir para todos y sin cambios bruscos al tenerlo como variable de clase)
-            this.background = new Layer("Background", new ScrollingImage(this.content.get("bgnew"), this.game.graphics, 0, 0, Color.White, 30, 1f, 0), 1000);
+            this.background = new Layer("Background", new ScrollingImage(this.content.get("bg_new"), this.game.graphics, 0, 0, Color.White, 30, 1f, 0), 1001);
+            this.background_xbox = new Layer("BackgroundXBOX", new Image(this.content.get("bg_xbox"), 0, 0, Color.White * 0.85f), 1000);
 
             /**
              * Pantalla de inicio
              */
             LayerCollection home = new LayerCollection("Inicio",
-                this.background,
+                this.background, this.background_xbox,
                 new Layer("Logo del juego",
-                    //new Image(this.content.get("logo"), 30, 30)
-                    new Text(this.content.get("arial"), "Personal Training: Martial Arts", 100, 100)
+                    new Image(this.content.get("logo.title"), 500, 30)
+                    //new Text(this.content.get("arial"), "Personal Training: Martial Arts", 100, 100)
+                ),
+                new Layer("Logo del juego",
+                    new Image(this.content.get("logo.edition"), 730, 120)
                 ),
                 new Layer("debug",
                 //new Image(this.content.get("logo"), 30, 30)
                     new InfoGraph(this.content.get("debug"), 10, 10)
                 ),
+                new Layer("panel de info",
+                    new Panel(new Rectangle(421, 241, 820, 419), Color.Black * 0.9f, 5, Color.Black * 0.55f)
+                ),
                 new Layer("Btn play",
-                    new Button(this.content.get("btn.play"), 30, this.game.GraphicsDevice.Viewport.Height - 160)
+                    new Button(this.content.get("btn.play"), 195, 236)
                 ),
                 new Layer("Btn exit",
-                    new Button(this.content.get("btn.exit"), 300, this.game.GraphicsDevice.Viewport.Height - 160)
+                    new Button(this.content.get("btn.exit"), 195, 302)
                 )
             ); r.add(home);
 
@@ -162,26 +174,33 @@ namespace XNAGraphics.KernelBundle
              * Mostrar una postura a imitar
              */
             LayerCollection showPosture = new LayerCollection("Mostrar postura",
-                this.background,
-                new Layer("Contenedor video",
-                    new Panel(new Rectangle(28, 28, 644, 543), Color.Black * 0.95f, 2, Color.Gray * 0.9f)
+                this.background, this.background_xbox,
+                new Layer("Logo del juego",
+                    new Image(this.content.get("logo.title"), 500, 30)
+                //new Text(this.content.get("arial"), "Personal Training: Martial Arts", 100, 100)
                 ),
-                new Layer("video_header",
-                    new Image(this.content.get("video.header"), 30, 30)
+                new Layer("Logo del juego",
+                    new Image(this.content.get("logo.edition"), 730, 120)
+                ),
+                new Layer("Contenedor video",
+                    new Panel(new Rectangle(200, 241, 646, 486), Color.Black * 0.95f, 2, Color.Gray * 0.9f)
+                ),
+                new Layer("Contenedor info",
+                    new Panel(new Rectangle(862, 241, 379, 419), Color.Black * 0.95f, 2, Color.Gray * 0.9f)
+                ),
+                new Layer("texto chungo",
+                    new Text(this.content.get("arial"), "Lorem ipsum dolor sit amet, tio chungo.\nSi en algún lugar de la mancha estuviese\nun perro en un riachuelo,\nentonces saca tu personal trainer\ny practica artes marciales.\n\nEn antiguos textos chinos se han\nencontrado fotografías de torturas a\nbase de buenas dosis de artes\n marciales.\n\n Y de artes pintorescas también.", 867, 390, Color.White)
                 ),
                 new Layer("Postura",
                     // TODO: Aquí va un skeleton
-                    new Skeleton(30, 78, this.kinect, new Posture())
+                    new Skeleton(203, 244, this.kinect, new Posture())
                     //new Image(this.content.get("video.waiting"), 30, 78)
-                ),
-                new Layer("video_footer",
-                    new Image(this.content.get("video.footer"), 30, 558)
                 ),
                 new Layer("Texto central",
                     new BorderedText(this.content.get("grobold"), "Sin informacion de la postura", this.game.GraphicsDevice.Viewport.Width / 2, this.game.GraphicsDevice.Viewport.Height / 2, Color.Yellow, 3f, Color.Black)
                 ),
                 new Layer("Btn continue",
-                    new Button(this.content.get("btn.continue"), 300, this.game.GraphicsDevice.Viewport.Height - 160)
+                    new Button(this.content.get("btn.continue"), 1047, 687)
                 )
             ); r.add(showPosture);
 
@@ -189,31 +208,35 @@ namespace XNAGraphics.KernelBundle
              * Detectar postura
              */
             LayerCollection detectPosture = new LayerCollection("Detectar postura",
-                this.background,
-                new Layer("Contenedor video",
-                    new Panel(new Rectangle(28, 28, 644, 543), Color.Black * 0.95f, 2, Color.Gray * 0.9f)
+                this.background, this.background_xbox,
+                new Layer("Logo del juego",
+                    new Image(this.content.get("logo.title"), 500, 30)
+                //new Text(this.content.get("arial"), "Personal Training: Martial Arts", 100, 100)
                 ),
-                new Layer("video_header",
-                    new Image(this.content.get("video.header"), 30, 30)
+                new Layer("Logo del juego",
+                    new Image(this.content.get("logo.edition"), 730, 120)
+                ),
+                new Layer("Contenedor video",
+                    new Panel(new Rectangle(200, 241, 646, 486), Color.Black * 0.95f, 2, Color.Gray * 0.9f)
+                ),
+                new Layer("Contenedor info",
+                    new Panel(new Rectangle(862, 241, 379, 419), Color.Black * 0.95f, 2, Color.Gray * 0.9f)
                 ),
                 new Layer("Kinect RGB Video",
-                    new KinectVideo(30, 78, this.kinect)
+                    new KinectVideo(203, 244, this.kinect)
                 ),
                 new Layer("Profesor",
                 // TODO: Aquí va un skeleton
-                    new Skeleton(30, 78, this.kinect, new Posture())
+                    new Skeleton(603, 174, this.kinect, new Posture())
                 ),
                 new Layer("Postura",
-                    new ComparableSkeleton(30, 78, this.kinect, this.content.get("skeleton.joint"))
-                ),
-                new Layer("video_footer",
-                    new Image(this.content.get("video.footer"), 30, 558)
+                    new ComparableSkeleton(203, 244, this.kinect, this.content.get("skeleton.joint"))
                 ),
                 new Layer("Texto central",
-                    new BorderedText(this.content.get("grobold"), "", this.game.GraphicsDevice.Viewport.Width / 2, this.game.GraphicsDevice.Viewport.Height / 2, Color.ForestGreen, 3f, Color.Black)
+                    new BorderedText(this.content.get("grobold"), "", this.game.GraphicsDevice.Viewport.Width / 2, this.game.GraphicsDevice.Viewport.Height / 2, Color.Yellow, 3f, Color.Black)
                 ),
                 new Layer("Btn pause",
-                    new Button(this.content.get("btn.pause"), 300, this.game.GraphicsDevice.Viewport.Height - 160)
+                    new Button(this.content.get("btn.pause"), 1047, 687)
                 )
             ); r.add(detectPosture);
 
@@ -221,15 +244,29 @@ namespace XNAGraphics.KernelBundle
              * Pantalla de pausa
              */
             LayerCollection pause = new LayerCollection("Pausa",
-                this.background,
+                this.background, this.background_xbox,
+                new Layer("Logo del juego",
+                    new Image(this.content.get("logo.title"), 500, 30)
+                //new Text(this.content.get("arial"), "Personal Training: Martial Arts", 100, 100)
+                ),
+                new Layer("Logo del juego",
+                    new Image(this.content.get("logo.edition"), 730, 120)
+                ),
+                new Layer("debug",
+                //new Image(this.content.get("logo"), 30, 30)
+                    new InfoGraph(this.content.get("debug"), 10, 10)
+                ),
+                new Layer("panel de info",
+                    new Panel(new Rectangle(421, 241, 820, 419), Color.Black * 0.9f, 5, Color.Black * 0.55f)
+                ),
                 new Layer("Btn continue",
-                    new Button(this.content.get("btn.continue"), 0, this.game.GraphicsDevice.Viewport.Height - 160)
+                    new Button(this.content.get("btn.continue"), 195, 236)
                 ),
                 new Layer("Btn replay",
-                    new Button(this.content.get("btn.replay"), 300, this.game.GraphicsDevice.Viewport.Height - 160)
+                    new Button(this.content.get("btn.replay"), 195, 302)
                 ),
                 new Layer("Btn exit",
-                    new Button(this.content.get("btn.exit"), 500, this.game.GraphicsDevice.Viewport.Height - 160)
+                    new Button(this.content.get("btn.exit_to_menu"), 195, 368)
                 )
             ); r.add(pause);
 
@@ -237,18 +274,25 @@ namespace XNAGraphics.KernelBundle
              * Pantalla de puntuación (posturíl)
              */
             LayerCollection postureScore = new LayerCollection("Puntuación de postura",
-                this.background,
+                this.background, this.background_xbox,
+                new Layer("Logo del juego",
+                    new Image(this.content.get("logo.title"), 500, 30)
+                //new Text(this.content.get("arial"), "Personal Training: Martial Arts", 100, 100)
+                ),
+                new Layer("Logo del juego",
+                    new Image(this.content.get("logo.edition"), 730, 120)
+                ),
                 new Layer("Texto central",
-                    new BorderedText(this.content.get("grobold"), "Puntuación de la postura: 5.782", 500, this.game.GraphicsDevice.Viewport.Height/2, Color.DarkRed, 3f, Color.Black)
+                    new BorderedText(this.content.get("grobold"), "Puntuación de la postura: 5.782", this.game.GraphicsDevice.Viewport.Width / 2, this.game.GraphicsDevice.Viewport.Height / 2, Color.Green, 5f, Color.Black)
                 ),
                 new Layer("Btn next",
-                    new Button(this.content.get("btn.next"), 0, this.game.GraphicsDevice.Viewport.Height - 160)
+                    new Button(this.content.get("btn.next"), 1047, 687)
                 ),
                 new Layer("Btn replay",
-                    new Button(this.content.get("btn.replay"), 300, this.game.GraphicsDevice.Viewport.Height - 160)
+                    new Button(this.content.get("btn.replay"), 826, 687)
                 ),
                 new Layer("Btn exit",
-                    new Button(this.content.get("btn.exit"), 500, this.game.GraphicsDevice.Viewport.Height - 160)
+                    new Button(this.content.get("btn.exit"), 605, 687)
                 )
             ); r.add(postureScore);
 
@@ -257,14 +301,21 @@ namespace XNAGraphics.KernelBundle
              */
             LayerCollection final_score = new LayerCollection("Puntuación final",
                 this.background,
+                new Layer("Logo del juego",
+                    new Image(this.content.get("logo.title"), 500, 30)
+                //new Text(this.content.get("arial"), "Personal Training: Martial Arts", 100, 100)
+                ),
+                new Layer("Logo del juego",
+                    new Image(this.content.get("logo.edition"), 730, 120)
+                ),
                 new Layer("Texto central",
-                    new BorderedText(this.content.get("grobold"), "Puntuación final: 3.983", 500, this.game.GraphicsDevice.Viewport.Height/2, Color.DarkRed, 3f, Color.Black)
+                    new BorderedText(this.content.get("grobold"), "Puntuación final: 3.983", this.game.GraphicsDevice.Viewport.Width / 2, this.game.GraphicsDevice.Viewport.Height / 2, Color.Green, 5f, Color.Black)
                 ),
                 new Layer("Btn exit",
-                    new Button(this.content.get("btn.exit"), 0, this.game.GraphicsDevice.Viewport.Height - 60)
+                    new Button(this.content.get("btn.exit"), 1047, 687)
                 ),
                 new Layer("Btn replay",
-                    new Button(this.content.get("btn.replay"), 300, this.game.GraphicsDevice.Viewport.Height - 60)
+                    new Button(this.content.get("btn.replay"), 826, 687)
                 )
             ); r.add(final_score);
 
@@ -341,6 +392,8 @@ namespace XNAGraphics.KernelBundle
                             ((Skeleton)this.r.get("Mostrar postura").get("Postura").drawable).posture = this.gamePostures[this.gamePosturesIndex];
                             ((Skeleton)this.r.get("Detectar postura").get("Profesor").drawable).posture = this.gamePostures[this.gamePosturesIndex];
                             ((ComparableSkeleton)this.r.get("Detectar postura").get("Postura").drawable).postureToCompare = this.gamePostures[this.gamePosturesIndex];
+                            BorderedText t = (BorderedText)this.r.get("Mostrar postura").get("Texto central").drawable;
+                            t.text = this.gamePostures[this.gamePosturesIndex].name;
 
                             if ( ((Button)this.r.get("Mostrar postura").get("btn continue").drawable).justPushed() ||
                                 isTimedOut(this.drawPostureTimeOut, DRAW_POSTURE_TIME))
@@ -358,8 +411,8 @@ namespace XNAGraphics.KernelBundle
                             {
                                 if (this.kinect.skeleton != null)
                                 {
-                                    BorderedText t = (BorderedText)this.r.get("Detectar postura").get("Texto central").drawable;
-                                    t.text = "";
+                                    BorderedText ti = (BorderedText)this.r.get("Detectar postura").get("Texto central").drawable;
+                                    ti.text = "";
 
                                     Posture p = new Posture(this.kinect.skeleton);
                                     score = p.compareTo(gamePostures[gamePosturesIndex], ref jointScore, averageTolerance, puntualTolerance);
@@ -380,8 +433,10 @@ namespace XNAGraphics.KernelBundle
                             {
                                 if (this.kinect.skeleton != null)
                                 {
-                                    BorderedText t = (BorderedText)this.r.get("Detectar postura").get("Texto central").drawable;
-                                    t.text = "Quedate quieto durante " + (HOLD_POSTURE_TIME - this.holdPostureTimeOut.Elapsed.Seconds + 1).ToString() + " segundos!!";
+                                    BorderedText te = (BorderedText)this.r.get("Detectar postura").get("Texto central").drawable;
+                                    te.text = "¡Quédate quieto durante " + (HOLD_POSTURE_TIME - this.holdPostureTimeOut.Elapsed.Seconds).ToString() + " segundos!";
+                                    te.addMovement(new Screw(1.05f, 0f, 25));
+                                    te.addMovement(new Screw(1f, 0f, 25));
                                     //this.r.get("Detectar postura").get("Texto central").drawable = t;
 
                                     Posture p = new Posture(this.kinect.skeleton);
@@ -434,7 +489,7 @@ namespace XNAGraphics.KernelBundle
                                 this.scoreTimeOut.Reset();
                                 this.nextPlayState = playState.INIT;
                             }
-                            break;
+                            return this.r.get("Puntuación de postura");
 
                         case playState.FINAL_SCORE:
                             //updateButtonsState(this.scoreButtons);
@@ -442,7 +497,7 @@ namespace XNAGraphics.KernelBundle
                                 this.nextPlayState = playState.END;
                             else if ( ((Button)this.r.get("Puntuación final").get("btn replay").drawable).justPushed() )
                                 this.nextPlayState = playState.INIT;
-                            break;
+                            return this.r.get("Puntuación final");
 
                         default:
                         case playState.END:

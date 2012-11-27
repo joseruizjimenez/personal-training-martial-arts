@@ -53,7 +53,7 @@ namespace XNAGraphics.ComponentBundle.DrawableBundle
                 if (mpressed)
                 {
                     state = BState.DOWN;
-                    this.color = Color.CornflowerBlue;
+                    this.color = Color.Red;
                 }
                 // si ha habido un click y el boton estaba pulsado
                 else if (!mpressed && prev_mpressed)
@@ -61,20 +61,21 @@ namespace XNAGraphics.ComponentBundle.DrawableBundle
                     if (state == BState.DOWN)
                     {
                         state = BState.JUST_RELEASED;
-                        this.color = Color.Green;
+                        //this.color = Color.Green;
                     }
                 }
                 // si el raton esta encima del boton
                 else
                 {
                     state = BState.HOVER;
-                    this.color = Color.Yellow;
+                    this.color = Color.White * 0.7f;
                 }
             }
             // si el raton no esta sobre el boton
             else
             {
                 state = BState.UP;
+                this.color = Color.White;
             }
 
             return state;

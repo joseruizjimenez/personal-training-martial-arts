@@ -2,126 +2,6 @@
 <XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
   <Asset Type="Pipeline:BuildItemCollection">
     <Item>
-      <Source>menu.texture.png</Source>
-      <Name>menu.texture</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\menu.texture.xnb</Output>
-      <Time>2012-11-07T16:03:27.1899276+01:00</Time>
-    </Item>
-    <Item>
-      <Source>next.texture.png</Source>
-      <Name>next.texture</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\next.texture.xnb</Output>
-      <Time>2012-11-07T16:03:27.1909279+01:00</Time>
-    </Item>
-    <Item>
-      <Source>play.texture.png</Source>
-      <Name>play.texture</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\play.texture.xnb</Output>
-      <Time>2012-11-07T16:03:27.2019278+01:00</Time>
-    </Item>
-    <Item>
-      <Source>ship.texture.png</Source>
-      <Name>ship.texture</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\ship.texture.xnb</Output>
-      <Time>2012-11-12T02:06:06.6120464+01:00</Time>
-    </Item>
-    <Item>
-      <Source>background.texture.png</Source>
-      <Name>background.texture</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\background.texture.xnb</Output>
-      <Time>2012-11-23T13:11:23.9666692+01:00</Time>
-    </Item>
-    <Item>
-      <Source>mario_running.texture.png</Source>
-      <Name>mario_running.texture</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\mario_running.texture.xnb</Output>
-      <Time>2012-11-12T02:44:02.0893555+01:00</Time>
-    </Item>
-    <Item>
-      <Source>walk_iso.texture.jpg</Source>
-      <Name>walk_iso.texture</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Parameters>
-        <Data Key="ColorKeyColor">255, 255, 255, 255</Data>
-      </Parameters>
-      <Options>None</Options>
-      <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\walk_iso.texture.xnb</Output>
-      <Time>2012-11-12T02:49:05.3914946+01:00</Time>
-    </Item>
-    <Item>
-      <Source>starfield.texture.png</Source>
-      <Name>starfield.texture</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\starfield.texture.xnb</Output>
-      <Time>2012-11-12T08:01:47.8509557+01:00</Time>
-    </Item>
-    <Item>
-      <Source>new_bg.texture.png</Source>
-      <Name>new_bg.texture</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\new_bg.texture.xnb</Output>
-      <Time>2012-11-13T00:44:39.7971449+01:00</Time>
-    </Item>
-    <Item>
-      <Source>continue.texture.png</Source>
-      <Name>continue.texture</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\continue.texture.xnb</Output>
-      <Time>2012-11-07T16:03:27.1869264+01:00</Time>
-    </Item>
-    <Item>
-      <Source>exit.texture.png</Source>
-      <Name>exit.texture</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\exit.texture.xnb</Output>
-      <Time>2012-11-07T16:03:27.1879258+01:00</Time>
-    </Item>
-    <Item>
-      <Source>pause.texture.png</Source>
-      <Name>pause.texture</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\pause.texture.xnb</Output>
-      <Time>2012-11-07T16:03:27.1989277+01:00</Time>
-    </Item>
-    <Item>
-      <Source>replay.texture.png</Source>
-      <Name>replay.texture</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\replay.texture.xnb</Output>
-      <Time>2012-11-07T16:03:27.2039288+01:00</Time>
-    </Item>
-    <Item>
       <Source>video_footer.texture.png</Source>
       <Name>video_footer.texture</Name>
       <Importer>TextureImporter</Importer>
@@ -155,7 +35,7 @@
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
       <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\arial.font.xnb</Output>
-      <Time>2012-11-08T17:21:31.2056551+01:00</Time>
+      <Time>2012-11-27T01:05:02.7719866+01:00</Time>
     </Item>
     <Item>
       <Source>grobold.font.spritefont</Source>
@@ -164,7 +44,7 @@
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
       <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\grobold.font.xnb</Output>
-      <Time>2012-11-26T16:33:40.9160507+01:00</Time>
+      <Time>2012-11-26T17:09:46.6739428+01:00</Time>
     </Item>
     <Item>
       <Source>joint.texture.png</Source>
@@ -182,7 +62,106 @@
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
       <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\debug.font.xnb</Output>
-      <Time>2012-11-26T15:27:34.0328367+01:00</Time>
+      <Time>2012-11-26T17:03:25.764936+01:00</Time>
+    </Item>
+    <Item>
+      <Source>btn.continue.texture.png</Source>
+      <Name>btn.continue.texture</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\btn.continue.texture.xnb</Output>
+      <Time>2012-11-27T00:24:27.5147752+01:00</Time>
+    </Item>
+    <Item>
+      <Source>background_xbox.texture.png</Source>
+      <Name>background_xbox.texture</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\background_xbox.texture.xnb</Output>
+      <Time>2012-11-27T00:08:39.2780035+01:00</Time>
+    </Item>
+    <Item>
+      <Source>background_new.texture.png</Source>
+      <Name>background_new.texture</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\background_new.texture.xnb</Output>
+      <Time>2012-11-13T00:44:39.7971449+01:00</Time>
+    </Item>
+    <Item>
+      <Source>btn.exit.texture.png</Source>
+      <Name>btn.exit.texture</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\btn.exit.texture.xnb</Output>
+      <Time>2012-11-27T00:10:18.997765+01:00</Time>
+    </Item>
+    <Item>
+      <Source>btn.exit_to_menu.texture.png</Source>
+      <Name>btn.exit_to_menu.texture</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\btn.exit_to_menu.texture.xnb</Output>
+      <Time>2012-11-27T00:22:02.0882901+01:00</Time>
+    </Item>
+    <Item>
+      <Source>btn.pause.texture.png</Source>
+      <Name>btn.pause.texture</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\btn.pause.texture.xnb</Output>
+      <Time>2012-11-27T00:25:11.6054387+01:00</Time>
+    </Item>
+    <Item>
+      <Source>btn.play.texture.png</Source>
+      <Name>btn.play.texture</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\btn.play.texture.xnb</Output>
+      <Time>2012-11-27T00:11:02.2533973+01:00</Time>
+    </Item>
+    <Item>
+      <Source>btn.replay_postures.texture.png</Source>
+      <Name>btn.replay_postures.texture</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\btn.replay_postures.texture.xnb</Output>
+      <Time>2012-11-27T00:23:22.8403364+01:00</Time>
+    </Item>
+    <Item>
+      <Source>title_martial_arts.texture.png</Source>
+      <Name>title_martial_arts.texture</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\title_martial_arts.texture.xnb</Output>
+      <Time>2012-11-27T00:39:05.269889+01:00</Time>
+    </Item>
+    <Item>
+      <Source>title_personal_training.texture.png</Source>
+      <Name>title_personal_training.texture</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\title_personal_training.texture.xnb</Output>
+      <Time>2012-11-27T00:38:36.4268011+01:00</Time>
+    </Item>
+    <Item>
+      <Source>btn.next.texture.png</Source>
+      <Name>btn.next.texture</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\btn.next.texture.xnb</Output>
+      <Time>2012-11-26T23:51:47.9192082+01:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
