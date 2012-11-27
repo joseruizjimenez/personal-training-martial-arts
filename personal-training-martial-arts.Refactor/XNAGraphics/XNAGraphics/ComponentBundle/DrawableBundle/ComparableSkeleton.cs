@@ -99,7 +99,7 @@ namespace XNAGraphics.ComponentBundle.DrawableBundle
             for ( int i = 0; i < this.posture.joints.Length; i++)
             {
                 Vector3 joint = this.posture.joints[i];
-                // *BETA* - LO COMENTO PARA SACAR LA BETA
+                
                 float colorValue = float.Parse(""+accuracy[i]);
                 Color jointColor = new Color(new Vector3(colorValue, (1 - colorValue), 0.0F));
 
@@ -148,7 +148,11 @@ namespace XNAGraphics.ComponentBundle.DrawableBundle
             Vector2 scale = new Vector2(1.0f, diff.Length() / this.boneTexture.Height);
 
             float angle = (float)Math.Atan2(diff.Y, diff.X) - MathHelper.PiOver2;
-            Color color = Color.LightGreen;
+            
+            //Añadiendo media de colores entre 2 puntos
+            float colorValue = (float.Parse(""+accuracy[(int)startJoint]) + float.Parse(""+accuracy[(int)endJoint])) / 2;
+            Color jointColor = new Color(new Vector3(colorValue, (1 - colorValue), 0.0F));
+            Color color = jointColor;
 
             spriteBatch.Draw(this.boneTexture, start, null, color, angle, new Vector2(0.5f, 0.0f),
                 scale, SpriteEffects.None, 1.0f);
