@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using System.Threading;
 using System.Collections.Generic;
@@ -126,20 +126,15 @@ namespace XNAGraphics.KernelBundle
             this.content.add("logo.title", "title_personal_training");
             this.content.add("logo.edition", "title_martial_arts");
 
-            // Del video
-            this.content.add("video.header", "video_header");
-            this.content.add("video.footer", "video_footer");
-            this.content.add("video.waiting", "waiting");
-
             // SpriteFont
-            this.content.add("debug", "debug");
-            this.content.add("arial", "arial");
-            this.content.add("grobold", "grobold");
+            this.content.add("debug_text", "debug");
+            this.content.add("normal_text", "arial");
+            this.content.add("centered_text", "grobold");
 
             // Esto se hace siempre para que el ContentHandler lo cargue despues de haber añadido todas las texturas a manubrio
             this.content.load();
 
-            // Inicializamos nuestro señor fondo (que nos va a servir para todos y sin cambios bruscos al tenerlo como variable de clase)
+            // Inicializamos nuestros señores fondos (que nos van a servir para todos y sin cambios bruscos al tenerlo como variable de clase)
             this.background = new Layer("Background", new ScrollingImage(this.content.get("bg_new"), this.game.graphics, 0, 0, Color.White, 30, 1f, 0), 1001);
             this.background_xbox = new Layer("BackgroundXBOX", new Image(this.content.get("bg_xbox"), 0, 0, Color.White * 0.85f), 1000);
 
@@ -150,14 +145,12 @@ namespace XNAGraphics.KernelBundle
                 this.background, this.background_xbox,
                 new Layer("Logo del juego",
                     new Image(this.content.get("logo.title"), 500, 30)
-                    //new Text(this.content.get("arial"), "Personal Training: Martial Arts", 100, 100)
                 ),
                 new Layer("Logo del juego",
                     new Image(this.content.get("logo.edition"), 730, 120)
                 ),
-                new Layer("debug",
-                //new Image(this.content.get("logo"), 30, 30)
-                    new InfoGraph(this.content.get("debug"), 10, 10)
+                new Layer("debug_text",
+                    new InfoGraph(this.content.get("debug_text"), 10, 10)
                 ),
                 new Layer("panel de info",
                     new Panel(new Rectangle(421, 241, 820, 419), Color.Black * 0.9f, 5, Color.Black * 0.55f)
@@ -177,7 +170,6 @@ namespace XNAGraphics.KernelBundle
                 this.background, this.background_xbox,
                 new Layer("Logo del juego",
                     new Image(this.content.get("logo.title"), 500, 30)
-                //new Text(this.content.get("arial"), "Personal Training: Martial Arts", 100, 100)
                 ),
                 new Layer("Logo del juego",
                     new Image(this.content.get("logo.edition"), 730, 120)
@@ -189,15 +181,13 @@ namespace XNAGraphics.KernelBundle
                     new Panel(new Rectangle(862, 241, 379, 419), Color.Black * 0.95f, 2, Color.Gray * 0.9f)
                 ),
                 new Layer("texto chungo",
-                    new Text(this.content.get("arial"), "Lorem ipsum dolor sit amet, tio chungo.\nSi en algún lugar de la mancha estuviese\nun perro en un riachuelo,\nentonces saca tu personal trainer\ny practica artes marciales.\n\nEn antiguos textos chinos se han\nencontrado fotografías de torturas a\nbase de buenas dosis de artes\n marciales.\n\n Y de artes pintorescas también.", 867, 390, Color.White)
+                    new Text(this.content.get("normal_text"), "Lorem ipsum dolor sit amet, tio chungo.\nSi en algún lugar de la mancha estuviese\nun perro en un riachuelo,\nentonces saca tu personal trainer\ny practica artes marciales.\n\nEn antiguos textos chinos se han\nencontrado fotografías de torturas a\nbase de buenas dosis de artes\n marciales.\n\n Y de artes pintorescas también.", 867, 390, Color.White)
                 ),
                 new Layer("Postura",
-                    // TODO: Aquí va un skeleton
                     new Skeleton(203, 244, this.kinect, new Posture())
-                    //new Image(this.content.get("video.waiting"), 30, 78)
                 ),
                 new Layer("Texto central",
-                    new BorderedText(this.content.get("grobold"), "Sin informacion de la postura", this.game.GraphicsDevice.Viewport.Width / 2, this.game.GraphicsDevice.Viewport.Height / 2, Color.Yellow, 3f, Color.Black)
+                    new BorderedText(this.content.get("centered_text"), "Sin informacion de la postura", this.game.GraphicsDevice.Viewport.Width / 2, this.game.GraphicsDevice.Viewport.Height / 2, Color.Yellow, 3f, Color.Black)
                 ),
                 new Layer("Btn continue",
                     new Button(this.content.get("btn.continue"), 1047, 687)
@@ -211,7 +201,6 @@ namespace XNAGraphics.KernelBundle
                 this.background, this.background_xbox,
                 new Layer("Logo del juego",
                     new Image(this.content.get("logo.title"), 500, 30)
-                //new Text(this.content.get("arial"), "Personal Training: Martial Arts", 100, 100)
                 ),
                 new Layer("Logo del juego",
                     new Image(this.content.get("logo.edition"), 730, 120)
@@ -233,7 +222,7 @@ namespace XNAGraphics.KernelBundle
                     new ComparableSkeleton(203, 244, this.kinect, this.content.get("skeleton.joint"))
                 ),
                 new Layer("Texto central",
-                    new BorderedText(this.content.get("grobold"), "", this.game.GraphicsDevice.Viewport.Width / 2, this.game.GraphicsDevice.Viewport.Height / 2, Color.Yellow, 3f, Color.Black)
+                    new BorderedText(this.content.get("centered_text"), "", this.game.GraphicsDevice.Viewport.Width / 2, this.game.GraphicsDevice.Viewport.Height / 2, Color.Yellow, 3f, Color.Black)
                 ),
                 new Layer("Btn pause",
                     new Button(this.content.get("btn.pause"), 1047, 687)
@@ -247,14 +236,12 @@ namespace XNAGraphics.KernelBundle
                 this.background, this.background_xbox,
                 new Layer("Logo del juego",
                     new Image(this.content.get("logo.title"), 500, 30)
-                //new Text(this.content.get("arial"), "Personal Training: Martial Arts", 100, 100)
                 ),
                 new Layer("Logo del juego",
                     new Image(this.content.get("logo.edition"), 730, 120)
                 ),
-                new Layer("debug",
-                //new Image(this.content.get("logo"), 30, 30)
-                    new InfoGraph(this.content.get("debug"), 10, 10)
+                new Layer("debug_text",
+                    new InfoGraph(this.content.get("debug_text"), 10, 10)
                 ),
                 new Layer("panel de info",
                     new Panel(new Rectangle(421, 241, 820, 419), Color.Black * 0.9f, 5, Color.Black * 0.55f)
@@ -277,13 +264,12 @@ namespace XNAGraphics.KernelBundle
                 this.background, this.background_xbox,
                 new Layer("Logo del juego",
                     new Image(this.content.get("logo.title"), 500, 30)
-                //new Text(this.content.get("arial"), "Personal Training: Martial Arts", 100, 100)
                 ),
                 new Layer("Logo del juego",
                     new Image(this.content.get("logo.edition"), 730, 120)
                 ),
                 new Layer("Texto central",
-                    new BorderedText(this.content.get("grobold"), "Puntuación de la postura: 5.782", this.game.GraphicsDevice.Viewport.Width / 2, this.game.GraphicsDevice.Viewport.Height / 2, Color.Green, 5f, Color.Black)
+                    new BorderedText(this.content.get("centered_text"), "Puntuación de la postura: 5.782", this.game.GraphicsDevice.Viewport.Width / 2, this.game.GraphicsDevice.Viewport.Height / 2, Color.Green, 5f, Color.Black)
                 ),
                 new Layer("Btn next",
                     new Button(this.content.get("btn.next"), 1047, 687)
@@ -300,19 +286,18 @@ namespace XNAGraphics.KernelBundle
              * Pantalla de puntuación (final)
              */
             LayerCollection final_score = new LayerCollection("Puntuación final",
-                this.background,
+                this.background, this.background_xbox,
                 new Layer("Logo del juego",
                     new Image(this.content.get("logo.title"), 500, 30)
-                //new Text(this.content.get("arial"), "Personal Training: Martial Arts", 100, 100)
                 ),
                 new Layer("Logo del juego",
                     new Image(this.content.get("logo.edition"), 730, 120)
                 ),
                 new Layer("Texto central",
-                    new BorderedText(this.content.get("grobold"), "Puntuación final: 3.983", this.game.GraphicsDevice.Viewport.Width / 2, this.game.GraphicsDevice.Viewport.Height / 2, Color.Green, 5f, Color.Black)
+                    new BorderedText(this.content.get("centered_text"), "Puntuación final: 3.983", this.game.GraphicsDevice.Viewport.Width / 2, this.game.GraphicsDevice.Viewport.Height / 2, Color.Green, 5f, Color.Black)
                 ),
                 new Layer("Btn exit",
-                    new Button(this.content.get("btn.exit"), 1047, 687)
+                    new Button(this.content.get("btn.exit_to_menu"), 1047, 687)
                 ),
                 new Layer("Btn replay",
                     new Button(this.content.get("btn.replay"), 826, 687)
