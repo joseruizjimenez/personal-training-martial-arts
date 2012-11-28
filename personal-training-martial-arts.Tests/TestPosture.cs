@@ -64,5 +64,25 @@ namespace personal_training_martial_arts.Test
             Assert.IsTrue(areEquals);
         }
 
+        [Test]
+        public void Todo()
+        {
+            Skeleton skeleton = new Skeleton();
+            Vector3[] joints = Posture.Posture.castSkeletonToJoints(skeleton);
+            Boolean areEquals = true;
+            for (int i = 0; i < 20; i++)
+            {
+                if ((joints[i].X != skeleton.Joints[(JointType)i].Position.X) ||
+                    (joints[i].Y != skeleton.Joints[(JointType)i].Position.Y) ||
+                    (joints[i].Z != skeleton.Joints[(JointType)i].Position.Z))
+                {
+                    areEquals = false;
+                    break;
+                }
+            }
+
+            Assert.IsTrue(areEquals);
+        }
+
     }
 }
