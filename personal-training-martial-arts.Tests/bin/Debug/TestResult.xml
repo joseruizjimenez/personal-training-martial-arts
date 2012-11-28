@@ -1,17 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!--This file represents the results of running a test suite-->
-<test-results name="C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\personal-training-martial-arts.Tests.exe" total="1" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2012-11-27" time="19:16:23">
-  <environment nunit-version="2.6.2.12296" clr-version="2.0.50727.6400" os-version="Microsoft Windows NT 6.2.9200.0" platform="Win32NT" cwd="C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug" machine-name="BLACKBONE" user="Luis" user-domain="BlackBone" />
-  <culture-info current-culture="es-ES" current-uiculture="en-US" />
-  <test-suite type="Assembly" name="C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\personal-training-martial-arts.Tests.exe" executed="True" result="Success" success="True" time="1.126" asserts="0">
+<test-results name="C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\personal-training-martial-arts.Tests.exe" total="1" errors="1" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2012-11-28" time="11:09:44">
+  <environment nunit-version="2.6.1.12217" clr-version="2.0.50727.5466" os-version="Microsoft Windows NT 6.1.7601 Service Pack 1" platform="Win32NT" cwd="C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug" machine-name="PABLO-PC" user="Pablo" user-domain="Pablo-PC" />
+  <culture-info current-culture="es-ES" current-uiculture="es-ES" />
+  <test-suite type="Assembly" name="C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\personal-training-martial-arts.Tests.exe" executed="True" result="Failure" success="False" time="0.987" asserts="0">
     <results>
-      <test-suite type="Namespace" name="personal_training_martial_arts" executed="True" result="Success" success="True" time="1.102" asserts="0">
+      <test-suite type="Namespace" name="personal_training_martial_arts" executed="True" result="Failure" success="False" time="0.981" asserts="0">
         <results>
-          <test-suite type="Namespace" name="Test" executed="True" result="Success" success="True" time="1.102" asserts="0">
+          <test-suite type="Namespace" name="Test" executed="True" result="Failure" success="False" time="0.980" asserts="0">
             <results>
-              <test-suite type="TestFixture" name="TestGameCore" executed="True" result="Success" success="True" time="1.099" asserts="0">
+              <test-suite type="TestFixture" name="TestGameCore" executed="True" result="Failure" success="False" time="0.980" asserts="0">
                 <results>
-                  <test-case name="personal_training_martial_arts.Test.TestGameCore.TestPostureTextFeedback_NoSkeleton" executed="True" result="Success" success="True" time="1.071" asserts="1" />
+                  <test-case name="personal_training_martial_arts.Test.TestGameCore.TestPostureTextFeedback_NoSkeleton" executed="True" result="Error" success="False" time="0.973" asserts="0">
+                    <failure>
+                      <message><![CDATA[SetUp : Microsoft.Xna.Framework.Content.ContentLoadException : Error loading "btn.exit_to_menu.texture". File not found.
+  ----> System.IO.FileNotFoundException : Error loading "Content\btn.exit_to_menu.texture.xnb". File not found.]]></message>
+                      <stack-trace><![CDATA[en Microsoft.Xna.Framework.Content.ContentManager.OpenStream(String assetName)
+en Microsoft.Xna.Framework.Content.ContentManager.ReadAsset[T](String assetName, Action`1 recordDisposableObject)
+en Microsoft.Xna.Framework.Content.ContentManager.Load[T](String assetName)
+en XNAGraphics.KernelBundle.ContentHandler.load() en C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\KernelBundle\ContentHandler.cs:línea 47
+en XNAGraphics.KernelBundle.Core.onLoadContent() en C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\KernelBundle\Core.cs:línea 133
+en XNAGraphics.KernelBundle.BasicsBundle.BasicCore.LoadContent() en C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\KernelBundle\BasicsBundle\BasicCore.cs:línea 48
+en XNAGraphics.Game1.LoadContent() en C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\Game1.cs:línea 63
+en Microsoft.Xna.Framework.Game.Initialize()
+en XNAGraphics.Game1.Initialize() en C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\Game1.cs:línea 53
+en Microsoft.Xna.Framework.Game.RunGame(Boolean useBlockingRun)
+en Microsoft.Xna.Framework.Game.Run()
+en personal_training_martial_arts.Test.TestGameCore.TestInit() en C:\personal-training-martial-arts\personal-training-martial-arts.Tests\TestGameCore.cs:línea 30
+--FileNotFoundException
+en Microsoft.Xna.Framework.TitleContainer.OpenStream(String name)
+en Microsoft.Xna.Framework.Content.ContentManager.OpenStream(String assetName)
+]]></stack-trace>
+                    </failure>
+                  </test-case>
                 </results>
               </test-suite>
             </results>

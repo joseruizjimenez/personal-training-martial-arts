@@ -1,5 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Posture name="Oi zuki" description="que mono estás" difficulty="0">
+<Posture name="Oi zuki" description="
+     Realizando un desplazamiento hacia 
+ adelante se golpea avanzando con el 
+ mismo brazo de la pierna adelantada. 
+ Esta considerada una de las Técnicas 
+ Punzantes o también llamadas 
+ TSUKI WAZA." difficulty="0">
   <joint x="0,4585572" y="0,1368269" z="2,016142" />
   <joint x="0,4206195" y="0,1975752" z="2,050465" />
   <joint x="0,401877" y="0,5467812" z="2,042942" />

@@ -19,7 +19,7 @@ namespace XNAGraphics
     public class Game1 : Microsoft.Xna.Framework.Game
     {
         public GraphicsDeviceManager graphics;
-        Core core;
+        public Core core;
 
         public Game1()
         {
@@ -27,8 +27,8 @@ namespace XNAGraphics
             this.core = new Core(this);
 
             // INFO: Resolución de pantalla
-            this.graphics.PreferredBackBufferWidth = 1440;//640;
-            this.graphics.PreferredBackBufferHeight = 900;//480;
+            this.graphics.PreferredBackBufferWidth = 1366; //1440;//640;
+            this.graphics.PreferredBackBufferHeight = 768;//900;//480;
 
             // INFO: Pantalla completa
             this.graphics.IsFullScreen = true;
@@ -38,7 +38,8 @@ namespace XNAGraphics
 
             this.Content.RootDirectory = "Content";
         }
-
+        // ahora si lo veo, prueba capturar
+        // ya, pero no veo todo jajaja
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
         /// This is where it can query for any required services and load any non-graphic

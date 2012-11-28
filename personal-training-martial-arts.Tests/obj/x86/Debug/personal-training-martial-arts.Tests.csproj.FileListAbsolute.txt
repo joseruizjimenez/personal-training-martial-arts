@@ -60,3 +60,13 @@ C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug
 C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\btn.next.texture.xnb
 C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\XNAGraphics.exe
 C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\XNAGraphics.pdb
+C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\Age uke.texture.xnb
+C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\Defensa Baja.texture.xnb
+C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\Grulla.texture.xnb
+C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\Oi zuki.texture.xnb
+C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\Rei.texture.xnb
+C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\Age ukeS.texture.xnb
+C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\Defensa BajaS.texture.xnb
+C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\GrullaS.texture.xnb
+C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\Oi zukiS.texture.xnb
+C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\ReiS.texture.xnb

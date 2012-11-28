@@ -1,5 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Posture name="Grulla" description="La grulla maulla" difficulty="1">
+<Posture name="Grulla" description="         Mientras Daniel se 
+ encontraba en el agua, observa a 
+ Miyagi practicando la Técnica de la Grulla,
+ una patada frontal con salto dirigida a 
+ la cara del oponente. A lo largo de su 
+ entrenamiento, Daniel se da cuenta que el
+ Karate y en general las artes marciales no
+ son un método para pelear, sino que una
+ forma de superarse a sí mismo y a ser 
+ mejor persona, por lo que él mismo 
+ cambia desarrollando su personalidad
+ y va dejando de lado temores para
+ enfrentarse a la vida." difficulty="1">
   <joint x="0,2198972" y="0,2129522" z="2,361271" />
   <joint x="0,2185784" y="0,2708198" z="2,398453" />
   <joint x="0,2127168" y="0,5829887" z="2,385972" />

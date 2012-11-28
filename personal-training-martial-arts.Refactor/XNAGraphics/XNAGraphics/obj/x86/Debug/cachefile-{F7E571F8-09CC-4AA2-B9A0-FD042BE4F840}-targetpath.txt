@@ -1,10 +1,10 @@
+Content\arial.font.xnb
+Content\grobold.font.xnb
+Content\debug.font.xnb
 Content\video_footer.texture.xnb
 Content\video_header.texture.xnb
 Content\waiting.texture.xnb
-Content\arial.font.xnb
-Content\grobold.font.xnb
 Content\joint.texture.xnb
-Content\debug.font.xnb
 Content\btn.continue.texture.xnb
 Content\background_xbox.texture.xnb
 Content\background_new.texture.xnb
@@ -16,3 +16,13 @@ Content\btn.replay_postures.texture.xnb
 Content\title_martial_arts.texture.xnb
 Content\title_personal_training.texture.xnb
 Content\btn.next.texture.xnb
+Content\Age uke.texture.xnb
+Content\Defensa Baja.texture.xnb
+Content\Grulla.texture.xnb
+Content\Oi zuki.texture.xnb
+Content\Rei.texture.xnb
+Content\Age ukeS.texture.xnb
+Content\Defensa BajaS.texture.xnb
+Content\GrullaS.texture.xnb
+Content\Oi zukiS.texture.xnb
+Content\ReiS.texture.xnb

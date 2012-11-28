@@ -1,5 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Posture name="Rei" description="Postura de concentración" difficulty="0">
+<Posture name="Rei" description="         La postura de saludo,
+ que llamamos TACHI REI o RITSU REI,
+ es el saludo de pie.Se utiliza en ocasiones
+ menos formales, al entrar o salir de la
+ sala de judo, al entrar o salir de la
+ zona de competición, al empezar o 
+ terminar un encuentro o un ejercicio con
+ un adversario o un compañero o en
+ cualquier ocasión que requiera un 
+ saludo cortés.
+
+ No obstante, el saludo de pie tiene también
+ su forma específica y simboliza igualmente 
+ respeto, amistad, agradecimiento, 
+ invitación a practicar o despedida." difficulty="0">
   <joint x="0,178885" y="0,188549" z="2,179264" />
   <joint x="0,1789319" y="0,2476652" z="2,232763" />
   <joint x="0,1794947" y="0,5913992" z="2,236052" />

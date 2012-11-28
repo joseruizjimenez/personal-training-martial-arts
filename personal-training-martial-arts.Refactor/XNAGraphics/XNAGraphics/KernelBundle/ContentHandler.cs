@@ -64,7 +64,7 @@ namespace XNAGraphics.KernelBundle
                 if (String.Compare(path, @".\Content\" + name + "." + extension + ".xnb", true) == 0)
                     return true;
             }
-
+            
             return false;
         }
     }

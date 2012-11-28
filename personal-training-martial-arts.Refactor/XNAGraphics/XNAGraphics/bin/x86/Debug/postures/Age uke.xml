@@ -1,5 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Posture name="Age uke" description="Defensa alta" difficulty="0">
+<Posture name="Age uke" description="
+         Age Uke es una técnica de 
+ parada sobre golpes altos que son
+ ejecutados de forma cortante. 
+         Es importante tener colocar
+ el brazo de forma que cubra la cara" difficulty="0">
   <joint x="0,3716986" y="0,1501312" z="2,122766" />
   <joint x="0,3811412" y="0,204334" z="2,179927" />
   <joint x="0,3721585" y="0,5396042" z="2,198189" />

@@ -25,7 +25,7 @@ namespace XNAGraphics.KernelBundle.BasicsBundle
         protected Game1 game;
         protected Screen screen;
         protected ContentHandler content;
-        protected Registry r;
+        public Registry r;
 
         public BasicCore(Game1 game)
         {

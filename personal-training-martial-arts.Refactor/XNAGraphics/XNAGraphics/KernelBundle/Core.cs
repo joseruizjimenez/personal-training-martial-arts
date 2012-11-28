@@ -24,7 +24,7 @@ namespace XNAGraphics.KernelBundle
     public class Core : XNAGraphics.KernelBundle.BasicsBundle.BasicCore
     {
         // ESTADOS DEL JUEGO Y PANTALLAS
-        private enum screenState
+        public enum screenState
         {
             INIT,
             MENU,
@@ -32,7 +32,7 @@ namespace XNAGraphics.KernelBundle
             END
         }
 
-        private enum playState
+        public enum playState
         {
             INIT,
             SELECT_POSTURE,
@@ -45,14 +45,14 @@ namespace XNAGraphics.KernelBundle
             END
         }
 
-        private screenState currentScreenState, nextScreenState;
-        private playState currentPlayState, nextPlayState;
+        public screenState currentScreenState, nextScreenState;
+        public playState currentPlayState, nextPlayState;
 
         // TEMPORIZADORES (tiempos en segundos)
         private Stopwatch drawPostureTimeOut;
         private Stopwatch holdPostureTimeOut;
         private Stopwatch scoreTimeOut;
-        private const int DRAW_POSTURE_TIME = 15;
+        private const int DRAW_POSTURE_TIME = 10;
         private const int HOLD_POSTURE_TIME = 3;
         private const int SCORE_TIME = 10;
 
@@ -60,6 +60,8 @@ namespace XNAGraphics.KernelBundle
         private PostureInformation[] gamePostures;
         private int gamePosturesIndex;
         private Dictionary<PostureInformation, double> gameScores;
+        private int totalGameScoresRated;
+        private double gameScoreRated;
 
         // NIVEL NORMAL para modificar usar metodo chDificultyLevel(int);
         private float averageTolerance = 0.058F;
@@ -69,7 +71,7 @@ namespace XNAGraphics.KernelBundle
         private double score;
 
         // Controlador del kinect
-        Kinect kinect;
+        public Kinect kinect;
 
         // TODO: ¿Esto aquí? Ya se verá... (Está aquí para que en los cambios de pantalla no se note el cambio brusco)
         Layer background, background_xbox;
@@ -106,8 +108,21 @@ namespace XNAGraphics.KernelBundle
         public override Boolean onLoadContent()
         {
             // Texture2D
-            this.content.add("bg_xbox", "background_xbox");
             this.content.add("bg_new", "background_new");
+            this.content.add("bg_xbox", "background_xbox");
+
+            this.content.add("Age uke", "Age uke");
+            this.content.add("Defensa Baja", "Defensa Baja");
+            this.content.add("Grulla", "Grulla");
+            this.content.add("Oi zuki", "Oi Zuki");
+            this.content.add("Rei", "Rei");
+
+            this.content.add("Age ukeS", "Age ukeS");
+            this.content.add("Defensa BajaS", "Defensa BajaS");
+            this.content.add("GrullaS", "GrullaS");
+            this.content.add("Oi zukiS", "Oi ZukiS");
+            this.content.add("ReiS", "ReiS");
+            
             this.content.add("btn.menu", "btn.exit_to_menu");
             this.content.add("btn.play", "btn.play");
             this.content.add("btn.replay", "btn.replay_postures");
@@ -177,10 +192,12 @@ namespace XNAGraphics.KernelBundle
                     new Panel(new Rectangle(862, 241, 379, 419), Color.Black * 0.95f, 2, Color.Gray * 0.9f)
                 ),
                 new Layer("texto chungo",
-                    new Text(this.content.get("normal_text"), "Lorem ipsum dolor sit amet, tio chungo.\nSi en algún lugar de la mancha estuviese\nun perro en un riachuelo,\nentonces saca tu personal trainer\ny practica artes marciales.\n\nEn antiguos textos chinos se han\nencontrado fotografías de torturas a\nbase de buenas dosis de artes\n marciales.\n\n Y de artes pintorescas también.", 867, 390, Color.White)
+                    new Text(this.content.get("normal_text"), "postureando", 870, 290, Color.White)
                 ),
                 new Layer("Postura",
-                    new Skeleton(203, 244, this.kinect, new Posture())
+                    new Image(this.content.get("Rei"), 200, 241)
+                //new Layer("Postura",
+                //    new Skeleton(203, 244, this.kinect, new Posture())
                 ),
                 new Layer("Texto central",
                     new BorderedText(this.content.get("centered_text"), "Sin informacion de la postura", this.game.GraphicsDevice.Viewport.Width / 2, this.game.GraphicsDevice.Viewport.Height / 2, Color.Yellow, 3f, Color.Black)
@@ -211,14 +228,19 @@ namespace XNAGraphics.KernelBundle
                     new KinectVideo(203, 244, this.kinect)
                 ),
                 new Layer("Profesor",
+                    new Image(this.content.get("Rei"), 862, 241)
+                //new Layer("Profesor",
                 // TODO: Aquí va un skeleton
-                    new Skeleton(603, 174, this.kinect, new Posture())
+                //    new Skeleton(603, 174, this.kinect, new Posture())
                 ),
                 new Layer("Postura",
                     new ComparableSkeleton(203, 244, this.kinect, this.content.get("skeleton.joint"))
                 ),
                 new Layer("Texto central",
                     new BorderedText(this.content.get("centered_text"), "", this.game.GraphicsDevice.Viewport.Width / 2, this.game.GraphicsDevice.Viewport.Height / 2, Color.Yellow, 3f, Color.Black)
+                ),
+                new Layer("Texto feedback",
+                    new BorderedText(this.content.get("centered_text"), "", this.game.GraphicsDevice.Viewport.Width / 2 -300, 200, Color.Red, 2f, Color.Black)
                 ),
                 new Layer("Btn pause",
                     new Button(this.content.get("btn.pause"), 1047, 687)
@@ -265,7 +287,7 @@ namespace XNAGraphics.KernelBundle
                     new Image(this.content.get("logo.edition"), 730, 120)
                 ),
                 new Layer("Texto central",
-                    new BorderedText(this.content.get("centered_text"), "Puntuación de la postura: 5.782", this.game.GraphicsDevice.Viewport.Width / 2, this.game.GraphicsDevice.Viewport.Height / 2, Color.Green, 5f, Color.Black)
+                    new BorderedText(this.content.get("centered_text"), "Puntuación de la postura: ", this.game.GraphicsDevice.Viewport.Width / 2, this.game.GraphicsDevice.Viewport.Height / 2, Color.Green, 5f, Color.Black)
                 ),
                 new Layer("Btn next",
                     new Button(this.content.get("btn.next"), 1047, 687)
@@ -290,7 +312,7 @@ namespace XNAGraphics.KernelBundle
                     new Image(this.content.get("logo.edition"), 730, 120)
                 ),
                 new Layer("Texto central",
-                    new BorderedText(this.content.get("centered_text"), "Puntuación final: 3.983", this.game.GraphicsDevice.Viewport.Width / 2, this.game.GraphicsDevice.Viewport.Height / 2, Color.Green, 5f, Color.Black)
+                    new BorderedText(this.content.get("centered_text"), "Puntuación final: ", this.game.GraphicsDevice.Viewport.Width / 2, this.game.GraphicsDevice.Viewport.Height / 2, Color.Green, 5f, Color.Black)
                 ),
                 new Layer("Btn exit",
                     new Button(this.content.get("btn.exit_to_menu"), 1047, 687)
@@ -370,8 +392,13 @@ namespace XNAGraphics.KernelBundle
                         case playState.DRAW_POSTURE:
                             // Esta fase es para presentarle al usuario la postura objetivo
                             // TIMEOUT de 10 segundos o pulsar CONTINUE
-                            ((Skeleton)this.r.get("Mostrar postura").get("Postura").drawable).posture = this.gamePostures[this.gamePosturesIndex];
-                            ((Skeleton)this.r.get("Detectar postura").get("Profesor").drawable).posture = this.gamePostures[this.gamePosturesIndex];
+
+                            
+                            (this.r.get("Mostrar postura").get("texto chungo").drawable) =  new Text(this.content.get("normal_text"), this.gamePostures[this.gamePosturesIndex].description, 870, 290, Color.White);// this.gamePostures[this.gamePosturesIndex].description;
+                            this.r.get("Mostrar postura").get("Postura").drawable = new Image(this.content.get(this.gamePostures[this.gamePosturesIndex].name), 200, 241);
+                            this.r.get("Detectar postura").get("Profesor").drawable = new Image(this.content.get(this.gamePostures[this.gamePosturesIndex].name+"S"), 862, 241);
+                            //((Skeleton)this.r.get("Mostrar postura").get("Postura").drawable).posture = this.gamePostures[this.gamePosturesIndex];
+                            //((Skeleton)this.r.get("Detectar postura").get("Profesor").drawable).posture = this.gamePostures[this.gamePosturesIndex];
                             ((ComparableSkeleton)this.r.get("Detectar postura").get("Postura").drawable).postureToCompare = this.gamePostures[this.gamePosturesIndex];
                             BorderedText t = (BorderedText)this.r.get("Mostrar postura").get("Texto central").drawable;
                             t.text = this.gamePostures[this.gamePosturesIndex].name;
@@ -385,23 +412,34 @@ namespace XNAGraphics.KernelBundle
                             return this.r.get("Mostrar postura");
 
                         case playState.DETECT_POSTURE:
+                            
                             //updateButtonsState(this.gameButtons);
                             if ( ((Button)this.r.get("Detectar postura").get("btn pause").drawable).justPushed() )
                                 this.nextPlayState = playState.PAUSE;
                             else
                             {
-                                if (this.kinect.skeleton != null)
+                                BorderedText ti = (BorderedText)this.r.get("Detectar postura").get("Texto feedback").drawable;
+                                BorderedText te = (BorderedText)this.r.get("Detectar postura").get("Texto central").drawable;
+                                te.text = "";
+                                if (this.kinect.skeleton != null && !this.kinect.skeletonOutOfRange)
                                 {
+                                    ((ComparableSkeleton)this.r.get("Detectar postura").get("Postura").drawable).hiden = false;
                                     Posture p = new Posture(this.kinect.skeleton);
                                     score = p.compareTo(gamePostures[gamePosturesIndex], ref jointScore, averageTolerance, puntualTolerance);
-                                    BorderedText ti = (BorderedText)this.r.get("Detectar postura").get("Texto central").drawable;
-                                    ti.text = score.ToString();
+                                    ti.text = getPostureTextFeedback(score);
 
                                     if (score < 1.0)
                                     {
                                         this.holdPostureTimeOut = Stopwatch.StartNew();
                                         this.nextPlayState = playState.HOLD_POSTURE;
+                                        gameScoreRated = score;
+                                        this.totalGameScoresRated = 1;
                                     }
+                                }
+                                else
+                                {
+                                    ((ComparableSkeleton)this.r.get("Detectar postura").get("Postura").drawable).hiden = true;
+                                    ti.text = "¡Situate en la pantalla!";
                                 }
                             }
                             return this.r.get("Detectar postura");
@@ -412,7 +450,8 @@ namespace XNAGraphics.KernelBundle
                                 this.nextPlayState = playState.PAUSE;
                             else
                             {
-                                if (this.kinect.skeleton != null)
+                                BorderedText ti = (BorderedText)this.r.get("Detectar postura").get("Texto feedback").drawable;
+                                if (this.kinect.skeleton != null && !this.kinect.skeletonOutOfRange)
                                 {
                                     BorderedText te = (BorderedText)this.r.get("Detectar postura").get("Texto central").drawable;
                                     te.text = "¡Quédate quieto durante " + (HOLD_POSTURE_TIME - this.holdPostureTimeOut.Elapsed.Seconds).ToString() + " segundos!";
@@ -422,12 +461,15 @@ namespace XNAGraphics.KernelBundle
 
                                     Posture p = new Posture(this.kinect.skeleton);
                                     score = p.compareTo(gamePostures[gamePosturesIndex], ref jointScore, averageTolerance, puntualTolerance);
+                                    ti.text = getPostureTextFeedback(score);
                                     if (score < 1.0)
                                     {
+                                        this.totalGameScoresRated++;
+                                        gameScoreRated += score;
                                         // La postura hay que mantenerla 2 segundos (HOLD_POSTURE_TIME)
                                         if (isTimedOut(this.holdPostureTimeOut, HOLD_POSTURE_TIME))
                                         {
-                                            gameScores.Add(gamePostures[gamePosturesIndex], score);
+                                            gameScores.Add(gamePostures[gamePosturesIndex], gameScoreRated/totalGameScoresRated);
                                             this.holdPostureTimeOut.Reset();
                                             this.scoreTimeOut = Stopwatch.StartNew();
                                             this.nextPlayState = playState.SCORE;
@@ -435,6 +477,8 @@ namespace XNAGraphics.KernelBundle
                                     }
                                     else
                                     {
+                                        this.totalGameScoresRated = 0;
+                                        this.gameScoreRated = 0;
                                         this.holdPostureTimeOut.Reset();
                                         this.nextPlayState = playState.DETECT_POSTURE;
                                     }
@@ -470,6 +514,8 @@ namespace XNAGraphics.KernelBundle
                                 this.scoreTimeOut.Reset();
                                 this.nextPlayState = playState.INIT;
                             }
+                            BorderedText scoreText = (BorderedText)this.r.get("Puntuación de postura").get("Texto Central").drawable;
+                            scoreText.text = "Puntuación de la postura: " + calculateScorePercent(this.gameScores[gamePostures[gamePosturesIndex]]) + "%";
                             return this.r.get("Puntuación de postura");
 
                         case playState.FINAL_SCORE:
@@ -478,6 +524,13 @@ namespace XNAGraphics.KernelBundle
                                 this.nextPlayState = playState.END;
                             else if ( ((Button)this.r.get("Puntuación final").get("btn replay").drawable).justPushed() )
                                 this.nextPlayState = playState.INIT;
+                            BorderedText finalScoreText = (BorderedText)this.r.get("Puntuación final").get("Texto Central").drawable;
+                            double total = 0;
+                            foreach (double s in gameScores.Values)
+                            {
+                                total += s;
+                            }
+                            finalScoreText.text = "Puntuación final: " + calculateScorePercent(total / this.gameScores.Count) + "%";
                             return this.r.get("Puntuación final");
 
                         default:
@@ -600,16 +653,24 @@ namespace XNAGraphics.KernelBundle
             }
         }
 
-        public static String getPostureTextFeedback(float score)
+        public static String getPostureTextFeedback(double score)
         {
-            if (score >= 2)
-                return "¡Situate en la pantalla!";
-            else if (score > 1.5)
-                return "Vas fatal...";
-            else if (score > 1)
+            if (score >= 3)
+                return "Fijate bien en el ejemplo";
+            else if (score >= 2)
+                return "¡Te vas acercando!";
+            else if (score >= 1)
                 return "¡Casi la tienes!";
             else
                 return "¡Eres un maquina!";
+        }
+
+        private static int calculateScorePercent(double score)
+        {
+            double res = 1 - score;
+            res = (res) * 100;
+            int total = (int)res;
+            return total + 50;
         }
     }
 }

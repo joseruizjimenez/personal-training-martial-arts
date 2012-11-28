@@ -24,6 +24,8 @@ namespace XNAGraphics.KernelBundle.BasicsBundle
         public BasicCollection movementQueue;
         public BasicMovement actualMovement;
 
+        public Boolean hiden;
+
         public BasicDrawable(float x, float y)
             : this(x, y, Color.White) { }
 
@@ -47,6 +49,8 @@ namespace XNAGraphics.KernelBundle.BasicsBundle
 
             this.movementQueue = new BasicCollection("movementQueue");
             this.actualMovement = null;
+
+            this.hiden = false;
         }
 
         public Vector2 getPosition()
@@ -94,7 +98,8 @@ namespace XNAGraphics.KernelBundle.BasicsBundle
 
         public void draw(SpriteBatch spriteBatch)
         {
-            onDraw(spriteBatch);
+            if (!hiden)
+                onDraw(spriteBatch);
         }
 
         protected abstract void onDraw(SpriteBatch spriteBatch);

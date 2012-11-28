@@ -1,5 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Posture name="Defensa Baja" description="Defensa baja frente a patadas" difficulty="3">
+<Posture name="Defensa Baja" description="        Defensa baja frente a patadas 
+ dirigidas a rodilla, muslo cadera o riñones.
+ Este movimiento permite a su vez 
+ disponer del otro brazo preparado 
+ para un contraaque. Para realizar 
+ bien la postura se ha de estirar bien el 
+ brazo derecho y elevar el izquierdo
+ formando un angulo de 90 con el codo. 
+ Las piernas deben estar ligeramente
+ flexionadas y la derecha adelantada." difficulty="3">
   <joint x="0,4561375" y="0,1020988" z="1,814382" />
   <joint x="0,475067" y="0,1589899" z="1,865988" />
   <joint x="0,4835337" y="0,4957894" z="1,869372" />

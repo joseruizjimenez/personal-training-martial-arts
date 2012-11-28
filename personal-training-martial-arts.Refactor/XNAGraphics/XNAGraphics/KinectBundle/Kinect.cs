@@ -18,6 +18,7 @@ namespace XNAGraphics.KinectBundle
         public KinectSensor kinectSensor;
         public Texture2D kinectRGBVideo;
         public Skeleton skeleton;
+        public Boolean skeletonOutOfRange;
         int elevationAngle;
 
         public Kinect()
@@ -170,7 +171,12 @@ namespace XNAGraphics.KinectBundle
                                                select s).FirstOrDefault();
                     if (playerSkeleton != null)
                     {
+                        this.skeletonOutOfRange = false;
                         this.skeleton = playerSkeleton;
+                    }
+                    else
+                    {
+                        this.skeletonOutOfRange = true;
                     }
                 }
             }
