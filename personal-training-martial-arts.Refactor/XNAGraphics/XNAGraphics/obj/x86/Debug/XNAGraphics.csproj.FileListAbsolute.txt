@@ -61,3 +61,4 @@ C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGra
 C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\GrullaS.texture.xnb
 C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\Oi zukiS.texture.xnb
 C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\ReiS.texture.xnb
+C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\bruce.texture.xnb

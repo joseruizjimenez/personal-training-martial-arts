@@ -112,6 +112,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ComponentBundle\DrawableBundle\Animation.cs" />
+    <Compile Include="ComponentBundle\DrawableBundle\AnimationPablo.cs" />
     <Compile Include="ComponentBundle\DrawableBundle\BorderedText.cs" />
     <Compile Include="ComponentBundle\DrawableBundle\Button.cs" />
     <Compile Include="ComponentBundle\DrawableBundle\InfoGraph.cs" />

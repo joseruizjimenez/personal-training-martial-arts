@@ -133,6 +133,9 @@ namespace XNAGraphics.KernelBundle
             this.content.add("btn.pause", "btn.pause");
             this.content.add("skeleton.joint", "joint");
 
+            // animacion inicial
+            this.content.add("bruce","bruce");
+
             // Del logo
             this.content.add("logo.title", "title_personal_training");
             this.content.add("logo.edition", "title_martial_arts");
@@ -163,8 +166,12 @@ namespace XNAGraphics.KernelBundle
                 new Layer("debug_text",
                     new InfoGraph(this.content.get("debug_text"), 10, 10)
                 ),
+                
                 new Layer("panel de info",
                     new Panel(new Rectangle(421, 241, 820, 419), Color.Black * 0.9f, 5, Color.Black * 0.55f)
+                ),
+                new Layer("panel bruce",
+                    new AnimationPablo(this.content.get("bruce"), 600, 342, 9, 4, 34)
                 ),
                 new Layer("Btn play",
                     new Button(this.content.get("btn.play"), 195, 236)
@@ -359,6 +366,7 @@ namespace XNAGraphics.KernelBundle
                     {
                         // termina el juego
                         this.game.Exit();
+                       
                         //this.nextScreenState = screenState.END;
                     }
 

@@ -253,6 +253,15 @@
       <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\ReiS.texture.xnb</Output>
       <Time>2012-11-28T20:14:26.6471366+01:00</Time>
     </Item>
+    <Item>
+      <Source>bruce.texture.png</Source>
+      <Name>bruce.texture</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\bruce.texture.xnb</Output>
+      <Time>2012-11-30T18:32:19.4003582+01:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>
