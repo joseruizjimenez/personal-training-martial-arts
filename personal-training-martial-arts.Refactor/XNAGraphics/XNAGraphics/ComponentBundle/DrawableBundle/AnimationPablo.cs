@@ -109,7 +109,14 @@ namespace XNAGraphics.ComponentBundle.DrawableBundle
         }
 
         protected override void onLoad(Game game)
-        { }
+        {
+
+
+            WMPLib.WindowsMediaPlayer wplayer = new WMPLib.WindowsMediaPlayer();
+            wplayer.URL = "Gong sound.mp3";
+            wplayer.controls.play();
+        
+        }
 
         protected override void onUpdate(GameTime gameTime)
         {

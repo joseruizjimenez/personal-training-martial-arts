@@ -19,6 +19,7 @@ using XNAGraphics.ComponentBundle.MovementBundle;
 using XNAGraphics.ComponentBundle.DrawableBundle;
 using XNAGraphics.KinectBundle;
 
+
 namespace XNAGraphics.KernelBundle
 {
     public class Core : XNAGraphics.KernelBundle.BasicsBundle.BasicCore
@@ -369,6 +370,11 @@ namespace XNAGraphics.KernelBundle
                        
                         //this.nextScreenState = screenState.END;
                     }
+
+                    
+                    
+                 
+
 
                     return this.r.get("Inicio");
 

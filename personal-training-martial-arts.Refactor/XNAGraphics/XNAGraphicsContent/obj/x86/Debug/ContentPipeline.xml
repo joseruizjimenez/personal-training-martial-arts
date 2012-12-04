@@ -262,6 +262,16 @@
       <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\bruce.texture.xnb</Output>
       <Time>2012-11-30T18:32:19.4003582+01:00</Time>
     </Item>
+    <Item>
+      <Source>Gong sound.mp3</Source>
+      <Name>Gong sound</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\Gong sound.xnb</Output>
+      <Extra>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\Gong sound.wma</Extra>
+      <Time>2012-12-04T13:16:11.4685274+01:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>
@@ -274,6 +284,10 @@
       <OutputDirectory>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
+      <Assembly>
+        <Key>C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphicsContent\obj\x86\Debug\Interop.WMPLib.dll</Key>
+        <Value>2012-12-04T17:11:01.4607231+01:00</Value>
+      </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
         <Value>2010-08-23T12:41:18+02:00</Value>

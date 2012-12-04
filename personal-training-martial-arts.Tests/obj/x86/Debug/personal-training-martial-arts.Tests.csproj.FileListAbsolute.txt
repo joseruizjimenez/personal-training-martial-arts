@@ -71,3 +71,5 @@ C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug
 C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\Oi zukiS.texture.xnb
 C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\ReiS.texture.xnb
 C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\bruce.texture.xnb
+C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\Gong sound.xnb
+C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\Gong sound.wma

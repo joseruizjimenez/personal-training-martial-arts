@@ -27,3 +27,5 @@ Content\GrullaS.texture.xnb
 Content\Oi zukiS.texture.xnb
 Content\ReiS.texture.xnb
 Content\bruce.texture.xnb
+Content\Gong sound.xnb
+Content\Gong sound.wma
