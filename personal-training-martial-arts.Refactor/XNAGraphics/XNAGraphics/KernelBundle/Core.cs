@@ -145,6 +145,7 @@ namespace XNAGraphics.KernelBundle
             this.content.add("debug_text", "debug");
             this.content.add("normal_text", "arial");
             this.content.add("centered_text", "grobold");
+            this.content.add("centered_text_small", "grobold_small");
 
             // Esto se hace siempre para que el ContentHandler lo cargue despues de haber añadido todas las texturas a manubrio
             this.content.load();
@@ -248,7 +249,7 @@ namespace XNAGraphics.KernelBundle
                     new BorderedText(this.content.get("centered_text"), "", this.game.GraphicsDevice.Viewport.Width / 2, this.game.GraphicsDevice.Viewport.Height / 2, Color.Yellow, 3f, Color.Black)
                 ),
                 new Layer("Texto feedback",
-                    new BorderedText(this.content.get("centered_text"), "", this.game.GraphicsDevice.Viewport.Width / 2 -300, 200, Color.Red, 2f, Color.Black)
+                    new BorderedText(this.content.get("centered_text_small"), "", this.game.GraphicsDevice.Viewport.Width / 2 -300, 200, Color.Red, 2f, Color.Black)
                 ),
                 new Layer("Btn pause",
                     new Button(this.content.get("btn.pause"), 1047, 687)
