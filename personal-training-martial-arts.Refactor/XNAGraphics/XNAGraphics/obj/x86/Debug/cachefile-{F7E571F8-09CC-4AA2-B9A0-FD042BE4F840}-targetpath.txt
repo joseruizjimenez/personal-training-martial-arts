@@ -29,3 +29,4 @@ Content\ReiS.texture.xnb
 Content\bruce.texture.xnb
 Content\Gong sound.xnb
 Content\Gong sound.wma
+Content\grobold_small.font.xnb

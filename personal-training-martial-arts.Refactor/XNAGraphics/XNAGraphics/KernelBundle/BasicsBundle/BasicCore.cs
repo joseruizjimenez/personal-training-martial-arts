@@ -17,10 +17,12 @@ using XNAGraphics.ComponentBundle.LayerBundle;
 using XNAGraphics.ComponentBundle.MovementBundle;
 using XNAGraphics.ComponentBundle.DrawableBundle;
 using XNAGraphics.KinectBundle;
+using System.Runtime.Serialization;
 
 namespace XNAGraphics.KernelBundle.BasicsBundle
 {
-    public abstract class BasicCore
+    [Serializable()]
+    public abstract class BasicCore : ISerializable
     {
         protected Game1 game;
         protected Screen screen;

@@ -18,6 +18,7 @@ using XNAGraphics.ComponentBundle.LayerBundle;
 using XNAGraphics.ComponentBundle.MovementBundle;
 using XNAGraphics.ComponentBundle.DrawableBundle;
 using XNAGraphics.KinectBundle;
+using XNAGraphics.KernelBundle.PlayerBundle;
 
 
 namespace XNAGraphics.KernelBundle
@@ -60,7 +61,7 @@ namespace XNAGraphics.KernelBundle
         // POSTURAS Y ESQUELTO
         private PostureInformation[] gamePostures;
         private int gamePosturesIndex;
-        private Dictionary<PostureInformation, double> gameScores;
+        private GameScore gameScores;
         private int totalGameScoresRated;
         private double gameScoreRated;
 
@@ -83,7 +84,7 @@ namespace XNAGraphics.KernelBundle
             this.nextScreenState = screenState.INIT;
             this.nextPlayState = playState.INIT;
             this.gamePostures = null;
-            this.gameScores = new Dictionary<PostureInformation, double>();
+            this.gameScores = new GameScore();
             this.drawPostureTimeOut = Stopwatch.StartNew();
             this.holdPostureTimeOut = Stopwatch.StartNew();
             this.scoreTimeOut = Stopwatch.StartNew();
@@ -385,7 +386,7 @@ namespace XNAGraphics.KernelBundle
                         case playState.INIT:
                             // algo en inicio?
                             this.gamePostures = null;
-                            this.gameScores.Clear();
+                            this.gameScores.gameScores.Clear();
 
                             this.nextPlayState = playState.SELECT_POSTURE;
                             break;
@@ -484,7 +485,7 @@ namespace XNAGraphics.KernelBundle
                                         // La postura hay que mantenerla 2 segundos (HOLD_POSTURE_TIME)
                                         if (isTimedOut(this.holdPostureTimeOut, HOLD_POSTURE_TIME))
                                         {
-                                            gameScores.Add(gamePostures[gamePosturesIndex], gameScoreRated/totalGameScoresRated);
+                                            gameScores.gameScores.Add(gamePostures[gamePosturesIndex], gameScoreRated / totalGameScoresRated);
                                             this.holdPostureTimeOut.Reset();
                                             this.scoreTimeOut = Stopwatch.StartNew();
                                             this.nextPlayState = playState.SCORE;
@@ -530,7 +531,7 @@ namespace XNAGraphics.KernelBundle
                                 this.nextPlayState = playState.INIT;
                             }
                             BorderedText scoreText = (BorderedText)this.r.get("Puntuación de postura").get("Texto Central").drawable;
-                            scoreText.text = "Puntuación de la postura: " + calculateScorePercent(this.gameScores[gamePostures[gamePosturesIndex]]) + "%";
+                            scoreText.text = "Puntuación de la postura: " + calculateScorePercent(this.gameScores.gameScores[gamePostures[gamePosturesIndex]]) + "%";
                             return this.r.get("Puntuación de postura");
 
                         case playState.FINAL_SCORE:
@@ -541,11 +542,11 @@ namespace XNAGraphics.KernelBundle
                                 this.nextPlayState = playState.INIT;
                             BorderedText finalScoreText = (BorderedText)this.r.get("Puntuación final").get("Texto Central").drawable;
                             double total = 0;
-                            foreach (double s in gameScores.Values)
+                            foreach (double s in gameScores.gameScores.Values)
                             {
                                 total += s;
                             }
-                            finalScoreText.text = "Puntuación final: " + calculateScorePercent(total / this.gameScores.Count) + "%";
+                            finalScoreText.text = "Puntuación final: " + calculateScorePercent(total / this.gameScores.gameScores.Count) + "%";
                             return this.r.get("Puntuación final");
 
                         default:

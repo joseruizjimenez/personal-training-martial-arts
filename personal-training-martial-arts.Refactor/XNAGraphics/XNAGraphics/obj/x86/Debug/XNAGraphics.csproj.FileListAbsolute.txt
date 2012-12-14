@@ -66,3 +66,8 @@ C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGra
 C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\Gong sound.wma
 C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\obj\x86\Debug\Interop.WMPLib.dll
 C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\obj\x86\Debug\XNAGraphics.csproj.ResolveComReference.cache
+C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\System.Data.SQLite.dll
+C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\System.Data.SQLite.Linq.dll
+C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\System.Data.SQLite.pdb
+C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\System.Data.SQLite.Linq.pdb
+C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\grobold_small.font.xnb
