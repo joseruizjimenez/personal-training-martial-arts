@@ -31,7 +31,7 @@ namespace XNAGraphics
             this.graphics.PreferredBackBufferHeight = 768;//900;//480;
 
             // INFO: Pantalla completa
-            this.graphics.IsFullScreen = true;
+            this.graphics.IsFullScreen = false;
 
             // INFO: Enseñamos el cursor en la ventana XNA
             this.IsMouseVisible = true;

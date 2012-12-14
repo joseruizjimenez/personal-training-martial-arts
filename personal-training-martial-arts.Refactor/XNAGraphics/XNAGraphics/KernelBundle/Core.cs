@@ -631,7 +631,12 @@ namespace XNAGraphics.KernelBundle
             // sino, se avanza a la siguiente...
             if (this.gamePostures == null)
             {
+                /*
                 this.gamePostures = PostureLibrary.getPostureList();
+                //Copiar todos los XML a Sqlite
+                foreach (PostureInformation p in this.gamePostures) PostureLibraryFromDB.storePosture(p);
+                */
+                this.gamePostures = PostureLibraryFromDB.getPostureList();
                 this.shufflePostures(gamePostures);
                 this.gamePosturesIndex = 0;
                 return true;

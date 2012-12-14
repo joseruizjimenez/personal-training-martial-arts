@@ -8,7 +8,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\bin\x86\Debug\Content\joint.texture.xnb</Output>
-      <Time>2012-10-26T11:00:13.6497497+02:00</Time>
+      <Time>2012-12-11T00:10:08.1464605+01:00</Time>
     </Item>
     <Item>
       <Source>continue.texture.png</Source>
@@ -17,7 +17,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\bin\x86\Debug\Content\continue.texture.xnb</Output>
-      <Time>2012-10-26T11:00:13.6437494+02:00</Time>
+      <Time>2012-12-11T00:10:08.1464605+01:00</Time>
     </Item>
     <Item>
       <Source>exit.texture.png</Source>
@@ -26,7 +26,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\bin\x86\Debug\Content\exit.texture.xnb</Output>
-      <Time>2012-10-26T11:00:13.6467495+02:00</Time>
+      <Time>2012-12-11T00:10:08.1464605+01:00</Time>
     </Item>
     <Item>
       <Source>play.texture.png</Source>
@@ -35,7 +35,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\bin\x86\Debug\Content\play.texture.xnb</Output>
-      <Time>2012-10-26T11:00:13.6667507+02:00</Time>
+      <Time>2012-12-11T00:10:08.2089562+01:00</Time>
     </Item>
     <Item>
       <Source>pause.texture.png</Source>
@@ -44,7 +44,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\bin\x86\Debug\Content\pause.texture.xnb</Output>
-      <Time>2012-10-26T11:00:13.6597503+02:00</Time>
+      <Time>2012-12-11T00:10:08.2089562+01:00</Time>
     </Item>
     <Item>
       <Source>bone.texture.png</Source>
@@ -53,7 +53,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\bin\x86\Debug\Content\bone.texture.xnb</Output>
-      <Time>2012-11-06T16:11:16.0775829+01:00</Time>
+      <Time>2012-12-11T00:10:08.13083+01:00</Time>
     </Item>
     <Item>
       <Source>menu.texture.png</Source>
@@ -62,7 +62,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\bin\x86\Debug\Content\menu.texture.xnb</Output>
-      <Time>2012-11-06T16:11:16.078583+01:00</Time>
+      <Time>2012-12-11T00:10:08.1620738+01:00</Time>
     </Item>
     <Item>
       <Source>next.texture.png</Source>
@@ -71,7 +71,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\bin\x86\Debug\Content\next.texture.xnb</Output>
-      <Time>2012-11-06T16:11:16.0945839+01:00</Time>
+      <Time>2012-12-11T00:10:08.1620738+01:00</Time>
     </Item>
     <Item>
       <Source>replay.texture.png</Source>
@@ -80,7 +80,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\bin\x86\Debug\Content\replay.texture.xnb</Output>
-      <Time>2012-11-06T16:11:16.0995842+01:00</Time>
+      <Time>2012-12-11T00:10:08.2089562+01:00</Time>
     </Item>
     <Item>
       <Source>SpriteFont1.font.spritefont</Source>
@@ -89,7 +89,7 @@
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
       <Output>C:\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts\bin\x86\Debug\Content\SpriteFont1.font.xnb</Output>
-      <Time>2012-11-06T16:11:16.0775829+01:00</Time>
+      <Time>2012-12-11T00:10:08.0839471+01:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -129,11 +129,11 @@
       </Assembly>
       <Assembly>
         <Key>C:\Windows\Microsoft.Net\assembly\GAC_MSIL\Microsoft.Kinect\v4.0_1.6.0.0__31bf3856ad364e35\Microsoft.Kinect.dll</Key>
-        <Value>2012-11-06T11:40:30.4954749+01:00</Value>
+        <Value>2012-10-15T12:37:39.9712334+02:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2012-10-15T11:45:04.1326012+02:00</Value>
+        <Value>2012-09-21T12:06:09.4712221+02:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>

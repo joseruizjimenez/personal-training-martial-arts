@@ -8,7 +8,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Recorder\personal-training-martial-arts.Recorder\bin\x86\Debug\Content\hand.xnb</Output>
-      <Time>2012-10-26T11:00:13.0797171+02:00</Time>
+      <Time>2012-12-11T00:10:07.1037742+01:00</Time>
     </Item>
     <Item>
       <Source>overlay.png</Source>
@@ -17,7 +17,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Recorder\personal-training-martial-arts.Recorder\bin\x86\Debug\Content\overlay.xnb</Output>
-      <Time>2012-10-24T16:06:41.1127903+02:00</Time>
+      <Time>2012-12-11T00:10:07.1568708+01:00</Time>
     </Item>
     <Item>
       <Source>rec.png</Source>
@@ -26,7 +26,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Recorder\personal-training-martial-arts.Recorder\bin\x86\Debug\Content\rec.xnb</Output>
-      <Time>2012-10-24T16:06:41.1137904+02:00</Time>
+      <Time>2012-12-11T00:10:07.1568708+01:00</Time>
     </Item>
     <Item>
       <Source>SpriteFont1.spritefont</Source>
@@ -35,7 +35,7 @@
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
       <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Recorder\personal-training-martial-arts.Recorder\bin\x86\Debug\Content\SpriteFont1.xnb</Output>
-      <Time>2012-10-24T16:06:41.10679+02:00</Time>
+      <Time>2012-12-11T00:10:07.0725999+01:00</Time>
     </Item>
     <Item>
       <Source>KinectColorVisualizer.fx</Source>
@@ -44,7 +44,7 @@
       <Processor>EffectProcessor</Processor>
       <Options>None</Options>
       <Output>C:\personal-training-martial-arts\personal-training-martial-arts.Recorder\personal-training-martial-arts.Recorder\bin\x86\Debug\Content\KinectColorVisualizer.xnb</Output>
-      <Time>2012-10-26T10:57:27.281234+02:00</Time>
+      <Time>2012-12-11T00:10:07.0725999+01:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -84,7 +84,7 @@
       </Assembly>
       <Assembly>
         <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2012-10-15T11:45:04.1326012+02:00</Value>
+        <Value>2012-09-21T12:06:09.4712221+02:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>

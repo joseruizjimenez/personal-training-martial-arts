@@ -41,12 +41,14 @@ C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug
 C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\next.texture.xnb
 C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\replay.texture.xnb
 C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\personal-training-martial-arts.Tests.exe.config
-C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\video_footer.texture.xnb
-C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\video_header.texture.xnb
-C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\waiting.texture.xnb
+C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\XNAGraphics.exe
+C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\XNAGraphics.pdb
 C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\arial.font.xnb
 C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\grobold.font.xnb
 C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\debug.font.xnb
+C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\video_footer.texture.xnb
+C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\video_header.texture.xnb
+C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\waiting.texture.xnb
 C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\btn.continue.texture.xnb
 C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\background_xbox.texture.xnb
 C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\background_new.texture.xnb
@@ -58,8 +60,6 @@ C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug
 C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\title_martial_arts.texture.xnb
 C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\title_personal_training.texture.xnb
 C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\btn.next.texture.xnb
-C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\XNAGraphics.exe
-C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\XNAGraphics.pdb
 C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\Age uke.texture.xnb
 C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\Defensa Baja.texture.xnb
 C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\Grulla.texture.xnb
