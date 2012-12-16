@@ -7,10 +7,17 @@ using System.Runtime.Serialization;
 
 namespace XNAGraphics.KernelBundle.PlayerBundle
 {
-    public class GameScore
+    [Serializable()]
+    public class GameScore : ISerializable
     {
         public Dictionary<PostureInformation, double> gameScores;
         public DateTime date;
+
+        public Dictionary<string, double> GameScores
+        {
+            get { return getSerializedGameScore(); }
+            set { this.gameScores = setSerializedGameScore(value); }
+        }
 
         public GameScore()
         {
@@ -18,9 +25,15 @@ namespace XNAGraphics.KernelBundle.PlayerBundle
             date = System.DateTime.Now;
         }
 
+        public GameScore(SerializationInfo info, StreamingContext ctxt)
+        {
+            this.date = (DateTime)info.GetValue("date", typeof(DateTime));
+            this.GameScores = (Dictionary<string, double>) info.GetValue("GameScores", typeof(Dictionary<string, double>));
+        }
+
         public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
         {
-            info.AddValue("gameScores", typeof(Dictionary<string, double>));
+            info.AddValue("GameScores", typeof(Dictionary<string, double>));
             info.AddValue("date", typeof(DateTime));
         }
 
@@ -32,6 +45,16 @@ namespace XNAGraphics.KernelBundle.PlayerBundle
                 scores.Add(posture.name, this.gameScores[posture]);
             }
             return scores;
+        }
+
+        public Dictionary<PostureInformation, double> setSerializedGameScore(Dictionary<string, double> s)
+        {
+            Dictionary<PostureInformation, double> g = new Dictionary<PostureInformation, double>();
+            foreach (string name in s.Keys)
+            {
+                g.Add(PostureLibraryFromDB.loadPosture(name), s[name]);
+            }
+            return g;
         }
     }
 }

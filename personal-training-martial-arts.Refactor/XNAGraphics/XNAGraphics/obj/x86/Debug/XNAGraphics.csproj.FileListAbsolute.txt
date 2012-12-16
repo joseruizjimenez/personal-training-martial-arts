@@ -27,7 +27,6 @@ C:\Users\Luis\Desktop\XNAGraphics\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\
 C:\Users\Luis\Desktop\XNAGraphics\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\video_footer.texture.xnb
 C:\Users\Luis\Desktop\XNAGraphics\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\video_header.texture.xnb
 C:\Users\Luis\Desktop\XNAGraphics\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\waiting.texture.xnb
-C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\obj\x86\Debug\XNAGraphics.csprojResolveAssemblyReference.cache
 C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\obj\x86\Debug\XNAGraphics.exe
 C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\obj\x86\Debug\XNAGraphics.pdb
@@ -66,8 +65,7 @@ C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGra
 C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\Gong sound.wma
 C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\obj\x86\Debug\Interop.WMPLib.dll
 C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\obj\x86\Debug\XNAGraphics.csproj.ResolveComReference.cache
-C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\System.Data.SQLite.dll
-C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\System.Data.SQLite.Linq.dll
 C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\System.Data.SQLite.pdb
 C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\System.Data.SQLite.Linq.pdb
 C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\bin\x86\Debug\Content\grobold_small.font.xnb
+C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\obj\x86\Debug\ResolveAssemblyReference.cache

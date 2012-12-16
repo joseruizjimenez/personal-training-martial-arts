@@ -28,7 +28,8 @@ namespace XNAGraphics.KernelBundle.PlayerBundle
 
         public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
         {
-            info.AddValue
+            info.AddValue("id", this.id);
+            info.AddValue("gameScoreRecord", this.gameScoreRecord);
         }
 
         public void save()
@@ -47,6 +48,30 @@ namespace XNAGraphics.KernelBundle.PlayerBundle
             player = (Player)bFormatter.Deserialize(stream);
             stream.Close();
             this.gameScoreRecord = player.gameScoreRecord;
+        }
+
+        public static Player loadPlayer(int id)
+        {
+            Player player;
+            try
+            {
+                Stream stream = File.Open(id.ToString() + ".player", FileMode.Open);
+                BinaryFormatter bFormatter = new BinaryFormatter();
+                player = (Player)bFormatter.Deserialize(stream);
+                stream.Close();
+            }
+            // si el jugador no existe crea su ficha de nuevo jugador
+            catch (System.IO.FileNotFoundException e)
+            {
+                player = new Player(id);
+                player.save();
+            }
+            return player;
+        }
+
+        public string getImageName()
+        {
+            return "player_" + this.id.ToString();
         }
     }
 }

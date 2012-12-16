@@ -30,6 +30,7 @@ namespace XNAGraphics.KernelBundle
         {
             INIT,
             MENU,
+            SELECT_PLAYER,
             PLAY,
             END
         }
@@ -64,6 +65,10 @@ namespace XNAGraphics.KernelBundle
         private GameScore gameScores;
         private int totalGameScoresRated;
         private double gameScoreRated;
+
+        // Listado de jugadores (permitimos 4)
+        private Player[] players = new Player[4];
+        private int selected_player = -1;
 
         // NIVEL NORMAL para modificar usar metodo chDificultyLevel(int);
         private float averageTolerance = 0.058F;
@@ -135,6 +140,12 @@ namespace XNAGraphics.KernelBundle
             this.content.add("btn.pause", "btn.pause");
             this.content.add("skeleton.joint", "joint");
 
+            // foto jugadores
+            foreach (Player p in players)
+            {
+                this.content.add(p.getImageName(), p.getImageName());
+            }
+
             // animacion inicial
             this.content.add("bruce","bruce");
 
@@ -174,7 +185,8 @@ namespace XNAGraphics.KernelBundle
                     new Panel(new Rectangle(421, 241, 820, 419), Color.Black * 0.9f, 5, Color.Black * 0.55f)
                 ),
                 new Layer("panel bruce",
-                    new AnimationPablo(this.content.get("bruce"), 600, 342, 9, 4, 34)
+                    new AnimationPablo(this.content.get("bruce"), 421, 241, 820, 419, 9, 4, 34)
+                    // new AnimationPablo(this.content.get("bruce"), 600, 342, 9, 4, 34)
                 ),
                 new Layer("Btn play",
                     new Button(this.content.get("btn.play"), 195, 236)
@@ -183,6 +195,31 @@ namespace XNAGraphics.KernelBundle
                     new Button(this.content.get("btn.exit"), 195, 302)
                 )
             ); r.add(home);
+
+            /**
+             * Pantalla de seleccion de jugador
+             */
+            LayerCollection select_player = new LayerCollection("select_player",
+                this.background, this.background_xbox,
+                new Layer("Logo del juego",
+                    new Image(this.content.get("logo.title"), 500, 30)
+                ),
+                new Layer("Logo del juego",
+                    new Image(this.content.get("logo.edition"), 730, 120)
+                ),
+                new Layer(players[0].getImageName(),
+                    new Button(this.content.get(players[0].getImageName()), 200, 200)
+                ),
+                new Layer(players[1].getImageName(),
+                    new Button(this.content.get(players[1].getImageName()), 503, 200)
+                ),
+                new Layer(players[2].getImageName(),
+                    new Button(this.content.get(players[2].getImageName()), 200, 487)
+                ),
+                new Layer(players[3].getImageName(),
+                    new Button(this.content.get(players[3].getImageName()), 503, 487)
+                )
+            ); r.add(select_player);
 
             /**
              * Mostrar una postura a imitar
@@ -362,8 +399,8 @@ namespace XNAGraphics.KernelBundle
                 case screenState.MENU:
                     if ( ((Button)this.r.get("Inicio").get("btn play").drawable).justPushed() )
                     {
-                        this.nextScreenState = screenState.PLAY;
-                        this.nextPlayState = playState.INIT;
+                        selected_player = -1;
+                        this.nextScreenState = screenState.SELECT_PLAYER;
                     }
                     else if ( ((Button)this.r.get("Inicio").get("btn exit").drawable).justPushed() )
                     {
@@ -372,13 +409,17 @@ namespace XNAGraphics.KernelBundle
                        
                         //this.nextScreenState = screenState.END;
                     }
-
-                    
-                    
-                 
-
-
                     return this.r.get("Inicio");
+
+                case screenState.SELECT_PLAYER:
+                    if (selected_player != -1)
+                    {
+                        this.nextScreenState = screenState.PLAY;
+                        this.nextPlayState = playState.INIT;
+                    }
+                    else
+                        selected_player = calculate_selected_player();
+                    return this.r.get("select_player");
 
                 case screenState.PLAY:
                     switch (this.currentPlayState)
@@ -401,6 +442,9 @@ namespace XNAGraphics.KernelBundle
                             // si no quedan mas posturas va a la puntuacion final
                             else
                             {
+                                gameScores.date = DateTime.Now;
+                                players[selected_player].gameScoreRecord.Add(gameScores);
+                                players[selected_player].save();
                                 this.nextPlayState = playState.FINAL_SCORE;
                             }
                             break;
@@ -569,6 +613,10 @@ namespace XNAGraphics.KernelBundle
             if (this.currentScreenState == screenState.MENU)
             {
                 return this.r.get("Inicio");
+            }
+            else if (this.currentScreenState == screenState.SELECT_PLAYER)
+            {
+                return this.r.get("select_player");
             } 
             else if (this.currentScreenState == screenState.PLAY)
             {
@@ -692,6 +740,26 @@ namespace XNAGraphics.KernelBundle
             res = (res) * 100;
             int total = (int)res;
             return total + 50;
+        }
+
+        private void loadPlayers()
+        {
+            players[0] = Player.loadPlayer(0);
+            players[1] = Player.loadPlayer(1);
+            players[2] = Player.loadPlayer(2);
+            players[3] = Player.loadPlayer(3);
+        }
+
+        private int calculate_selected_player()
+        {
+            foreach(Player p in players)
+            {
+                if (((Button)this.r.get("select_player").get(p.getImageName()).drawable).justPushed())
+                {
+                    return p.id;
+                }
+            }
+            return -1;
         }
     }
 }

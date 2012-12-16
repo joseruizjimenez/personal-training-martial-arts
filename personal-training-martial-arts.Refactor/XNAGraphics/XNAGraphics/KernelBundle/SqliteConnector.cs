@@ -24,6 +24,7 @@ namespace XNAGraphics.KernelBundle
             }
             catch (Exception e)
             {
+                e.ToString();
                 return ("Error SQLite" + e);
             }
             return "";
@@ -46,6 +47,7 @@ namespace XNAGraphics.KernelBundle
             }
             catch (Exception e)
             {
+                e.ToString();
                 return ("");
             }
             return result;
@@ -68,6 +70,7 @@ namespace XNAGraphics.KernelBundle
             }
             catch (Exception e)
             {
+                e.ToString();
                 return null;
             }
             return result;
@@ -90,6 +93,7 @@ namespace XNAGraphics.KernelBundle
             }
             catch (Exception e)
             {
+                e.ToString();
                 return null;
             }
             return result;
@@ -112,6 +116,7 @@ namespace XNAGraphics.KernelBundle
             }
             catch (Exception e)
             {
+                e.ToString();
                 return null;
             }
             return result;

@@ -21,8 +21,7 @@ using System.Runtime.Serialization;
 
 namespace XNAGraphics.KernelBundle.BasicsBundle
 {
-    [Serializable()]
-    public abstract class BasicCore : ISerializable
+    public abstract class BasicCore
     {
         protected Game1 game;
         protected Screen screen;

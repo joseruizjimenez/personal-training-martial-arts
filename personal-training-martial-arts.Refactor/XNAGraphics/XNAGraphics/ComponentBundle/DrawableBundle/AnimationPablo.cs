@@ -58,7 +58,25 @@ namespace XNAGraphics.ComponentBundle.DrawableBundle
             this.SpriteWidth = this.TotalWidth / this.columns;
             this.SpriteHeight = this.TotalHeight / this.rows;
         }
-            
+
+        public AnimationPablo(Object texture, int x, int y, int width, int height, int rows, int columns, int totalFrames)
+            : base(x, y, Color.Gray * 0.9f)
+        {
+
+            this.sprite = texture;
+            this.rows = rows;
+            this.columns = columns;
+            this.totalFrames = totalFrames;
+
+            this.currentFrame = 0;
+            Texture2D text = (Texture2D)this.sprite;
+            this.TotalWidth = text.Width;
+            this.TotalHeight = text.Height;
+            this.SpriteWidth = this.TotalWidth / this.columns;
+            this.SpriteHeight = this.TotalHeight / this.rows;
+
+            this.scale = width / this.SpriteWidth;
+        }            
 
         public AnimationPablo(Object texture, Vector2 origin, int frame_count, int frames_per_sec)
             : this(texture, 0, 0, Color.White, origin, frame_count, frames_per_sec, 0f, 0f) { }
@@ -132,13 +150,8 @@ namespace XNAGraphics.ComponentBundle.DrawableBundle
         protected override void onDraw(SpriteBatch spriteBatch)
         {
             Texture2D texture = (Texture2D)this.sprite;
-
-
             slow();
-            
 
-
-            
             //currentFrame = ++currentFrame % this.columns;
 
             int srcX = posX * this.SpriteWidth;
@@ -155,13 +168,7 @@ namespace XNAGraphics.ComponentBundle.DrawableBundle
                 updateNextFrame(this.currentFrame);
                 currentFrame++;
                 if (currentFrame > this.totalFrames) currentFrame = 0;
-            
-            
             }
-
-            
-        
-        
         }
 
         private void updateNextFrame(int num) {

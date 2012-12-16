@@ -1,6 +1,7 @@
 Content\arial.font.xnb
 Content\grobold.font.xnb
 Content\debug.font.xnb
+Content\grobold_small.font.xnb
 Content\video_footer.texture.xnb
 Content\video_header.texture.xnb
 Content\waiting.texture.xnb
@@ -28,5 +29,4 @@ Content\Oi zukiS.texture.xnb
 Content\ReiS.texture.xnb
 Content\bruce.texture.xnb
 Content\Gong sound.xnb
-Content\grobold_small.font.xnb
 Content\Gong sound.wma
