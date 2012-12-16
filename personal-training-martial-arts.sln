@@ -9,7 +9,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "personal-training-martial-a
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "personal-training-martial-arts.Recorder", "personal-training-martial-arts.Recorder\personal-training-martial-arts.Recorder\personal-training-martial-arts.Recorder.csproj", "{821B41CD-5796-445F-A085-539BB379F9FF}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "personal-training-martial-arts.RecorderContent", "personal-training-martial-arts.Recorder\personal-training-martial-arts.RecorderContent\personal-training-martial-arts.RecorderContent.contentproj", "{D29D8586-52AA-4AAF-B89C-8871B6ECB68D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "personal-training-martial-arts.RecorderContent", "personal-training-martial-arts.Recorder\personal-training-martial-arts.RecorderContent\personal-training-martial-arts.RecorderContent.contentproj", "{D29D8586-52AA-4AAF-B89C-8871B6ECB68D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XNAGraphics", "personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\XNAGraphics.csproj", "{B05F22EB-CDC9-4693-8E8F-53210509B7B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XNAGraphicsContent", "personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphicsContent\XNAGraphicsContent.contentproj", "{F7E571F8-09CC-4AA2-B9A0-FD042BE4F840}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +49,16 @@ Global
 		{D29D8586-52AA-4AAF-B89C-8871B6ECB68D}.Debug|x86.ActiveCfg = Debug|x86
 		{D29D8586-52AA-4AAF-B89C-8871B6ECB68D}.Release|Any CPU.ActiveCfg = Release|x86
 		{D29D8586-52AA-4AAF-B89C-8871B6ECB68D}.Release|x86.ActiveCfg = Release|x86
+		{B05F22EB-CDC9-4693-8E8F-53210509B7B5}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{B05F22EB-CDC9-4693-8E8F-53210509B7B5}.Debug|x86.ActiveCfg = Debug|x86
+		{B05F22EB-CDC9-4693-8E8F-53210509B7B5}.Debug|x86.Build.0 = Debug|x86
+		{B05F22EB-CDC9-4693-8E8F-53210509B7B5}.Release|Any CPU.ActiveCfg = Release|x86
+		{B05F22EB-CDC9-4693-8E8F-53210509B7B5}.Release|x86.ActiveCfg = Release|x86
+		{B05F22EB-CDC9-4693-8E8F-53210509B7B5}.Release|x86.Build.0 = Release|x86
+		{F7E571F8-09CC-4AA2-B9A0-FD042BE4F840}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{F7E571F8-09CC-4AA2-B9A0-FD042BE4F840}.Debug|x86.ActiveCfg = Debug|x86
+		{F7E571F8-09CC-4AA2-B9A0-FD042BE4F840}.Release|Any CPU.ActiveCfg = Release|x86
+		{F7E571F8-09CC-4AA2-B9A0-FD042BE4F840}.Release|x86.ActiveCfg = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

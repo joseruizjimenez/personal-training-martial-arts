@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Posture name="Oi zuki" description="
+     Realizando un desplazamiento hacia 
+ adelante se golpea avanzando con el 
+ mismo brazo de la pierna adelantada. 
+ Esta considerada una de las Técnicas 
+ Punzantes o también llamadas 
+ TSUKI WAZA." difficulty="0">
+  <joint x="0,4585572" y="0,1368269" z="2,016142" />
+  <joint x="0,4206195" y="0,1975752" z="2,050465" />
+  <joint x="0,401877" y="0,5467812" z="2,042942" />
+  <joint x="0,4586313" y="0,7053322" z="2,044087" />
+  <joint x="0,315449" y="0,4143215" z="1,963805" />
+  <joint x="0,2273738" y="0,1958488" z="1,920891" />
+  <joint x="0,4075429" y="0,09611585" z="1,857411" />
+  <joint x="0,4682024" y="0,09440105" z="1,842737" />
+  <joint x="0,5909647" y="0,4697532" z="2,22833" />
+  <joint x="0,772458" y="0,4241308" z="2,182911" />
+  <joint x="0,9522414" y="0,4550567" z="2,124451" />
+  <joint x="1,031722" y="0,4628882" z="2,096829" />
+  <joint x="0,4080088" y="0,06506996" z="1,966349" />
+  <joint x="0,3859654" y="-0,342549" z="1,963863" />
+  <joint x="0,2224535" y="-0,6783124" z="2,017246" />
+  <joint x="0,272022" y="-0,7454039" z="1,995909" />
+  <joint x="0,5299039" y="0,05238182" z="2,051897" />
+  <joint x="0,6387429" y="-0,3452291" z="2,087384" />
+  <joint x="0,6091466" y="-0,6814455" z="2,074081" />
+  <joint x="0,6723153" y="-0,7423772" z="2,072122" />
+</Posture>

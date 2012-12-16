@@ -94,10 +94,17 @@
     <Compile Include="TestPosture.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphics\XNAGraphics.csproj">
+      <Project>{B05F22EB-CDC9-4693-8E8F-53210509B7B5}</Project>
+      <Name>XNAGraphics</Name>
+    </ProjectReference>
     <ProjectReference Include="..\personal-training-martial-arts\personal-training-martial-arts\personal-training-martial-arts.csproj">
       <Project>{A2B7360D-22B3-48FC-9AC0-CF91D837123D}</Project>
       <Name>personal-training-martial-arts</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
