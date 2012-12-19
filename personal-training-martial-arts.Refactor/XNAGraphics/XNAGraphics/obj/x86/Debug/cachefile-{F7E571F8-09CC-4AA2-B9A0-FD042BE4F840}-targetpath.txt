@@ -30,3 +30,8 @@ Content\ReiS.texture.xnb
 Content\bruce.texture.xnb
 Content\Gong sound.xnb
 Content\Gong sound.wma
+Content\player_0.texture.xnb
+Content\player_1.texture.xnb
+Content\player_2.texture.xnb
+Content\player_3.texture.xnb
+Content\btn.borrar.texture.xnb

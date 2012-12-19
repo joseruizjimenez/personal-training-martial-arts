@@ -38,6 +38,18 @@ namespace XNAGraphics.ComponentBundle.DrawableBundle
             prev_mpressed = false;
         }
 
+        public Button(Object texture, int x, int y, float scale)
+            : base(x, y)
+        {
+            this.sprite = texture;
+            Texture2D t = (Texture2D) this.sprite;
+            this.rectangle = new Rectangle(x, y, t.Width, t.Height);
+            state = BState.UP;
+            mpressed = false;
+            prev_mpressed = false;
+            this.scale = scale;
+        }
+
         public BState updateState()
         {
             MouseState mouse_state = Mouse.GetState();
@@ -47,7 +59,7 @@ namespace XNAGraphics.ComponentBundle.DrawableBundle
             mpressed = mouse_state.LeftButton == ButtonState.Pressed;
 
             // raton encima del boton
-            if (hit_button(this.rectangle, mx, my))
+            if (hit_button(this.rectangle, this.scale, mx, my))
             {
                 // si se esta presionando el boton
                 if (mpressed)
@@ -81,12 +93,12 @@ namespace XNAGraphics.ComponentBundle.DrawableBundle
             return state;
         }
 
-        private Boolean hit_button(Rectangle button, int mx, int my)
+        private Boolean hit_button(Rectangle button, float scale, int mx, int my)
         {
             return (mx >= button.X &&
-                mx <= button.X + button.Width &&
+                mx <= button.X + button.Width*scale &&
                 my >= button.Y &&
-                my <= button.Y + button.Height);
+                my <= button.Y + button.Height*scale);
         }
 
         public Boolean justPushed()

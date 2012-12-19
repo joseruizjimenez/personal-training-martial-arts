@@ -31,6 +31,8 @@ namespace XNAGraphics.KernelBundle
             INIT,
             MENU,
             SELECT_PLAYER,
+            FOTO_PLAYER,
+            MENU_PLAYER,
             PLAY,
             END
         }
@@ -54,8 +56,10 @@ namespace XNAGraphics.KernelBundle
         // TEMPORIZADORES (tiempos en segundos)
         private Stopwatch drawPostureTimeOut;
         private Stopwatch holdPostureTimeOut;
+        private Stopwatch fotoTimeOut;
         private Stopwatch scoreTimeOut;
         private const int DRAW_POSTURE_TIME = 10;
+        private const int FOTO_TIME = 5;
         private const int HOLD_POSTURE_TIME = 3;
         private const int SCORE_TIME = 10;
 
@@ -68,7 +72,11 @@ namespace XNAGraphics.KernelBundle
 
         // Listado de jugadores (permitimos 4)
         private Player[] players = new Player[4];
-        private int selected_player = -1;
+        private int selected_player = 0;
+        private Boolean ini_player = false;
+        private Boolean textures_loaded = false;
+        private Boolean player_selected_changed = false;
+        private Boolean first_load = true;
 
         // NIVEL NORMAL para modificar usar metodo chDificultyLevel(int);
         private float averageTolerance = 0.058F;
@@ -93,15 +101,14 @@ namespace XNAGraphics.KernelBundle
             this.drawPostureTimeOut = Stopwatch.StartNew();
             this.holdPostureTimeOut = Stopwatch.StartNew();
             this.scoreTimeOut = Stopwatch.StartNew();
+            this.fotoTimeOut = Stopwatch.StartNew();
 
             this.kinect = new Kinect();
 
             this.nextScreenState = screenState.INIT;
             this.nextPlayState = playState.INIT;
 
-            this.drawPostureTimeOut = Stopwatch.StartNew();
-            this.holdPostureTimeOut = Stopwatch.StartNew();
-            this.scoreTimeOut = Stopwatch.StartNew();
+            loadPlayers();
 
             // TODO: CREAR SCROLLING_TEXT Y --SCROLLING_IMAGE-- Y SCROLLING_ANIMATION?? Y TILE Y SCROLLING_TILE??
         }
@@ -114,6 +121,8 @@ namespace XNAGraphics.KernelBundle
 
         public override Boolean onLoadContent()
         {
+            
+
             // Texture2D
             this.content.add("bg_new", "background_new");
             this.content.add("bg_xbox", "background_xbox");
@@ -138,6 +147,7 @@ namespace XNAGraphics.KernelBundle
             this.content.add("btn.exit_to_menu", "btn.exit_to_menu");
             this.content.add("btn.continue", "btn.continue");
             this.content.add("btn.pause", "btn.pause");
+            this.content.add("btn.borrar", "btn.borrar");
             this.content.add("skeleton.joint", "joint");
 
             // foto jugadores
@@ -161,6 +171,8 @@ namespace XNAGraphics.KernelBundle
 
             // Esto se hace siempre para que el ContentHandler lo cargue despues de haber añadido todas las texturas a manubrio
             this.content.load();
+
+            update_players_foto();
 
             // Inicializamos nuestros señores fondos (que nos van a servir para todos y sin cambios bruscos al tenerlo como variable de clase)
             this.background = new Layer("Background", new ScrollingImage(this.content.get("bg_new"), this.game.graphics, 0, 0, Color.White, 30, 1f, 0), 1001);
@@ -208,18 +220,62 @@ namespace XNAGraphics.KernelBundle
                     new Image(this.content.get("logo.edition"), 730, 120)
                 ),
                 new Layer(players[0].getImageName(),
-                    new Button(this.content.get(players[0].getImageName()), 200, 200)
+                    new Button(players[0].foto, 140, 200, 0.52f)
                 ),
                 new Layer(players[1].getImageName(),
-                    new Button(this.content.get(players[1].getImageName()), 503, 200)
+                    new Button(players[1].foto, 482, 200, 0.52f)
                 ),
                 new Layer(players[2].getImageName(),
-                    new Button(this.content.get(players[2].getImageName()), 200, 487)
+                    new Button(players[2].foto, 140, 455, 0.52f)
                 ),
                 new Layer(players[3].getImageName(),
-                    new Button(this.content.get(players[3].getImageName()), 503, 487)
+                    new Button(players[3].foto, 482, 455, 0.52f)
                 )
             ); r.add(select_player);
+
+            /**
+             * Pantalla captura foto
+             */
+            LayerCollection foto_player = new LayerCollection("foto_player",
+                this.background, this.background_xbox,
+                new Layer("Logo del juego",
+                    new Image(this.content.get("logo.title"), 500, 30)
+                ),
+                new Layer("Logo del juego",
+                    new Image(this.content.get("logo.edition"), 730, 120)
+                ),
+                new Layer("Contenedor video",
+                    new Panel(new Rectangle(200, 241, 646, 486), Color.Black * 0.95f, 2, Color.Gray * 0.9f)
+                ),
+                new Layer("Texto feedback",
+                    new BorderedText(this.content.get("centered_text_small"), "¡Sonríe ... ", this.game.GraphicsDevice.Viewport.Width / 2 - 300, 200, Color.Red, 2f, Color.Black)
+                ),
+                new Layer("Kinect RGB Video",
+                    new KinectVideo(203, 244, this.kinect)
+                )
+            ); r.add(foto_player);
+
+            /**
+             * Pantalla menu de jugador
+             */
+            LayerCollection menu_player = new LayerCollection("menu_player",
+                this.background, this.background_xbox,
+                new Layer("Logo del juego",
+                    new Image(this.content.get("logo.title"), 500, 30)
+                ),
+                new Layer("Logo del juego",
+                    new Image(this.content.get("logo.edition"), 730, 120)
+                ),
+                new Layer("foto",
+                    new Button(players[selected_player].foto, 150, 200, 0.75f)
+                ),
+                new Layer("Btn continue",
+                    new Button(this.content.get("btn.continue"), 160, 570)
+                ),
+                new Layer("Btn borrar",
+                    new Button(this.content.get("btn.borrar"), 410, 570)
+                )
+            ); r.add(menu_player);
 
             /**
              * Mostrar una postura a imitar
@@ -237,6 +293,12 @@ namespace XNAGraphics.KernelBundle
                 ),
                 new Layer("Contenedor info",
                     new Panel(new Rectangle(862, 241, 379, 419), Color.Black * 0.95f, 2, Color.Gray * 0.9f)
+                ),
+                new Layer("Contenedor foto",
+                    new Panel(new Rectangle(5, 5, 277, 210), Color.Beige * 0.95f, 2, Color.Gray * 0.9f)
+                ),
+                new Layer("foto",
+                    new Button(players[selected_player].foto, 10, 10, 0.42f)
                 ),
                 new Layer("texto chungo",
                     new Text(this.content.get("normal_text"), "postureando", 870, 290, Color.White)
@@ -270,6 +332,12 @@ namespace XNAGraphics.KernelBundle
                 ),
                 new Layer("Contenedor info",
                     new Panel(new Rectangle(862, 241, 379, 419), Color.Black * 0.95f, 2, Color.Gray * 0.9f)
+                ),
+                new Layer("Contenedor foto",
+                    new Panel(new Rectangle(5, 5, 277, 210), Color.Beige * 0.95f, 2, Color.Gray * 0.9f)
+                ),
+                new Layer("foto",
+                    new Button(players[selected_player].foto, 10, 10, 0.42f)
                 ),
                 new Layer("Kinect RGB Video",
                     new KinectVideo(203, 244, this.kinect)
@@ -311,6 +379,12 @@ namespace XNAGraphics.KernelBundle
                 new Layer("panel de info",
                     new Panel(new Rectangle(421, 241, 820, 419), Color.Black * 0.9f, 5, Color.Black * 0.55f)
                 ),
+                new Layer("Contenedor foto",
+                    new Panel(new Rectangle(5, 5, 277, 210), Color.Beige * 0.95f, 2, Color.Gray * 0.9f)
+                ),
+                new Layer("foto",
+                    new Button(players[selected_player].foto, 10, 10, 0.42f)
+                ),
                 new Layer("Btn continue",
                     new Button(this.content.get("btn.continue"), 195, 236)
                 ),
@@ -335,6 +409,12 @@ namespace XNAGraphics.KernelBundle
                 ),
                 new Layer("Texto central",
                     new BorderedText(this.content.get("centered_text"), "Puntuación de la postura: ", this.game.GraphicsDevice.Viewport.Width / 2, this.game.GraphicsDevice.Viewport.Height / 2, Color.Green, 5f, Color.Black)
+                ),
+                new Layer("Contenedor foto",
+                    new Panel(new Rectangle(5, 5, 277, 210), Color.Beige * 0.95f, 2, Color.Gray * 0.9f)
+                ),
+                new Layer("foto",
+                    new Button(players[selected_player].foto, 10, 10, 0.42f)
                 ),
                 new Layer("Btn next",
                     new Button(this.content.get("btn.next"), 1047, 687)
@@ -361,6 +441,12 @@ namespace XNAGraphics.KernelBundle
                 new Layer("Texto central",
                     new BorderedText(this.content.get("centered_text"), "Puntuación final: ", this.game.GraphicsDevice.Viewport.Width / 2, this.game.GraphicsDevice.Viewport.Height / 2, Color.Green, 5f, Color.Black)
                 ),
+                new Layer("Contenedor foto",
+                    new Panel(new Rectangle(5, 5, 277, 210), Color.Beige * 0.95f, 2, Color.Gray * 0.9f)
+                ),
+                new Layer("foto",
+                    new Button(players[selected_player].foto, 10, 10, 0.42f)
+                ),
                 new Layer("Btn exit",
                     new Button(this.content.get("btn.exit_to_menu"), 1047, 687)
                 ),
@@ -384,7 +470,7 @@ namespace XNAGraphics.KernelBundle
         {
             //this.r.get("Detectar postura").get("Texto central").drawable.addMovement(new Screw(1.05f, 0f, 30));
             //this.r.get("Detectar postura").get("Texto central").drawable.addMovement(new Screw(1f, 0f, 30));
-
+            update_players_foto();
 
             this.currentScreenState = this.nextScreenState;
             this.currentPlayState = this.nextPlayState;
@@ -393,6 +479,7 @@ namespace XNAGraphics.KernelBundle
             {
                 case screenState.INIT:
                     // algo en inicio?
+                    first_load = false;
                     this.nextScreenState = screenState.MENU;
                     break;
 
@@ -414,12 +501,61 @@ namespace XNAGraphics.KernelBundle
                 case screenState.SELECT_PLAYER:
                     if (selected_player != -1)
                     {
-                        this.nextScreenState = screenState.PLAY;
-                        this.nextPlayState = playState.INIT;
+                        if (players[selected_player].active == false)
+                        {
+                            this.fotoTimeOut = Stopwatch.StartNew();
+                            this.nextScreenState = screenState.FOTO_PLAYER;
+                        }
+                        else
+                        {
+                            player_selected_changed = true;
+                            this.nextScreenState = screenState.MENU_PLAYER;
+                        }
                     }
                     else
                         selected_player = calculate_selected_player();
                     return this.r.get("select_player");
+
+                case screenState.FOTO_PLAYER:
+                    if (isTimedOut(this.fotoTimeOut, FOTO_TIME))
+                    {
+                        if (players[selected_player].active == false)
+                        {
+                            kinect.locked = true;
+                            players[selected_player].foto = kinect.kinectRGBVideo;
+                            kinect.locked = false;
+                            players[selected_player].active = true;
+                            players[selected_player].save();
+                            textures_loaded = true;
+                            this.fotoTimeOut.Stop();
+                            this.nextScreenState = screenState.MENU_PLAYER;
+                        }
+                        else
+                            this.nextScreenState = screenState.MENU_PLAYER;
+                    }
+                    else
+                    {
+                            BorderedText te = (BorderedText)this.r.get("foto_player").get("Texto feedback").drawable;
+                            te.text = "¡Sonríe ... " + (FOTO_TIME - this.fotoTimeOut.Elapsed.Seconds).ToString() + " segundos!";
+                    }
+                    return this.r.get("foto_player");
+
+                case screenState.MENU_PLAYER:
+                    if (((Button)this.r.get("menu_player").get("btn borrar").drawable).justPushed())
+                    {
+                        players[selected_player].active = false;
+                        players[selected_player].foto = (Texture2D)this.content.get(players[selected_player].getImageName()); 
+                        players[selected_player].save();
+                        textures_loaded = true;
+                        selected_player = -1;
+                        this.nextScreenState = screenState.SELECT_PLAYER;
+                    }
+                    else if (((Button)this.r.get("menu_player").get("btn continue").drawable).justPushed())
+                    {
+                        this.nextScreenState = screenState.PLAY;
+                        this.nextPlayState = playState.INIT;
+                    }
+                    return this.r.get("menu_player");
 
                 case screenState.PLAY:
                     switch (this.currentPlayState)
@@ -452,8 +588,7 @@ namespace XNAGraphics.KernelBundle
                         case playState.DRAW_POSTURE:
                             // Esta fase es para presentarle al usuario la postura objetivo
                             // TIMEOUT de 10 segundos o pulsar CONTINUE
-
-                            
+                        
                             (this.r.get("Mostrar postura").get("texto chungo").drawable) =  new Text(this.content.get("normal_text"), this.gamePostures[this.gamePosturesIndex].description, 870, 290, Color.White);// this.gamePostures[this.gamePosturesIndex].description;
                             this.r.get("Mostrar postura").get("Postura").drawable = new Image(this.content.get(this.gamePostures[this.gamePosturesIndex].name), 200, 241);
                             this.r.get("Detectar postura").get("Profesor").drawable = new Image(this.content.get(this.gamePostures[this.gamePosturesIndex].name+"S"), 862, 241);
@@ -617,7 +752,15 @@ namespace XNAGraphics.KernelBundle
             else if (this.currentScreenState == screenState.SELECT_PLAYER)
             {
                 return this.r.get("select_player");
-            } 
+            }
+            else if (this.currentScreenState == screenState.FOTO_PLAYER)
+            {
+                return this.r.get("foto_player");
+            }
+            else if (this.currentScreenState == screenState.MENU_PLAYER)
+            {
+                return this.r.get("menu_player");
+            }
             else if (this.currentScreenState == screenState.PLAY)
             {
                 if (this.currentPlayState == playState.DRAW_POSTURE)
@@ -744,10 +887,10 @@ namespace XNAGraphics.KernelBundle
 
         private void loadPlayers()
         {
-            players[0] = Player.loadPlayer(0);
-            players[1] = Player.loadPlayer(1);
-            players[2] = Player.loadPlayer(2);
-            players[3] = Player.loadPlayer(3);
+            players[0] = Player.loadPlayer(0, null);
+            players[1] = Player.loadPlayer(1, null);
+            players[2] = Player.loadPlayer(2, null);
+            players[3] = Player.loadPlayer(3, null);
         }
 
         private int calculate_selected_player()
@@ -760,6 +903,60 @@ namespace XNAGraphics.KernelBundle
                 }
             }
             return -1;
+        }
+
+        private void update_players_foto()
+        {
+            if (!ini_player)
+            {
+                foreach (Player p in players)
+                {
+                        p.foto = new Texture2D(game.GraphicsDevice, 640, 480);
+                        Color[] sex = new Color[640 * 480];
+                        ((Texture2D)this.content.get(players[p.id].getImageName())).GetData(sex);
+                        p.foto.SetData(sex);
+                }
+                
+                ini_player = true;
+            }
+            else
+            {
+                if (first_load || textures_loaded || player_selected_changed)
+                    load_players_foto();
+                foreach (Player p in players)
+                {
+                    if (p.active == false && (first_load || textures_loaded || player_selected_changed) ){
+                        p.foto = new Texture2D(game.GraphicsDevice, 640, 480);
+                        Color[] sex = new Color[640 * 480];
+                        ((Texture2D)this.content.get(players[p.id].getImageName())).GetData(sex);
+                        p.foto.SetData(sex);
+                    }
+                    if (first_load || textures_loaded)
+                    {
+                        Button f = (Button)this.r.get("select_player").get(p.getImageName()).drawable;
+                        f.sprite = p.foto;
+                    }
+                }
+            }
+            if (player_selected_changed || (textures_loaded && selected_player != -1))
+            {
+                ((Button)this.r.get("menu_player").get("foto").drawable).sprite = players[selected_player].foto;
+                ((Button)this.r.get("Mostrar postura").get("foto").drawable).sprite = players[selected_player].foto;
+                ((Button)this.r.get("Detectar postura").get("foto").drawable).sprite = players[selected_player].foto;
+                ((Button)this.r.get("Pausa").get("foto").drawable).sprite = players[selected_player].foto;
+                ((Button)this.r.get("Puntuación de postura").get("foto").drawable).sprite = players[selected_player].foto;
+                ((Button)this.r.get("Puntuación final").get("foto").drawable).sprite = players[selected_player].foto;
+                player_selected_changed = false;
+            }
+            textures_loaded = false;
+        }
+
+        private void load_players_foto()
+        {
+            players[0].load(new Texture2D(game.GraphicsDevice, 640, 480));
+            players[1].load(new Texture2D(game.GraphicsDevice, 640, 480));
+            players[2].load(new Texture2D(game.GraphicsDevice, 640, 480));
+            players[3].load(new Texture2D(game.GraphicsDevice, 640, 480));
         }
     }
 }

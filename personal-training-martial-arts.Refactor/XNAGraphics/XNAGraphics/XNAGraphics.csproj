@@ -142,6 +142,7 @@
     <Compile Include="KernelBundle\Core.cs" />
     <Compile Include="KernelBundle\PlayerBundle\GameScore.cs" />
     <Compile Include="KernelBundle\PlayerBundle\Player.cs" />
+    <Compile Include="KernelBundle\PlayerBundle\PlayerPhoto.cs" />
     <Compile Include="KernelBundle\Screen.cs" />
     <Compile Include="KernelBundle\SqliteConnector.cs" />
     <Compile Include="KinectBundle\Kinect.cs" />

@@ -75,4 +75,9 @@ C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug
 C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\System.Data.SQLite.dll
 C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\System.Data.SQLite.pdb
 C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\grobold_small.font.xnb
-C:\personal-training-martial-arts\personal-training-martial-arts.Tests\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\personal-training-martial-arts\personal-training-martial-arts.Tests\obj\x86\Debug\personal-training-martial-arts.Tests.csprojResolveAssemblyReference.cache
+C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\player_0.texture.xnb
+C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\player_1.texture.xnb
+C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\player_2.texture.xnb
+C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\player_3.texture.xnb
+C:\personal-training-martial-arts\personal-training-martial-arts.Tests\bin\Debug\Content\btn.borrar.texture.xnb

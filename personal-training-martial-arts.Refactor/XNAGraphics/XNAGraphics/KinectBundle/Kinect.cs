@@ -13,13 +13,16 @@ using Microsoft.Kinect;
 
 namespace XNAGraphics.KinectBundle
 {
-    public class Kinect
+    public class Kinect 
     {
         public KinectSensor kinectSensor;
         public Texture2D kinectRGBVideo;
         public Skeleton skeleton;
         public Boolean skeletonOutOfRange;
+        public Texture2D lastFrame;
         int elevationAngle;
+
+        public Boolean locked = false;
 
         public Kinect()
         {
@@ -37,6 +40,7 @@ namespace XNAGraphics.KinectBundle
         public void load(Game game)
         {
             this.kinectRGBVideo = new Texture2D(game.GraphicsDevice, 640, 480);
+            this.lastFrame = new Texture2D(game.GraphicsDevice, 640, 480);
         }
 
         public void unload()
@@ -213,7 +217,10 @@ namespace XNAGraphics.KinectBundle
                     }
 
                     // Actualizamos los datos de los pixels del ColorImageFrame a nuestra Texture2D
-                    this.kinectRGBVideo.SetData(color);
+                    if(!locked)
+                        this.kinectRGBVideo.GraphicsDevice.Textures[0] = null;
+                        this.kinectRGBVideo.SetData(color);
+                    //this.lastFrame = this.kinectRGBVideo;
                 }
             }
         }

@@ -2,4 +2,4 @@ C:\Users\Luis\Documents\Visual Studio 2010\Projects\XNAGraphics\XNAGraphics\XNAG
 C:\Users\Luis\Desktop\XNAGraphics\XNAGraphics\XNAGraphicsContent\obj\x86\Debug\XNAGraphicsContent.contentprojResolveAssemblyReference.cache
 C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphicsContent\obj\x86\Debug\Interop.WMPLib.dll
 C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphicsContent\obj\x86\Debug\XNAGraphicsContent.contentproj.ResolveComReference.cache
-C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphicsContent\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\personal-training-martial-arts\personal-training-martial-arts.Refactor\XNAGraphics\XNAGraphicsContent\obj\x86\Debug\XNAGraphicsContent.contentprojResolveAssemblyReference.cache
