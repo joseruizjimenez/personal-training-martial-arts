@@ -14,35 +14,44 @@ namespace XNAGraphics.KernelBundle.PlayerBundle
     public class Player : ISerializable
     {
         public int id;
-        public List<GameScore> gameScoreRecord;
+        //public List<GameScore2> gameScoreRecord;
         public Boolean active;
         public Texture2D foto;
 
         public List<float> foto_serializable;
+        public List<double> lista_Resultados;
+        public List<DateTime> lista_Fechas;
 
         public Player(int id, Texture2D foto)
         {
             this.id = id;
-            this.gameScoreRecord = new List<GameScore>();
+            //this.gameScoreRecord = new List<GameScore2>();
+            //this.gameScoreRecord.Add(new GameScore2());
             this.active = false;
             this.foto_serializable = new List<float>();
             this.foto = foto;
+            this.lista_Resultados = new List<double>();
+            this.lista_Fechas = new List<DateTime>();
         }
 
         public Player(SerializationInfo info, StreamingContext ctxt)
         {
             this.id = (int)info.GetValue("id", typeof(int));
-            this.gameScoreRecord = (List<GameScore>)info.GetValue("gameScoreRecord", typeof(List<GameScore>));
+            //this.gameScoreRecord = (List<GameScore2>)info.GetValue("gameScoreRecord", typeof(List<GameScore>));
             this.active = (Boolean)info.GetBoolean("active");
             this.foto_serializable = (List<float>)info.GetValue("foto_serializable", typeof(List<float>));
+            this.lista_Resultados = (List<double>)info.GetValue("lista_Resultados", typeof(List<double>));
+            this.lista_Fechas = (List<DateTime>)info.GetValue("lista_Fechas", typeof(List<DateTime>));
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
         {
             info.AddValue("id", this.id);
-            info.AddValue("gameScoreRecord", this.gameScoreRecord);
+            //info.AddValue("gameScoreRecord", this.gameScoreRecord);
             info.AddValue("active", this.active);
             info.AddValue("foto_serializable", getSerializedPhoto());
+            info.AddValue("lista_Resultados", this.lista_Resultados);
+            info.AddValue("lista_Fechas", this.lista_Fechas);
         }
 
         public void save()
@@ -56,25 +65,44 @@ namespace XNAGraphics.KernelBundle.PlayerBundle
         public void load(Texture2D texture)
         {
             Player player;
-            Stream stream = File.Open(this.id.ToString() + ".player", FileMode.Open);
-            BinaryFormatter bFormatter = new BinaryFormatter();
-            player = (Player)bFormatter.Deserialize(stream);
-            stream.Close();
-            this.id = player.id;
-            this.active = player.active;
-            this.gameScoreRecord = player.gameScoreRecord;
-            this.foto = texture;
-            if (player.foto_serializable != null && player.foto_serializable.Count != 0)
-                this.foto.SetData(setSerializedPhoto(player.foto_serializable));
+            Stream stream=null;
+            BinaryFormatter bFormatter;
+            try
+            {
+                stream = File.Open(this.id.ToString() + ".player", FileMode.Open);
+                bFormatter = new BinaryFormatter();
+                player = (Player)bFormatter.Deserialize(stream);
+                stream.Close();
+                this.id = player.id;
+                this.active = player.active;
+                this.lista_Resultados = player.lista_Resultados;
+                this.lista_Fechas = player.lista_Fechas;
+               // this.gameScoreRecord = player.gameScoreRecord;
+                this.foto = texture;
+                if (player.foto_serializable != null && player.foto_serializable.Count != 0)
+                    this.foto.SetData(setSerializedPhoto(player.foto_serializable));
+            }
+            catch (System.Exception e)
+            {
+                e.GetBaseException();
+
+            }
+            finally {
+                stream.Close();
+            
+            }
+            
         }
 
         public static Player loadPlayer(int id, Texture2D foto)
         {
             Player player;
+            Stream stream ;
+            BinaryFormatter bFormatter;
             try
             {
-                Stream stream = File.Open(id.ToString() + ".player", FileMode.Open);
-                BinaryFormatter bFormatter = new BinaryFormatter();
+                stream = File.Open(id.ToString() + ".player", FileMode.Open);
+                bFormatter = new BinaryFormatter();
                 player = (Player)bFormatter.Deserialize(stream);
                 stream.Close();
             }
@@ -84,7 +112,15 @@ namespace XNAGraphics.KernelBundle.PlayerBundle
                 e.GetType();
                 player = new Player(id, foto);
                 player.save();
+               
+
             }
+            finally
+            {
+               
+
+            }
+
             return player;
         }
 
@@ -128,85 +164,23 @@ namespace XNAGraphics.KernelBundle.PlayerBundle
             return colors;
         }
 
-        /*
-        public int id;
-        public List<GameScore> gameScoreRecord;
-        public Boolean active;
-        public Texture2D foto;
 
-        public PlayerPhoto foto_serializable
-        {
-            get { return new PlayerPhoto(this.foto); }
-            set { this.foto = ((PlayerPhoto)value).getTexture2D(ref this.foto); }
-        }
-
-        public Player(int id, Texture2D foto) 
-        {
-            this.id = id;
-            this.gameScoreRecord = new List<GameScore>();
-            this.active = false;
-            this.foto = foto;
-        }
-
-        public Player(SerializationInfo info, StreamingContext ctxt)
-        {
-            this.id = (int)info.GetValue("id", typeof(int));
-            this.gameScoreRecord = (List<GameScore>) info.GetValue("gameScoreRecord", typeof(List<GameScore>));
-            this.active = (Boolean)info.GetBoolean("active");
-            this.foto_serializable = (PlayerPhoto)info.GetValue("foto_serializable", typeof(PlayerPhoto));
-        }
-
-        public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
-        {
-            info.AddValue("id", this.id);
-            info.AddValue("gameScoreRecord", this.gameScoreRecord);
-            info.AddValue("active", this.active);
-            info.AddValue("foto_serializable", this.foto_serializable);
-        }
-
-        public void save()
-        {
-            Stream stream = File.Open(this.id.ToString() + ".player", FileMode.Create);
-            BinaryFormatter bFormatter = new BinaryFormatter();
-            bFormatter.Serialize(stream, this);
-            stream.Close();
-        }
-
-        public void load()
-        {
-            Player player;
-            Stream stream = File.Open(this.id.ToString()+".player", FileMode.Open);
-            BinaryFormatter bFormatter = new BinaryFormatter();
-            player = (Player)bFormatter.Deserialize(stream);
-            stream.Close();
-            this.gameScoreRecord = player.gameScoreRecord;
-        }
-
-        public static Player loadPlayer(int id, Texture2D foto)
-        {
-            Player player;
-            try
+        public string getHistoric() {
+            string text="";
+            int counter = 0;
+            for (int i = (lista_Resultados.Count -1);(i >= 0) && (counter < 3)  ;i-- )
             {
-                Stream stream = File.Open(id.ToString() + ".player", FileMode.Open);
-                BinaryFormatter bFormatter = new BinaryFormatter();
-                player = (Player)bFormatter.Deserialize(stream);
-                stream.Close();
+                text = text + " \n ";    
+                text = text + " " + lista_Resultados[i].ToString()+"%             " + lista_Fechas[i].ToString();
+                counter++;
             }
-            // si el jugador no existe crea su ficha de nuevo jugador
-            catch (System.IO.FileNotFoundException e)
-            {
-                e.GetType();
-                player = new Player(id, foto);
-                player.save();
-            }
-            return player;
+
+            return text;
+
+
+        
         }
 
-        public string getImageName()
-        {
-            return "player_" + this.id.ToString();
-        }
-         */
 
     }
 }

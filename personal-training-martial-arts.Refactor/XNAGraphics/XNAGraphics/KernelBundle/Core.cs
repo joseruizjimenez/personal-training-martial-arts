@@ -197,8 +197,8 @@ namespace XNAGraphics.KernelBundle
                     new Panel(new Rectangle(421, 241, 820, 419), Color.Black * 0.9f, 5, Color.Black * 0.55f)
                 ),
                 new Layer("panel bruce",
-                    new AnimationPablo(this.content.get("bruce"), 421, 241, 820, 419, 9, 4, 34)
-                    // new AnimationPablo(this.content.get("bruce"), 600, 342, 9, 4, 34)
+                   // new AnimationPablo(this.content.get("bruce"), 421, 241, 820, 419, 9, 4, 34)
+                     new AnimationPablo(this.content.get("bruce"), 600, 342, 9, 4, 34)
                 ),
                 new Layer("Btn play",
                     new Button(this.content.get("btn.play"), 195, 236)
@@ -544,7 +544,9 @@ namespace XNAGraphics.KernelBundle
                     if (((Button)this.r.get("menu_player").get("btn borrar").drawable).justPushed())
                     {
                         players[selected_player].active = false;
-                        players[selected_player].foto = (Texture2D)this.content.get(players[selected_player].getImageName()); 
+                        players[selected_player].foto = (Texture2D)this.content.get(players[selected_player].getImageName());
+                        players[selected_player].lista_Resultados=  new List<double>();
+                        players[selected_player].lista_Fechas = new List<DateTime>();
                         players[selected_player].save();
                         textures_loaded = true;
                         selected_player = -1;
@@ -563,7 +565,7 @@ namespace XNAGraphics.KernelBundle
                         case playState.INIT:
                             // algo en inicio?
                             this.gamePostures = null;
-                            this.gameScores.gameScores.Clear();
+                            this.gameScores.gameScores.Clear();  // PABLO
 
                             this.nextPlayState = playState.SELECT_POSTURE;
                             break;
@@ -579,8 +581,8 @@ namespace XNAGraphics.KernelBundle
                             else
                             {
                                 gameScores.date = DateTime.Now;
-                                players[selected_player].gameScoreRecord.Add(gameScores);
-                                players[selected_player].save();
+                                
+                                //players[selected_player].save(); -- La logica de guardado pasa al boton de salir en final score                                  
                                 this.nextPlayState = playState.FINAL_SCORE;
                             }
                             break;
@@ -688,6 +690,7 @@ namespace XNAGraphics.KernelBundle
                                 this.nextPlayState = playState.INIT;
                             else if ( ((Button)this.r.get("Pausa").get("btn exit").drawable).justPushed() )
                                 this.nextPlayState = playState.END;
+                            
                             return this.r.get("Pausa");
 
                         case playState.SCORE:
@@ -714,19 +717,33 @@ namespace XNAGraphics.KernelBundle
                             return this.r.get("Puntuación de postura");
 
                         case playState.FINAL_SCORE:
-                            //updateButtonsState(this.scoreButtons);
-                            if ( ((Button)this.r.get("Puntuación final").get("btn exit").drawable).justPushed() )
-                                this.nextPlayState = playState.END;
-                            else if ( ((Button)this.r.get("Puntuación final").get("btn replay").drawable).justPushed() )
-                                this.nextPlayState = playState.INIT;
+
                             BorderedText finalScoreText = (BorderedText)this.r.get("Puntuación final").get("Texto Central").drawable;
                             double total = 0;
                             foreach (double s in gameScores.gameScores.Values)
                             {
                                 total += s;
                             }
-                            finalScoreText.text = "Puntuación final: " + calculateScorePercent(total / this.gameScores.gameScores.Count) + "%";
+                            finalScoreText.text = "Puntuación final: " + calculateScorePercent(total / this.gameScores.gameScores.Count) + "%  \n "+ players[this.selected_player].getHistoric();
+
+                            
+
+                            if (((Button)this.r.get("Puntuación final").get("btn exit").drawable).justPushed())
+                            {
+                                this.nextPlayState = playState.END;
+                                players[selected_player].lista_Resultados.Add(calculateScorePercent(total / this.gameScores.gameScores.Count));
+                                
+                                players[selected_player].lista_Fechas.Add(DateTime.Now);
+                                players[selected_player].save();
+                            }
+                            else if (((Button)this.r.get("Puntuación final").get("btn replay").drawable).justPushed())
+                                this.nextPlayState = playState.INIT;
+
+
+
                             return this.r.get("Puntuación final");
+
+                        
 
                         default:
                         case playState.END:
@@ -827,15 +844,15 @@ namespace XNAGraphics.KernelBundle
                 /*
                 this.gamePostures = PostureLibrary.getPostureList();
                 //Copiar todos los XML a Sqlite
-                foreach (PostureInformation p in this.gamePostures) PostureLibraryFromDB.storePosture(p);
+               
                 */
-                this.gamePostures = PostureLibraryFromDB.getPostureList();
+                this.gamePostures = PostureLibraryFromDB.getPostureList(); // MODIFICACION BESTIA DE PABLO PARA PROBAR
                 this.shufflePostures(gamePostures);
                 this.gamePosturesIndex = 0;
                 return true;
             }
             // si no hay mas posturas que sacar se termina el juego
-            else if (this.gamePosturesIndex == gamePostures.Length - 1)
+            else if (this.gamePosturesIndex ==  gamePostures.Length - 1)
             {
                 this.gamePostures = null;
                 return false;
@@ -863,6 +880,11 @@ namespace XNAGraphics.KernelBundle
                 postures[t] = postures[r];
                 postures[r] = tmp;
             }
+        }
+
+        private void shufflePostures2(PostureInformation[] postures)
+        {
+            postures[0] = postures[4];
         }
 
         public static String getPostureTextFeedback(double score)
@@ -923,6 +945,8 @@ namespace XNAGraphics.KernelBundle
             {
                 if (first_load || textures_loaded || player_selected_changed)
                     load_players_foto();
+
+                //int i = 0;
                 foreach (Player p in players)
                 {
                     if (p.active == false && (first_load || textures_loaded || player_selected_changed) ){
@@ -930,12 +954,15 @@ namespace XNAGraphics.KernelBundle
                         Color[] sex = new Color[640 * 480];
                         ((Texture2D)this.content.get(players[p.id].getImageName())).GetData(sex);
                         p.foto.SetData(sex);
+                        
                     }
                     if (first_load || textures_loaded)
                     {
                         Button f = (Button)this.r.get("select_player").get(p.getImageName()).drawable;
                         f.sprite = p.foto;
+                      //  load_player_foto(i);
                     }
+                   // i++;
                 }
             }
             if (player_selected_changed || (textures_loaded && selected_player != -1))
@@ -957,6 +984,12 @@ namespace XNAGraphics.KernelBundle
             players[1].load(new Texture2D(game.GraphicsDevice, 640, 480));
             players[2].load(new Texture2D(game.GraphicsDevice, 640, 480));
             players[3].load(new Texture2D(game.GraphicsDevice, 640, 480));
+        }
+
+        private void load_player_foto(int i)
+        {
+            players[i].load(new Texture2D(game.GraphicsDevice, 640, 480));
+            
         }
     }
 }
